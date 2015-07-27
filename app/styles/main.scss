@@ -5,6 +5,11 @@ $icon-font-path: '../fonts/';
 // endbower
 @import "font-awesome/font-awesome";
 
+@function em($target, $context: $base-font-size) {
+   @if $target == 0 { @return 0 }
+   @return $target / $context + 0em;
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -69,6 +74,9 @@ header{
   width:100%;
   border-bottom:1px solid #bbb;
   padding-top: 1px;
+  position: fixed;
+  top:0;
+  z-index:1;
   .text-muted{
     text-indent: -9999em;
     background: url(../images/logo.png) no-repeat;
@@ -81,9 +89,60 @@ header{
 .container{
   width:100%;
   height:100%;
-  min-height: 767px;
+  // min-height: 400px;
   padding:0;
   background: url(../images/background.jpg) 16px 77px;
+  overflow: hidden;
+  position: relative;
+  .dragon{
+    background: rgba(0, 0, 0, 0) url("../images/road.png") repeat scroll 30% center;
+    height: 300%;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    padding: 55px 0 44px 0;
+    .page{
+      padding: 1px 0 0 1px;
+      width:100%;
+      height: 100%;
+    }
+    .home{
+      .center{
+        padding-top: em(185,15);
+        h2{
+          font-size: em(26,15);
+          line-height: em(32,26);
+          margin:em(30,26) 0 0 em(32,26);
+        }
+        p{
+          line-height: em(32,15);
+          margin:0 0 0 em(32,15);
+        }
+        figure{
+          float: left;
+        }
+        width:640px;
+        margin:0 auto;
+      }
+    }
+  }
+}
+footer{
+  position: fixed;
+  bottom:0;
+  height:44px;
+  width:100%;
+  line-height: 44px;
+  background:#fff;
+  border-top:1px solid #bbb;
+  .copy{
+    margin-left: 23px;
+  }
+  .barcode{
+    position: absolute;
+    right: 0;
+    margin-right: 22px;
+  }
 }
 
 
