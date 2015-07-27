@@ -15,5 +15,6 @@
   "undef": true,
   "unused": true,
   "strict": true,
-  "jquery": true
+  "jquery": true,
+  "predef": ["TweenMax","_","TimelineMax","Linear","Elastic","window","document","Back","Ease"]
 }

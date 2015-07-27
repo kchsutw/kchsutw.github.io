@@ -1,4 +1,5 @@
 /* jshint devel:true */
+'use strict';
 // console.log('\'Allo \'Allo!');
 $(function(){
 	// fit window size
@@ -20,12 +21,12 @@ $(function(){
 		}
 		if(+$(this).css('margin-left').replace(/px/,'') >= 0 && direction === 1)
 		{
-			TweenMax.to(this,.25,{
+			TweenMax.to(this,0.25,{
 				marginLeft :0
 			});
 			return false;
 		}
-		TweenMax.to(this,.3,{
+		TweenMax.to(this,0.3,{
 			marginLeft :'+=' + evt.deltaY * 8 + '%'
 		});
 		return false;
