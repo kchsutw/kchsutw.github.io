@@ -10,7 +10,7 @@ $(function(){
 			$('body').width(width);
 			$('body').height(height);
 			if(!$('.page-width').length){
-				$('<style></style>').addClass('page-width').appendTo($('head'))
+				$('<style></style>').addClass('page-width').appendTo($('head'));
 			}
 			$('.page-width').html('.page{width:'+width+'px!important}');
 		}).trigger('resize');
