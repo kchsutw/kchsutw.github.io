@@ -32,8 +32,17 @@ $(function(){
 			return false;
 		}
 		var fact = 12000 / $(window).width();
+		var zCross = +$('.cross').attr('data-zfact');
+		var zRoad = +$('.road').attr('data-zfact');
 		TweenMax.to(container,0.3,{
 			marginLeft :'+=' + evt.deltaY * fact + '%'
+		});
+		TweenMax.to($('.cross'),0.3,{
+			marginLeft :'+=' + evt.deltaY * fact / zCross + '%'
+		});
+
+		TweenMax.to($('.road'),0.3,{
+			marginLeft :'+=' + evt.deltaY * fact / zRoad + '%'
 		});
 		return false;
 	});
