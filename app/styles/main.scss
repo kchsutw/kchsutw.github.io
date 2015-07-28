@@ -117,6 +117,13 @@ header{
     width:29px;
     height:26px;
     margin: 15px 0 0 19px;
+    a{
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2P4zwAAAgEBAOIxSPwAAAAASUVORK5CYII=);
+    }
   }
 }
 .container{
@@ -129,13 +136,13 @@ header{
   .road{
     position: absolute;
     background:url(../images/road.png) center center;
-    width: 100%;
+    width: 10000%;
     height:100%;
   }
   .cross{
     position: absolute;
     background:url(../images/cross.png);
-    width:100%;
+    width:10000%;
     height:100%;
   }
   .dragon{
