@@ -80,7 +80,10 @@ $(function(){
 			var container = $('.dragon');
 				try{tween.kill();}catch(e){}
 				tween = TweenMax.to(container,1,{
-				left :'-=' + diff/2
+				left :'-=' + diff/2,
+				onComplete: function(){
+					$(window).trigger('mousewheel');
+				}
 			});
 		});
 
