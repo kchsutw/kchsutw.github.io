@@ -26,7 +26,7 @@ $(function(){
 
 		//mouse wheel dragon
 		$(window).on('mousewheel',function(evt){
-			var direction = 1;
+			var direction = 0;
 			var container = $('.dragon');
 			var pageTotalWidth = $('.page.home').width() + $('.page.rule').width() +
 				$('.page.house').width() * $('.page.house').length;
@@ -38,15 +38,17 @@ $(function(){
 
 			if(evt.deltaY < 0 ){
 				direction = -1;
+			}else if(evt.deltaY > 0){
+				direction = 1;
 			}
-			if(+container.css('left').replace(/px/,'') >= 0 && direction === 1)
+			if(+container.css('left').replace(/px/,'') >= 0 && direction >= 0)
 			{
 				TweenMax.to(container,0.25,{
 					left :0
 				});
 				return false;
 			}
-			if(+container.css('left').replace(/px/,'') <= ceil && direction === -1)
+			if(+container.css('left').replace(/px/,'') <= ceil && direction <= 0)
 			{
 				TweenMax.to(container,0.25,{
 					left : ceil + 'px'
