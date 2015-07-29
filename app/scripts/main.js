@@ -1,4 +1,4 @@
-/* jshint devel:true */
+/* jshint devel:true , unused : false*/
 'use strict';
 // console.log('\'Allo \'Allo!');
 $(function(){
@@ -77,7 +77,6 @@ $(function(){
 		}).on('dragEnd' ,function(e){
 			to = e.clientX;
 			var diff = from - to;
-			console.log(diff)
 			var container = $('.dragon');
 			TweenMax.to(container,1,{
 				left :'-=' + diff/2
