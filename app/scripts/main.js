@@ -26,6 +26,10 @@ $(function(){
 		var pageTotalWidth = $('.page.home').width() + $('.page.rule').width() +
 			$('.page.house').width() * $('.page.house').length;
 		var ceil = $(window).width() - pageTotalWidth;
+		var dragonWidth = $('.dragon').width();
+		if(dragonWidth < pageTotalWidth){
+			$('.dragon').width(pageTotalWidth + $(window).width());
+		}
 
 		if(evt.deltaY < 0 ){
 			direction = -1;
