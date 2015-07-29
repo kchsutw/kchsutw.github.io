@@ -23,8 +23,8 @@ $(function(){
 	$(window).on('mousewheel',function(evt){
 		var direction = 1;
 		var container = $('.dragon');
-		var pageTotalWidth = $('.page.home').width() + $('.page.home').width() +
-			$('.page.home').width() * $('.page.home').length;
+		var pageTotalWidth = $('.page.home').width() + $('.page.rule').width() +
+			$('.page.house').width() * $('.page.house').length;
 		var ceil = $(window).width() - pageTotalWidth;
 
 		if(evt.deltaY < 0 ){
