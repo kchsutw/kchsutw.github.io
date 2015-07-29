@@ -3,11 +3,13 @@
   "private": true,
   "dependencies": {
     "bootstrap-sass-official": "~3.3.1",
-    "modernizr": "~2.8.1",
+    "modernizr": "~2.7.1",
     "gsap": "~1.17.0",
     "colorbox": "~1.6.2",
     "lodash": "~3.10.0",
     "fontawesome": "~4.3.0",
-    "jquery-mousewheel": "~3.1.13"
+    "jquery-mousewheel": "~3.1.13",
+    "draggabilly": "~1.2.4",
+    "detectizr": "~2.0.0"
   }
 }

@@ -158,6 +158,7 @@ header{
     margin: 0;
     width: 1000%;
     padding: 55px 0 44px 0;
+    position: relative;
     .page{
       padding: 1px 0 0 1px;
       width:100%;
@@ -320,9 +321,11 @@ header{
         line-height: em(90,60.82);
         margin-left: 15px;
         min-width: 90px;
+        max-width: 98px;
         min-height: 110px;
         text-align: center;
         float:left;
+        white-space: nowrap;
         position: relative;
         &:after{
           content:attr(title);
@@ -331,6 +334,46 @@ header{
           bottom:-30px;
           right:10px;
         }
+      }
+    }
+    .go{
+
+      width:290px;
+      margin-right: 20px;
+      margin-top:-138px;
+      top:50%;
+      position: relative;
+      figure{
+        background:url(../images/go-background.png);
+        width: 289px;
+        height: 202px;
+        a{
+          background:url(../images/go-button.png);
+          display: block;
+          position: absolute;
+          width: 152px;
+          height: 33px;
+          text-align: center;
+          line-height: 33px;
+          top:140px;
+          left: 70px;
+          text-decoration: none;
+          color: #696969;
+          font-size: em(18,15);
+          font-weight: bold;
+          i{
+            font-size: em(12,18);
+            display: inline-block;
+            height: 30px;
+            line-height: 28px;
+            margin-left: 5px;
+            vertical-align: middle;
+          }
+        }
+      }
+      p{
+        width:270px;
+        margin:20px auto 0;
       }
     }
   }
