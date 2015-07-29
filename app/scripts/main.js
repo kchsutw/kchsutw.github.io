@@ -69,7 +69,7 @@ $(function(){
 			return false;
 		});
 		// drag
-		var from,to;
+		var from,to,tween;
 		var draggie = new Draggabilly( '.dragon', {
 		  axis: 'x'
 		}).on('dragStart' ,function(e){
@@ -78,7 +78,8 @@ $(function(){
 			to = e.clientX;
 			var diff = from - to;
 			var container = $('.dragon');
-			TweenMax.to(container,1,{
+				try{tween.kill();}catch(e){}
+				tween = TweenMax.to(container,1,{
 				left :'-=' + diff/2
 			});
 		});
