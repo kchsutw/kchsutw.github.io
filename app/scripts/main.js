@@ -25,6 +25,7 @@ $(function(){
 		var container = $('.dragon');
 		var pageTotalWidth = $('.page.home').width() + $('.page.home').width() +
 			$('.page.home').width() * $('.page.home').length;
+		var ceil = $(window).width() - pageTotalWidth;
 
 		if(evt.deltaY < 0 ){
 			direction = -1;
@@ -36,11 +37,8 @@ $(function(){
 			});
 			return false;
 		}
-			var ceil = $(window).width() - pageTotalWidth;
-			console.log(ceil)
 		if(+container.css('margin-left').replace(/px/,'') <= ceil && direction === -1)
 		{
-			console.log(ceil)
 			TweenMax.to(container,0.25,{
 				marginLeft : ceil + 'px'
 			});
@@ -65,8 +63,8 @@ $(function(){
 	var dragon = $('.dragon');
 	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 	tpl.removeClass(houses[0]);
-	for(var i=0;i<10;i++){
-		var random =  Math.floor(Math.random() * +new Date % houses.length);
+	for(var i=0;i<200;i++){
+		var random =  Math.floor(Math.random() * +new Date() % houses.length);
 		var house = houses[random ];
 		var page = document.createElement('section');
 		page = $(page).addClass('page house');
