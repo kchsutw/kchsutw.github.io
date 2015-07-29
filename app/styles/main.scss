@@ -100,6 +100,12 @@ body {
       }
     } 
   }
+  a:focus{
+    outline:none;
+    img{
+      border:0;
+    }
+  }
 }
 header{
   background: #fff;
@@ -117,6 +123,7 @@ header{
     width:29px;
     height:26px;
     margin: 15px 0 0 19px;
+    position: relative;
     a{
       position: absolute;
       display: block;
@@ -203,8 +210,9 @@ header{
             }
           }
         }
-        figure{
+        figure.house{
           float: left;
+          width: auto;
         }
         section{
           float: left;
@@ -216,6 +224,113 @@ header{
         top:50%;
         position: relative;
         margin-top: -123px;
+      }
+    }
+    .rule{
+      top:50%;
+      margin-top:-205px;
+    }
+    .rule,.house{
+      width:315px;
+      position:relative;
+      aside{
+        height: 100%;
+      }
+      h3{
+        font-size: em(26,15);
+        margin:0 0 60px 10px;
+      }
+      .tpl{
+        width:295px;
+        height: 320px;
+        background:no-repeat 0 95px;
+        top:50%;
+        margin-top:-160px;
+        position: relative;
+        &.house-home{
+          background-image: url(../images/house-home.png);
+        }
+        &.house-happiness{
+          background-image: url(../images/house-happiness.png);
+        }
+        &.house-equality{
+          background-image: url(../images/house-equality.png);
+        }
+        &.house-plurality{
+          background-image: url(../images/house-plurality.png);
+        }
+      }
+      #tpl{
+        top:0;
+        margin-top:0;
+      }
+      .dialog{
+        width:268px;
+        height: 90px;
+        line-height: 50px;
+        text-align: left;
+        padding: 10px;
+        margin-bottom: 40px;
+        margin-left: 10px;
+        background:url(../images/dialog.png) no-repeat;
+        span{
+          display: inline-block;
+          line-height: 1.2em;
+        }
+      }
+      .me{
+        width:100%;
+        text-align: center;
+          line-height: 38px;
+        i{
+          display: inline-block;
+          width: 38px;
+          height: 38px;
+          background:url(../images/btn-background.png);
+          border-radius: 50%;
+          margin-right: 2px;
+        }
+        span{
+          line-height: 8px;
+          vertical-align: middle;
+          display: inline-block;
+          height: 38px;
+        }
+      }
+      ul{
+        margin:0 0 0 25px;
+        padding:0;
+        float: left;
+        display: block;
+        width:126px;
+        height: 120px;
+        li{
+          list-style: none;
+          line-height: em(24,15);
+        }
+      }
+      .road-name{
+        width: 15px;
+        line-height: em(24,15);
+        display: block;
+        float: left;
+      }
+      .number{
+        font-size: em(60.82,15);
+        line-height: em(90,60.82);
+        margin-left: 15px;
+        min-width: 90px;
+        min-height: 110px;
+        text-align: center;
+        float:left;
+        position: relative;
+        &:after{
+          content:attr(title);
+          font-size: em(15,60.82);
+          position: absolute;
+          bottom:-30px;
+          right:10px;
+        }
       }
     }
   }
