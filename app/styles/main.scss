@@ -477,11 +477,17 @@ footer{
   border-top:1px solid #bbb;
   .copy{
     margin-left: 23px;
+    @media screen and (max-width: 768px) {
+      margin: 0 auto;
+    }
   }
   .barcode{
     position: absolute;
     right: 0;
     margin-right: 22px;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 }
 
