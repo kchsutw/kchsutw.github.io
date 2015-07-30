@@ -475,6 +475,9 @@ footer{
   line-height: 44px;
   background:#fff;
   border-top:1px solid #bbb;
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
   .copy{
     margin-left: 23px;
     @media screen and (max-width: 768px) {
