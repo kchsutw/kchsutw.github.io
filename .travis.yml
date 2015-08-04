@@ -18,7 +18,7 @@ install:
 - cp -r ../dist/* .
 - cp ../CNAME ./CNAME
 - git add .
-- git commit -m "Deployed to Github Pages : $data"
+- git commit -m "Deployed to Github Pages : $date"
 - git push -f --quiet origin master:master
 - cd ..
 script: npm run-script deploy
