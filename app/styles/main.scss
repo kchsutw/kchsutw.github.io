@@ -296,7 +296,7 @@ header{
       }
       h3{
         font-size: em(26,15);
-        margin:0 0 60px 10px;
+        margin:0 0 20px 10px;
         @media screen and (max-width: 768px) {
           max-width: percentage(270/320);
           margin:0 auto percentage(25/320) ;
@@ -533,6 +533,9 @@ footer{
   width:auto!important;
   height:auto!important;
 }
+#cboxMiddleLeft,#cboxMiddleRight{
+  display: none;
+}
 #cboxContent{
   padding:25px;
   background: rgb(255,255,255);
@@ -540,7 +543,93 @@ footer{
   border: 1px solid #696969;
   border-radius: 5px;
 }
-#terms{
+#cboxTitle{display: none;}
+#terms,#about{
+  width:600px;
+  h3{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  p{
+    margin: 10px auto;
+  }
+}
+#step2{
+  h3{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  p{
+    margin: 10px auto;
+    text-align: center;
+    padding:0 87px;
+  }
+  .w175h90{
+    width: 170px;
+    height: 90px;
+    text-align: right;
+  }
+  .w175h130{
+    width: 170px;
+    height: 130px;
+    text-align: right;
+  }
+  aside{
+    display: inline-block;
+    vertical-align: top;
+    width: 390px;
+  }
+  .families{
+    height: 33px;
+    width: 139px;
+    margin-bottom:15px;
+    margin-right:10px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 5px;
+  }
+  textarea{
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 3px;
+    resize:none;
+    width: 100%;
+    line-height: 1.2em;
+  }
+  .add-button{
+    img{
+      vertical-align: top;
+    }
+  }
+  .button{
+    background: rgba(0, 0, 0, 0) url("../images/btn-background.png");
+    border: 1px solid #fff;
+    border-radius: 1px;
+    box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    font-size: 1.2em;
+    height: 30px;
+    line-height: 1.38889em;
+    margin-top: 20px;
+    margin-right: 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.2s;
+    transition-property: background-position;
+    width: 150px;
+    &:nth-child(2){
+      background-position: 875px 160px;
+    }
+    &:nth-child(3){
+      background-position: 250px 395px;
+    }
+  }
+}
+#step3{
   width:600px;
   h3{
     text-align: center;

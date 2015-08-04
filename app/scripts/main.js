@@ -6,6 +6,19 @@ $(function(){
 	// $('html').removeClass('desktop').addClass('mobile');
 
 
+	var colorbox = function(target,callback){
+		callback = callback || function(){};
+		$.colorbox({
+			inline:true,
+			href: target,
+			transition:'fade',
+			innerWidth: 	600, 	
+			initialWidth: 	'100%', 
+			initialHeight: 	'100%',
+			title:'',
+			onComplete:callback
+		});
+	};
 	if($('html.desktop').length){
 
 	// fit window size
@@ -33,8 +46,7 @@ $(function(){
 			var direction = 0;
 			var container = $('.dragon');
 			var pageTotalWidth = $('.page.home').width() + 1 +
-				$('.page.rule').width() + 1 +
-				$('.page.go').width() + 1 +
+				625 +
 				( $('.page.house').width() + 2 )* $('.page.house').length ;
 			// if(dragonWidth < pageTotalWidth){
 				$('.dragon').width(pageTotalWidth);
@@ -61,6 +73,7 @@ $(function(){
 				TweenMax.to(container,0.25,{
 					left : ceil + 'px'
 				});
+				infiniteList();
 				return false;
 			}
 			var fact = 12000 / $(window).width();
@@ -96,7 +109,33 @@ $(function(){
 				}
 			});
 		});
-		$('.nav-pills').colorbox({inline:true,href:'#terms',transition:'fade'});
+		$('.nav-pills li:eq(0)').on('click',function(){
+			colorbox('#about');
+		});
+		$('.nav-pills li:eq(1)').on('click',function(){
+			colorbox('#terms');
+		});
+		$('.build-a-home').on('click',function(){
+			FB.login(function(r){
+			  if(r.status === 'connected'){
+			    // FB.api('/me',function(me){
+			      next();
+			    // });
+			  }
+			}); 
+			function next(){
+				colorbox('#step2');
+			}
+		});		
+		$('#step2 .add-button').on('click', function(){
+			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
+		});	
+		$('#step2 .submit').on('click',function(){
+			FB.api('/me',function(me){
+				$('#step3 .name').html(me.name);
+				colorbox('#step3');
+			});
+		});
 
 	}
 
@@ -121,20 +160,63 @@ $(function(){
 	}
 
 	// fake
-	var tpl = $('#tpl').clone().removeAttr('id');
-	var dragon = $('.dragon');
-	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
-	tpl.removeClass(houses[0]);
-	for(var i=0;i<20;i++){
-		var random =  Math.floor(Math.random() * +new Date() % houses.length);
-		var house = houses[random ];
-		var page = document.createElement('section');
-		page = $(page).addClass('page house');
-		var cur = tpl.clone();
-		$('.number', cur).html(i+1);
-		cur.addClass(house);
-		page.append(cur);
-		page.appendTo(dragon);
+	// var tpl = $('#tpl').clone().removeAttr('id');
+	// var dragon = $('.dragon');
+	// var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
+	// tpl.removeClass(houses[0]);
+	// for(var i=0;i<20;i++){
+	// 	var random =  Math.floor(Math.random() * +new Date() % houses.length);
+	// 	var house = houses[random ];
+	// 	var page = document.createElement('section');
+	// 	page = $(page).addClass('page house');
+	// 	var cur = tpl.clone();
+	// 	$('.number', cur).html(i+1);
+	// 	cur.addClass(house);
+	// 	page.append(cur);
+	// 	page.appendTo(dragon);
+	// }
+
+	//list
+	var offset = 0;
+	var nextExists = true;
+	var freeze = false;
+	function infiniteList(){
+		if(freeze){
+			return false;
+		}
+		if(!nextExists){
+			return false;
+		}
+		var tpl = $('#tpl').clone().removeAttr('id');
+		var dragon = $('.dragon');
+		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
+		tpl.removeClass(houses[0]);
+		freeze = true;
+		$.get('http://api.kchsu.com/api/Participants',{limit:5,offset:0},function(list){
+			freeze = false;
+
+			if(list.length < 5){
+				nextExists = false;
+			}
+			$.each(list,function(idx,obj){
+				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
+				var page = document.createElement('section');
+				page = $(page).addClass('page house');
+				var cur = tpl.clone();
+				var random = Math.floor(Math.random() * +new Date() % 99) ;
+				$('.number', cur).html(random);
+				$('.number', cur).html(random);
+				cur.addClass(randomHouse);
+				page.append(cur);
+				page.appendTo(dragon);
+
+			});
+			var pageTotalWidth = $('.page.home').width() + 1 +
+				625 +
+				( $('.page.house').width() + 2 )* $('.page.house').length ;
+				$('.dragon').width(pageTotalWidth);
+
+		});
 	}
 });
 window.fbAsyncInit = function() {
