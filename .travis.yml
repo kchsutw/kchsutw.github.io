@@ -1,0 +1,12 @@
+language: node_js
+env:
+  global:
+  - GH_USER: xxxnelsonxxx
+node_js:
+- '0.10'
+install:
+- npm install jshint mocha gulp bower -g
+- npm install
+- bower install
+- gulp build
+script: npm run-script deploy
