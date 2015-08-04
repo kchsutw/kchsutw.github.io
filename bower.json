@@ -10,6 +10,7 @@
     "fontawesome": "~4.3.0",
     "jquery-mousewheel": "~3.1.13",
     "draggabilly": "~1.2.4",
-    "detectizr": "~2.0.0"
+    "detectizr": "~2.0.0",
+    "querystring": "~3.46.1"
   }
 }

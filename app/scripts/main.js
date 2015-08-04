@@ -29,7 +29,7 @@ $(function(){
 		});
 
 		//mouse wheel dragon
-		$('.dragon').on('mousewheel',function(evt){
+		$('.dragon:not(.one)').on('mousewheel',function(evt){
 			var direction = 0;
 			var container = $('.dragon');
 			var pageTotalWidth = $('.page.home').width() + 1 +

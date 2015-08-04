@@ -465,6 +465,13 @@ header{
         margin:20px auto 0;
       }
     }
+    &.one{
+      width:100%;
+      .house{
+        margin:0 auto;
+        float: none;
+      }
+    }
   }
 }
 footer{
