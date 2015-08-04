@@ -9,7 +9,6 @@ install:
 - npm install jshint mocha gulp bower -g
 - npm install
 - bower install
-
 - gulp build
 - mkdir out && cd $_
 - git init
@@ -22,5 +21,4 @@ install:
 - git commit -m "Deployed to Github Pages : 'date'"
 - git push -f --quiet origin master:master
 - cd ..
-
 script: npm run-script deploy
