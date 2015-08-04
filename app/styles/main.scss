@@ -505,3 +505,35 @@ footer{
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 }
+
+#cboxOverlay{
+  background: rgb(0, 0, 0);
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.75;
+  position: fixed;
+  top: 0;
+  visibility: visible;
+  width: 100%;
+}
+#cboxClose {
+    background: rgba(0, 0, 0, 0) url("../images/close-button.png") ;
+    top: 0;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    width: 30px;
+    border:0;
+}
+#cboxLoadedContent,#cboxContent{
+  width:auto!impotant;
+}
+#cboxContent{
+  padding:25px;
+}
+#terms{
+  width:600px;
+}
