@@ -96,7 +96,7 @@ $(function(){
 				}
 			});
 		});
-		$('.nav-pills').colorbox({inline:true,href:"#terms"});
+		$('.nav-pills').colorbox({inline:true,href:'#terms',transition:'fade'});
 
 	}
 
