@@ -2,22 +2,11 @@ language: node_js
 env:
   global:
   - GH_USER: xxxnelsonxxx
+  - secure: GpGYNcZ/1FDPgC/PGBxxl9AhG7sZBVgv9O54oAsnu62GsqgPeO6dofoBk7x1qv9QyBSxSnCNKOUvh4nZTYN7nG8J3Hn/HliLy8CZxqe/0lf/PRSzBHuhGrMXdNzysd8Oj+4rMHehxBoAipGO6CC1ho2MJ/Pc+zPsvcJnMkT8FMU0DTGLTMhYB6f7X/M/ukfzhymEvK/qTWswjLesgPU2/XwY2mrTC5ef0MCh6PNj8V/vrE0XWp7i01pVgZbCdAk7yBIX9MRYgHpxArUIvpOWbL1yAE3opR7ElqG0X8J6i+GzdKbV+dYKN+5j7RvtjZZShAkTk6nhIFbGH/4WHe4ohWr0RGQ+u2BVQ+6mh9zfPOkpKo64D973cfrhZlbd8xfdCpGW5t5gn5rUPjeTV2bsjR1uPHz7Tv0kVpCDbCEDnvviPnQw6OZWf3M1iHG0zshwgkSFpdao1g7s41wqjRegScTnmtKGVXxJEwFmHb13vUrNEzo6ExjL7czXGIFZTQ3a2a4Id6dlRv9vSYVFEehKL73vFnHLksf/Z3SAxdp5wiwwma/uUB8UYpn0TiyxTaphk8OoR5PmOM9AM7MH+3u4niEWWUa62goj/BXOqCI8Vz77XJg2qBz0U2fJjmCeNH91326c1okztc3bAhbclVCiWNsQY16GifEPLcFy8R6HQ9w=
 node_js:
 - '0.10'
 install:
 - npm install jshint mocha gulp bower -g
 - npm install
 - bower install
-- gulp build
-- mkdir out && cd $_
-- git init
-- git config user.name nelson119
-- git config user.email nelson119@outlook.com
-- git remote add origin "https://28bf3f627806cd1a9d1fa5b064b87d8907bf2829:x-oauth-basic@github.com/kchsutw/kchsutw.github.io.git"
-- cp -r ../dist/* .
-- cp ../CNAME ./CNAME
-- git add .
-- git commit -m "Deployed to Github Pages"
-- git push -f --quiet origin master:master
-- cd ..
 script: npm run-script deploy
