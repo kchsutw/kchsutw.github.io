@@ -16,6 +16,8 @@ $(function(){
 			initialWidth: 	'100%', 
 			initialHeight: 	'100%',
 			title:'',
+			overlayClose:false,
+			escKey:false,
 			onComplete:callback
 		});
 	};
@@ -116,11 +118,10 @@ $(function(){
 			colorbox('#terms');
 		});
 		$('.build-a-home').on('click',function(){
+
 			FB.login(function(r){
 			  if(r.status === 'connected'){
-			    // FB.api('/me',function(me){
-			      next();
-			    // });
+		      	next();
 			  }
 			}); 
 			function next(){
@@ -156,6 +157,17 @@ $(function(){
 			}).trigger('resize');
 		}(window));
 
+		$('.build-a-home').on('click',function(){
+
+			FB.login(function(r){
+			  if(r.status === 'connected'){
+		      	next();
+			  }
+			}); 
+			function next(){
+				colorbox('#step2');
+			}
+		});	
 
 	}
 
