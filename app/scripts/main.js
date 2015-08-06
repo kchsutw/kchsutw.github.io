@@ -233,7 +233,7 @@ $(function(){
 });
 window.fbAsyncInit = function() {
 	FB.init({
-	  appId      : '887313441322816',
+	  appId      : '1645980782348774',
 	  xfbml      : true,
 	  version    : 'v2.4'
 	});

@@ -533,6 +533,11 @@ footer{
   width:auto!important;
   height:auto!important;
 }
+#colorbox{
+  &:focus{
+    outline:none!important;
+  }
+}
 #cboxMiddleLeft,#cboxMiddleRight{
   display: none;
 }
