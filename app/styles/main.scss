@@ -636,12 +636,38 @@ footer{
 }
 #step3{
   width:600px;
+  background : url(../images/share-house.png) center center;
+  height:358px;
   h3{
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
   }
-  p{
-    margin: 10px auto;
+  > span.name{    
+    left: 270px;
+    position: absolute;
+    top: 125px;
+  }
+  > span.number{   
+    left: 360px;
+    position: absolute;
+    top: 210px; 
+    font-size: 60.82px;
+    min-width:72px;
+    text-align: right;
+  }
+  ul{
+    left: 200px;
+    position: absolute;
+    top: 161px;
+    margin:0;
+    padding:0;
+    display: block;
+    width:126px;
+    height: 120px;
+    li{
+      list-style: none;
+      line-height: em(24,15);
+    }
   }
 }

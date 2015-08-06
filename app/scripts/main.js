@@ -44,7 +44,7 @@ $(function(){
 		});
 
 		//mouse wheel dragon
-		$('.dragon:not(.one)').on('mousewheel',function(evt){
+		$('.dragon:not(.one),.cross').on('mousewheel',function(evt){
 			var direction = 0;
 			var container = $('.dragon');
 			var pageTotalWidth = $('.page.home').width() + 1 +
@@ -79,6 +79,9 @@ $(function(){
 				return false;
 			}
 			var fact = 12000 / $(window).width();
+			if($('html.mac').length >0){
+				fact = 300 / $(window).width();
+			}
 			var zCross = +$('.cross').attr('data-zfact');
 			var zRoad = +$('.road').attr('data-zfact');
 			TweenMax.to(container,0.3,{
@@ -123,7 +126,7 @@ $(function(){
 			  if(r.status === 'connected'){
 		      	next();
 			  }
-			}); 
+			}, {scope:'email'}); 
 			function next(){
 				colorbox('#step2');
 			}
@@ -132,8 +135,24 @@ $(function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		});	
 		$('#step2 .submit').on('click',function(){
+			var obj = {};
+			obj.words = $('#step2 [name=words]').val();
+			obj.families01 = $('#step2 [name=families01]').val();
+			obj.families02 = $('#step2 [name=families02]').val();
+			obj.families03 = $('#step2 [name=families03]').val();
+			obj.families04 = $('#step2 [name=families04]').val();
+			obj.families05 = $('#step2 [name=families05]').val();
+			var random = Math.floor(Math.random() * +new Date() % 99) ;
 			FB.api('/me',function(me){
-				$('#step3 .name').html(me.name);
+				obj.name = me.name;
+				obj.email = me.email;
+				$('#step3 .name').html(obj.name);
+				$('#step3 .families01').html(obj.families01);
+				$('#step3 .families02').html(obj.families02);
+				$('#step3 .families03').html(obj.families03);
+				$('#step3 .families04').html(obj.families04);
+				$('#step3 .families05').html(obj.families05);
+				$('#step3 .number').html(random);
 				colorbox('#step3');
 			});
 		});
