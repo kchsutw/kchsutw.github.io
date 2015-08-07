@@ -131,6 +131,7 @@ $(function(){
 				colorbox('#step2');
 			}
 		});		
+		var serial;
 		$('#step2 .add-button').on('click', function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		});	
@@ -153,21 +154,8 @@ $(function(){
 				$('#step3 .families04').html(formData.families04);
 				$('#step3 .families05').html(formData.families05);
 				$('#step3 .number').html(formData.random);
-				$.post('http://api.kchsu.com/api/Participants',formData,function(){
-					html2canvas($('#step3 aside'), {
-					  onrendered: function(canvas) {
-					    $('#step3').append(canvas);
-					    var img    = canvas.toDataURL('image/png');
-					    var capt = document.createElement('img');
-					    capt.src=img;
-					    TweenMax.set(capt,{
-					      position:'absolute',
-					      left:0,
-					      top:0
-					    });
-					    $(capt).appendTo($('#step3'));
-					  }
-					});
+				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+					serial = resp.id;
 					html2canvas($('#step3 aside'), {
 					  onrendered: function(canvas) {
 					    $('#step3').append(canvas);
@@ -180,22 +168,29 @@ $(function(){
 					      top:0,
 					      display:'none'
 					    });
-						$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+						$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
+							base64Url : $(capt).attr('src')},function(){
 							var serial = resp.id;
-							$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{base64Url:$(capt).attr('src')},function(resp){
-								var serial = resp.id;
-							});
 						});
 					    $(capt).appendTo($('#step3'));
+						colorbox('#step3');
 					  }
 					});
 
 				});
 
-				colorbox('#step3');
 				//capture step 3 to png data url
 
 				// $.post('http://api.kchsu.com/api/Participants/s/');
+			});
+		});	
+		$('#step3 .button').on('click',function(){
+			FB.ui({
+			  method: 'feed',
+			  link: 'http://api.kchsu.com/r/' + serial,
+			  caption: 'An example caption',
+			}, function(response){
+				colorbox('#step4');
 			});
 		});
 
