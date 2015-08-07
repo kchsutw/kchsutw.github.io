@@ -214,17 +214,20 @@ $(function(){
 			}).trigger('resize');
 		}(window));
 
-		$('.build-a-home').on('click',function(){
+		(function(mobile){
+			$('.build-a-home',mobile).on('click',function(){
 
-			FB.login(function(r){
-			  if(r.status === 'connected'){
-		      	next();
-			  }
-			}); 
-			function next(){
-				colorbox('#step2');
-			}
-		});	
+				FB.login(function(r){
+				  if(r.status === 'connected'){
+			      	next();
+				  }
+				}); 
+				function next(){
+					colorbox($('#step2',mobile));
+				}
+			});	
+		}($('html.mobile')));
+
 
 	}
 
