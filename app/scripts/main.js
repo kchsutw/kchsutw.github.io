@@ -135,40 +135,67 @@ $(function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		});	
 		$('#step2 .submit').on('click',function(){
-			var obj = {};
-			obj.words = $('#step2 [name=words]').val();
-			obj.families01 = $('#step2 [name=families01]').val();
-			obj.families02 = $('#step2 [name=families02]').val();
-			obj.families03 = $('#step2 [name=families03]').val();
-			obj.families04 = $('#step2 [name=families04]').val();
-			obj.families05 = $('#step2 [name=families05]').val();
-			var random = Math.floor(Math.random() * +new Date() % 99) ;
+			var formData = {};
+			formData.words = $('#step2 [name=words]').val();
+			formData.families01 = $('#step2 [name=families01]').val();
+			formData.families02 = $('#step2 [name=families02]').val();
+			formData.families03 = $('#step2 [name=families03]').val();
+			formData.families04 = $('#step2 [name=families04]').val();
+			formData.families05 = $('#step2 [name=families05]').val();
+			formData.random = Math.floor(Math.random() * +new Date() % 99) ;
 			FB.api('/me',function(me){
-				obj.name = me.name;
-				obj.email = me.email;
-				$('#step3 .name').html(obj.name);
-				$('#step3 .families01').html(obj.families01);
-				$('#step3 .families02').html(obj.families02);
-				$('#step3 .families03').html(obj.families03);
-				$('#step3 .families04').html(obj.families04);
-				$('#step3 .families05').html(obj.families05);
-				$('#step3 .number').html(random);
+				formData.name = me.name;
+				formData.email = me.email;
+				$('#step3 .name').html(formData.name);
+				$('#step3 .families01').html(formData.families01);
+				$('#step3 .families02').html(formData.families02);
+				$('#step3 .families03').html(formData.families03);
+				$('#step3 .families04').html(formData.families04);
+				$('#step3 .families05').html(formData.families05);
+				$('#step3 .number').html(formData.random);
+				$.post('http://api.kchsu.com/api/Participants',formData,function(){
+					html2canvas($('#step3 aside'), {
+					  onrendered: function(canvas) {
+					    $('#step3').append(canvas);
+					    var img    = canvas.toDataURL('image/png');
+					    var capt = document.createElement('img');
+					    capt.src=img;
+					    TweenMax.set(capt,{
+					      position:'absolute',
+					      left:0,
+					      top:0
+					    });
+					    $(capt).appendTo($('#step3'));
+					  }
+					});
+					html2canvas($('#step3 aside'), {
+					  onrendered: function(canvas) {
+					    $('#step3').append(canvas);
+					    var img    = canvas.toDataURL('image/png');
+					    var capt = document.createElement('img');
+					    capt.src=img;
+					    TweenMax.set(capt,{
+					      position:'absolute',
+					      left:0,
+					      top:0,
+					      display:'none'
+					    });
+						$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+							var serial = resp.id;
+							$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{base64Url:$(capt).attr('src')},function(resp){
+								var serial = resp.id;
+							});
+						});
+					    $(capt).appendTo($('#step3'));
+					  }
+					});
+
+				});
+
 				colorbox('#step3');
 				//capture step 3 to png data url
-				html2canvas($('#step3'), {
-				  onrendered: function(canvas) {
-				    $('#step3').append(canvas);
-				    var img    = canvas.toDataURL('image/png');
-				    var capt = document.createElement('img');
-				    capt.src=img;
-				    TweenMax.set(capt,{
-				      position:'absolute',
-				      left:0,
-				      top:0
-				    });
-				    $(capt).appendTo($('#step3'));
-				  }
-				});
+
+				// $.post('http://api.kchsu.com/api/Participants/s/');
 			});
 		});
 
