@@ -202,8 +202,9 @@ $(function(){
 			$.ajax({
 			  method:'PUT',
 			  headers: {          
-			    Accept : "application/json"
+			    Accept : 'application/json'
 			  },
+			  // jshint quotmark: false
 			  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
 			  contentType:'application/json; charset=UTF-8',
 			  url:'http://api.kchsu.com/api/Participants/' + serial
@@ -315,9 +316,11 @@ window.fbAsyncInit = function() {
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+/* jshint ignore:start */
 (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
 e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 e.src='//www.google-analytics.com/analytics.js';
 r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-XXXXX-X');ga('send','pageview');
+/* jshint ignore:end */
