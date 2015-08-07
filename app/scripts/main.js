@@ -21,6 +21,31 @@ $(function(){
 			onComplete:callback
 		});
 	};
+	var req = querystring.parse(location.search.replace('?',''))
+	function showOne(){
+		if(req.sn){
+			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
+				(function(one){
+					$('.dialog span',one).html(r.words);
+					$('.me span',one).html(r.name);
+					$('.tpl ul li:eq(0)',one).html(r.families01);
+					$('.tpl ul li:eq(1)',one).html(r.families02);
+					$('.tpl ul li:eq(2)',one).html(r.families03);
+					$('.tpl ul li:eq(3)',one).html(r.families04);
+					$('.tpl ul li:eq(4)',one).html(r.families05);
+					var random = Math.floor(Math.random() * +new Date() % 99) ;
+					$('.tpl .number',one).html(random);
+					$('h1').trigger('click');
+					one.fadeIn(250);
+				}($('.one')));				
+			});
+		}else{
+			$('.one').hide();
+		}
+
+	}
+	showOne();
+
 	if($('html.desktop').length){
 
 	// fit window size
