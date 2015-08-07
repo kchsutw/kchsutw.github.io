@@ -134,11 +134,11 @@ $(function(){
 			}
 		});		
 		var serial;
+		var formData = {};
 		$('#step2 .add-button').on('click', function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		});	
 		$('#step2 .submit').on('click',function(){
-			var formData = {};
 			formData.words = $('#step2 [name=words]').val();
 			formData.families01 = $('#step2 [name=families01]').val();
 			formData.families02 = $('#step2 [name=families02]').val();
@@ -149,8 +149,8 @@ $(function(){
 			FB.api('/me',function(me){
 				formData.name = me.name;
 				formData.email = me.email;
-				formData.name = 'Nelson';
-				formData.email = 'nelson119@outlook.com';
+				formData.facebookid = me.id;
+				formData.timestamp = new Date() * 1;
 				$('#step3 .name').html(formData.name);
 				$('#step3 .families01').html(formData.families01);
 				$('#step3 .families02').html(formData.families02);
@@ -158,6 +158,7 @@ $(function(){
 				$('#step3 .families04').html(formData.families04);
 				$('#step3 .families05').html(formData.families05);
 				$('#step3 .number').html(formData.random);
+				$('#step4 [name=email]').attr('placeholder',formData.email);
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 					serial = resp.id;
 					colorbox('#step3',function(){
@@ -194,7 +195,18 @@ $(function(){
 				colorbox('#step4');
 			});
 		});
-			$(window).trigger('resize');
+		$('#step4 .button').on('click',function(){
+			formData.email += ',' + $('#step4 [name=email]').val();
+			formData.officialName = $('#step4 [name=name]').val();
+			formData.address = $('#step4 [name=address]').val();
+			$.post('http://api.kchsu.com/api/Participants/' + serial,formData,function(resp){
+				$('.dragon >.page.house').remove();
+				$(window).trigger('resize');
+				$.colorbox.close();
+			});
+
+		});
+		$(window).trigger('resize');
 
 	}
 
