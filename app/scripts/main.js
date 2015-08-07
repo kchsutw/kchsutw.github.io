@@ -221,6 +221,7 @@ $(function(){
 				$('.dragon >.page.house').remove();
 				$(window).trigger('resize');
 				$.colorbox.close();
+				offset = 0;
 			});
 		});
 		$(window).trigger('resize');
