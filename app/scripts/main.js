@@ -260,9 +260,9 @@ $(function(){
 		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 		tpl.removeClass(houses[0]);
 		freeze = true;
-		$.get('http://api.kchsu.com/api/Participants',{limit:5,offset:0},function(list){
+		$.get('http://api.kchsu.com/api/Participants',{limit:5,offset:offset},function(list){
 			freeze = false;
-
+			offset += list.length;
 			if(list.length < 5){
 				nextExists = false;
 			}
@@ -286,6 +286,7 @@ $(function(){
 
 		});
 	}
+	infiniteList();
 });
 window.fbAsyncInit = function() {
 	FB.init({
