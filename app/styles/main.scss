@@ -647,14 +647,14 @@ footer{
     width: 100%;
     height: 315px;
     > span.name{    
-      left: 245px;
+      left: 250px;
       position: absolute;
-      top: 100px;
+      top: 80px;
     }
     > span.number{   
       left: 335px;
       position: absolute;
-      top: 185px; 
+      top: 160px; 
       font-size: 60.82px;
       min-width:72px;
       text-align: right;
@@ -674,9 +674,9 @@ footer{
     margin-bottom: 20px;
   }
   ul{
-    left: 175px;
+    left: 172px;
     position: absolute;
-    top: 136px;
+    top: 120px;
     margin:0;
     padding:0;
     display: block;

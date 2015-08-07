@@ -188,9 +188,8 @@ $(function(){
 		});	
 		$('#step3 .button').on('click',function(){
 			FB.ui({
-			  method: 'feed',
-			  link: 'http://api.kchsu.com/r/' + serial,
-			  caption: 'An example caption',
+			  method: 'share',
+			  href: 'http://api.kchsu.com/r/' + serial
 			}, function(response){
 				colorbox('#step4');
 			});
