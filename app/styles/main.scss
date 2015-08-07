@@ -160,6 +160,16 @@ header{
     width:100%;
     height:auto;
   }
+  .loading{
+    width:20px;
+    height:100%;
+    position: absolute;
+    right:20px;
+    top:50%;
+    opacity: .75;
+    display: none;
+    img{width:100%;}
+  }
   .road{
     position: absolute;
     background:url(../images/road.png) center center;

@@ -120,6 +120,15 @@ $(function(){
 		$('.nav-pills li:eq(1)').on('click',function(){
 			colorbox('#terms');
 		});
+		$('.goto-rule').on('click',function(){
+			var container = $('.dragon');
+			TweenMax.to(container,0.3,{
+				left : $(window).width() * -0.8,
+				onComplete:function(){
+					$(window).trigger('resize');
+				}
+			});
+		});	
 		$('.build-a-home').on('click',function(){
 
 			FB.login(function(r){
@@ -269,6 +278,7 @@ $(function(){
 		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 		tpl.removeClass(houses[0]);
 		freeze = true;
+		$('.container >.loading').show();
 		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
 			freeze = false;
 			offset += list.length;
@@ -295,7 +305,7 @@ $(function(){
 
 			});
 			$(window).trigger('resize');
-
+			$('.container >.loading').hide();
 		});
 	}
 	infiniteList();
