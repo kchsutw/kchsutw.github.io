@@ -208,7 +208,7 @@ $(function(){
 			  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
 			  contentType:'application/json; charset=UTF-8',
 			  url:'http://api.kchsu.com/api/Participants/' + serial
-			},function(resp){
+			}.done(function(resp){
 				$('.dragon >.page.house').remove();
 				$(window).trigger('resize');
 				$.colorbox.close();
