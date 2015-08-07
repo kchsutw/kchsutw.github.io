@@ -127,6 +127,8 @@ $(function(){
 		      	next();
 			  }
 			}, {scope:'email'}); 
+
+
 			function next(){
 				colorbox('#step2');
 			}
@@ -147,8 +149,8 @@ $(function(){
 			FB.api('/me',function(me){
 				formData.name = me.name;
 				formData.email = me.email;
-				// formData.name = 'Nelson';
-				// formData.email = 'nelson119@outlook.com';
+				formData.name = 'Nelson';
+				formData.email = 'nelson119@outlook.com';
 				$('#step3 .name').html(formData.name);
 				$('#step3 .families01').html(formData.families01);
 				$('#step3 .families02').html(formData.families02);
@@ -158,25 +160,26 @@ $(function(){
 				$('#step3 .number').html(formData.random);
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 					serial = resp.id;
-					html2canvas($('#step3 aside'), {
-					  onrendered: function(canvas) {
-					    $('#step3').append(canvas);
-					    var img    = canvas.toDataURL('image/png');
-					    var capt = document.createElement('img');
-					    capt.src=img;
-					    TweenMax.set(capt,{
-					      position:'absolute',
-					      left:0,
-					      top:0,
-					      display:'none'
-					    });
-						$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
-							base64Url : $(capt).attr('src')},function(){
-							var serial = resp.id;
+					colorbox('#step3',function(){
+						html2canvas($('#step3 aside'), {
+						  onrendered: function(canvas) {
+						    $('#step3').append(canvas);
+						    var img    = canvas.toDataURL('image/png');
+						    var capt = document.createElement('img');
+						    capt.src=img;
+						    TweenMax.set(capt,{
+						      position:'absolute',
+						      left:0,
+						      top:0,
+						      display:'none'
+						    });
+							$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
+								base64Url : $(capt).attr('src')},function(){
+								var serial = resp.id;
+							});
+						    $(capt).appendTo($('#step3'));
+						  }
 						});
-					    $(capt).appendTo($('#step3'));
-						colorbox('#step3');
-					  }
 					});
 
 				});

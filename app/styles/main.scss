@@ -636,30 +636,47 @@ footer{
 }
 #step3{
   width:600px;
-  background : url(../images/share-house.png) center center;
   height:358px;
+  position: relative;
+  aside{
+    background : url(../images/share-house.png) center center;
+    left:0;
+    top:0;
+    display: block;
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    > span.name{    
+      left: 245px;
+      position: absolute;
+      top: 100px;
+    }
+    > span.number{   
+      left: 335px;
+      position: absolute;
+      top: 185px; 
+      font-size: 60.82px;
+      min-width:72px;
+      text-align: right;
+    }
+  }
+  canvas{
+    left:0;
+    top:0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
   h3{
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
   }
-  > span.name{    
-    left: 270px;
-    position: absolute;
-    top: 125px;
-  }
-  > span.number{   
-    left: 360px;
-    position: absolute;
-    top: 210px; 
-    font-size: 60.82px;
-    min-width:72px;
-    text-align: right;
-  }
   ul{
-    left: 200px;
+    left: 175px;
     position: absolute;
-    top: 161px;
+    top: 136px;
     margin:0;
     padding:0;
     display: block;
@@ -669,6 +686,25 @@ footer{
       list-style: none;
       line-height: em(24,15);
     }
+  }
+  .button{
+    background: rgba(0, 0, 0, 0) url("../images/btn-background.png");
+    border: 1px solid #fff;
+    border-radius: 1px;
+    box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    font-size: 1.2em;
+    height: 30px;
+    line-height: 1.38889em;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.2s;
+    transition-property: background-position;
+    width: 265px;
+    top:280px;
+    left:157px;
   }
 }
 #step4 {
