@@ -11,6 +11,7 @@
     "jquery-mousewheel": "~3.1.13",
     "draggabilly": "~1.2.4",
     "detectizr": "~2.0.0",
-    "querystring": "~3.46.1"
+    "querystring": "~3.46.1",
+    "html2canvas": "~0.4.1"
   }
 }

@@ -154,6 +154,21 @@ $(function(){
 				$('#step3 .families05').html(obj.families05);
 				$('#step3 .number').html(random);
 				colorbox('#step3');
+				//capture step 3 to png data url
+				html2canvas($('#step3'), {
+				  onrendered: function(canvas) {
+				    $('#step3').append(canvas);
+				    var img    = canvas.toDataURL('image/png');
+				    var capt = document.createElement('img');
+				    capt.src=img;
+				    TweenMax.set(capt,{
+				      position:'absolute',
+				      left:0,
+				      top:0
+				    });
+				    $(capt).appendTo($('#step3'));
+				  }
+				});
 			});
 		});
 

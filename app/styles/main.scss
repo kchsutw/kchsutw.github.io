@@ -638,28 +638,29 @@ footer{
   width:600px;
   background : url(../images/share-house.png) center center;
   height:358px;
+  position: relative;
   h3{
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
   }
   > span.name{    
-    left: 270px;
+    left: 245px;
     position: absolute;
-    top: 125px;
+    top: 100px;
   }
   > span.number{   
-    left: 360px;
+    left: 335px;
     position: absolute;
-    top: 210px; 
+    top: 185px; 
     font-size: 60.82px;
     min-width:72px;
     text-align: right;
   }
   ul{
-    left: 200px;
+    left: 175px;
     position: absolute;
-    top: 161px;
+    top: 136px;
     margin:0;
     padding:0;
     display: block;
@@ -669,5 +670,13 @@ footer{
       list-style: none;
       line-height: em(24,15);
     }
+  }
+  canvas{
+    width:100%;
+    height:100%;
+    position:absolute;
+    display: block;
+    left:0;
+    top:0;
   }
 }
