@@ -195,16 +195,23 @@ $(function(){
 				colorbox('#step4');
 			});
 		});
-		$('#step4 .button').on('click',function(){
+		$('#step4 .button.submit').on('click',function(){
 			formData.email += ',' + $('#step4 [name=email]').val();
 			formData.officialName = $('#step4 [name=name]').val();
 			formData.address = $('#step4 [name=address]').val();
-			$.post('http://api.kchsu.com/api/Participants/' + serial,formData,function(resp){
+			$.ajax({
+			  method:'PUT',
+			  headers: {          
+			    Accept : "application/json"
+			  },
+			  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
+			  contentType:'application/json; charset=UTF-8',
+			  url:'http://api.kchsu.com/api/Participants/' + serial
+			},function(resp){
 				$('.dragon >.page.house').remove();
 				$(window).trigger('resize');
 				$.colorbox.close();
 			});
-
 		});
 		$(window).trigger('resize');
 
@@ -307,3 +314,10 @@ window.fbAsyncInit = function() {
  js.src = '//connect.facebook.net/zh_TW/sdk.js';
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+e.src='//www.google-analytics.com/analytics.js';
+r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+ga('create','UA-XXXXX-X');ga('send','pageview');
