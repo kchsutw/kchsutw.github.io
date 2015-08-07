@@ -193,6 +193,7 @@ $(function(){
 				colorbox('#step4');
 			});
 		});
+			$(window).trigger('resize');
 
 	}
 
@@ -227,22 +228,6 @@ $(function(){
 
 	}
 
-	// fake
-	// var tpl = $('#tpl').clone().removeAttr('id');
-	// var dragon = $('.dragon');
-	// var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
-	// tpl.removeClass(houses[0]);
-	// for(var i=0;i<20;i++){
-	// 	var random =  Math.floor(Math.random() * +new Date() % houses.length);
-	// 	var house = houses[random ];
-	// 	var page = document.createElement('section');
-	// 	page = $(page).addClass('page house');
-	// 	var cur = tpl.clone();
-	// 	$('.number', cur).html(i+1);
-	// 	cur.addClass(house);
-	// 	page.append(cur);
-	// 	page.appendTo(dragon);
-	// }
 
 	//list
 	var offset = 0;
@@ -260,7 +245,7 @@ $(function(){
 		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 		tpl.removeClass(houses[0]);
 		freeze = true;
-		$.get('http://api.kchsu.com/api/Participants',{limit:5,offset:offset},function(list){
+		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset}},function(list){
 			freeze = false;
 			offset += list.length;
 			if(list.length < 5){
@@ -273,16 +258,19 @@ $(function(){
 				var cur = tpl.clone();
 				var random = Math.floor(Math.random() * +new Date() % 99) ;
 				$('.number', cur).html(random);
-				$('.number', cur).html(random);
+				$('.me span', cur).html(obj.name);
+				$('ul li:eq(0)', cur).html(obj.families01);
+				$('ul li:eq(1)', cur).html(obj.families02);
+				$('ul li:eq(2)', cur).html(obj.families03);
+				$('ul li:eq(3)', cur).html(obj.families04);
+				$('ul li:eq(4)', cur).html(obj.families05);
+				$(cur).attr('data-serial',obj.id);
 				cur.addClass(randomHouse);
 				page.append(cur);
 				page.appendTo(dragon);
 
 			});
-			var pageTotalWidth = $('.page.home').width() + 1 +
-				625 +
-				( $('.page.house').width() + 2 )* $('.page.house').length ;
-				$('.dragon').width(pageTotalWidth);
+			$(window).trigger('resize');
 
 		});
 	}
@@ -300,6 +288,6 @@ window.fbAsyncInit = function() {
  var js, fjs = d.getElementsByTagName(s)[0];
  if (d.getElementById(id)) {return;}
  js = d.createElement(s); js.id = id;
- js.src = '//connect.facebook.net/en_US/sdk.js';
+ js.src = '//connect.facebook.net/zh_TW/sdk.js';
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
