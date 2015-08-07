@@ -179,9 +179,6 @@ $(function(){
 
 				});
 
-				//capture step 3 to png data url
-
-				// $.post('http://api.kchsu.com/api/Participants/s/');
 			});
 		});	
 		$('#step3 .button').on('click',function(){
