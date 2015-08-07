@@ -261,7 +261,7 @@ $(function(){
 		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 		tpl.removeClass(houses[0]);
 		freeze = true;
-		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'DESC'}},function(list){
+		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
 			freeze = false;
 			offset += list.length;
 			if(list.length < 5){
