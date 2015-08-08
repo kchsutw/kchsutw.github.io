@@ -21,7 +21,7 @@ $(function(){
 			onComplete:callback
 		});
 	};
-	var req = querystring.parse(location.search.replace('?',''))
+	var req = querystring.parse(location.search.replace('?',''));
 	function showOne(){
 		if(req.sn){
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
