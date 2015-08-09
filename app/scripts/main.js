@@ -48,8 +48,8 @@ $(function(){
 	$('#step2 [name=words],#step2 input').maxlength({
 		alwaysShow: true,
 		threshold: 30,
-		warningClass: "label label-success",
-		limitReachedClass: "label label-important",
+		warningClass: 'label label-success',
+		limitReachedClass: 'label label-important',
 		separator: ' 個字，最多 ',
 		preText: '已輸入 ',
 		postText: ' 個字。'
