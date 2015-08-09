@@ -722,7 +722,7 @@ footer{
       background-size: 100% auto;
     }
     span{
-      display: inline;
+      display: inline-block;
       line-height: 1.2em;
     }
   }
@@ -774,13 +774,6 @@ footer{
     float:left;
     white-space: nowrap;
     position: relative;
-    &:after{
-      content:attr(title);
-      font-size: em(15,60.82);
-      position: absolute;
-      bottom:-30px;
-      right:10px;
-    }
   }
   canvas{
     left:0;

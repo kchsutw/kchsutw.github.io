@@ -222,7 +222,7 @@ $(function(){
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 					serial = resp.id;
 					colorbox('#step3',function(){
-						html2canvas($('#step3 aside'), {
+						html2canvas($('#step3 >aside'), {
 						  onrendered: function(canvas) {
 						    $('#step3').append(canvas);
 						    var img    = canvas.toDataURL('image/png');
