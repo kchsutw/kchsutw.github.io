@@ -671,9 +671,12 @@ footer{
   width:600px;
   height:358px;
   position: relative;
-  aside{
+  overflow: hidden;
+  aside >{
     background : url(../images/share-house.png) center center;
     height: 100%;
+    margin-left: -50px;
+    width: 700px;
   }
   h3{
     font-size: em(26,15);
