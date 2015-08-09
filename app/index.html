@@ -94,6 +94,7 @@
               <li>許漢文</li>
               <li>阿青</li>
               <li>法海</li>
+              <li></li>
             </ul>
             <span class="road-name">平等二路</span>
             <span class="number" title="號">11</span>
@@ -118,7 +119,6 @@
               <span></span>
             </figure>
             <ul>
-              <li></li>
               <li></li>
               <li></li>
               <li></li>
@@ -158,16 +158,25 @@
 就有機會得到《光譜三部曲》書籤乙組。</p>
         <label class="w175h90">家庭成員：</label>
         <aside>
-          <input name="families01" class="families" placeholde="上限五字">
-          <input name="families02" class="families hide" placeholde="上限五字">
-          <input name="families03" class="families hide" placeholde="上限五字">
-          <input name="families04" class="families hide" placeholde="上限五字">
-          <input name="families05" class="families hide" placeholde="上限五字">
+          <input name="families01" maxlength=6 class="families" placeholde="上限六字">
+          <label class="label label-success"></label>
+          <label class="label label-important"></label>
+          <input name="families02" maxlength=6 class="families hide" placeholde="上限六字">
+          <label class="label label-success"></label>
+          <label class="label label-important"></label>
+          <input name="families03" maxlength=6 class="families hide" placeholde="上限六字">
+          <label class="label label-success"></label>
+          <label class="label label-important"></label>
+          <input name="families04" maxlength=6 class="families hide" placeholde="上限六字">
+          <label class="label label-success"></label>
+          <label class="label label-important"></label>
           <a class="add-button" href="javascript:"><img src="images/add-button.png"></a>
         </aside>
         <label class="w175h130">成家宣言：</label>
         <aside>
-          <textarea name="words" placeholder="上限三十字" resize="0"></textarea>
+          <textarea name="words" maxlength=30 placeholder="上限三十字" resize="0"></textarea>
+          <label class="label label-success"></label>
+          <label class="label label-important"></label>
           <a class="button" href="javascript:">虹包 <i class="fa fa-chevron-right"></i></a>
           <a class="button submit" href="javascript:">成家 <i class="fa fa-chevron-right"></i></a>
         </aside>
@@ -175,7 +184,25 @@
       <section id="step3">
         <aside>
           <h3><span class="name"></span>的家</h3>
-          <span class="name"></span>
+          <aside class="tpl house-home">
+            <figure class="dialog">
+              <span></span>
+            </figure>
+            <figure class="me">
+              <i class="dot"></i>
+              <span></span>
+            </figure>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <span class="road-name">平等二路</span>
+            <span class="number" title="號"></span>
+          </aside>
+          <!-- <span class="name"></span>
           <span class="number"></span>
           <ul>
             <li class="families01"></li>
@@ -183,7 +210,7 @@
             <li class="families03"></li>
             <li class="families04"></li>
             <li class="families05"></li>
-          </ul>
+          </ul> -->
         </aside>
         <canvas></canvas>
         <a class="button" href="javascript:">分享 <i class="fa fa-chevron-right"></i></a>
@@ -225,6 +252,7 @@
     <script src="/bower_components/detectizr/dist/detectizr.js"></script>
     <script src="/bower_components/querystring/querystring.min.js"></script>
     <script src="/bower_components/html2canvas/build/html2canvas.js"></script>
+    <script src="/bower_components/bootstrap-maxlength/bootstrap-maxlength.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

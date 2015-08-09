@@ -12,6 +12,7 @@
     "draggabilly": "~1.2.4",
     "detectizr": "~2.0.0",
     "querystring": "~3.46.1",
-    "html2canvas": "~0.4.1"
+    "html2canvas": "~0.4.1",
+    "bootstrap-maxlength": "~1.6.0"
   }
 }

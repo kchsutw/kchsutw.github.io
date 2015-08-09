@@ -32,9 +32,8 @@ $(function(){
 					$('.tpl ul li:eq(1)',one).html(r.families02);
 					$('.tpl ul li:eq(2)',one).html(r.families03);
 					$('.tpl ul li:eq(3)',one).html(r.families04);
-					$('.tpl ul li:eq(4)',one).html(r.families05);
-					var random = Math.floor(Math.random() * +new Date() % 99) ;
-					$('.tpl .number',one).html(random);
+					$('.tpl').removeClass('house-home').addClass(r.house || 'house-home');
+					$('.tpl .number',one).html(r.number|| 69);
 					$('h1').trigger('click');
 					one.fadeIn(250);
 				}($('.one')));				
@@ -45,6 +44,16 @@ $(function(){
 
 	}
 	showOne();
+
+	$('#step2 [name=words],#step2 input').maxlength({
+		alwaysShow: true,
+		threshold: 30,
+		warningClass: "label label-success",
+		limitReachedClass: "label label-important",
+		separator: ' 個字，最多 ',
+		preText: '已輸入 ',
+		postText: ' 個字。'
+	});
 
 	if($('html.desktop').length){
 
@@ -161,7 +170,8 @@ $(function(){
 		      	next();
 			  }
 			}, {scope:'email'}); 
-
+			// bypass login
+			// next();
 
 			function next(){
 				colorbox('#step2');
@@ -173,25 +183,33 @@ $(function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		});	
 		$('#step2 .submit').on('click',function(){
+			var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
+			var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 			formData.words = $('#step2 [name=words]').val();
 			formData.families01 = $('#step2 [name=families01]').val();
 			formData.families02 = $('#step2 [name=families02]').val();
 			formData.families03 = $('#step2 [name=families03]').val();
 			formData.families04 = $('#step2 [name=families04]').val();
-			formData.families05 = $('#step2 [name=families05]').val();
-			formData.random = Math.floor(Math.random() * +new Date() % 99) ;
+			formData.number = Math.floor(Math.random() * +new Date() % 99) ;
+			formData.house = randomHouse ;
 			FB.api('/me',function(me){
 				formData.name = me.name;
 				formData.email = me.email;
 				formData.facebookid = me.id;
+				// fake
+				// formData.name = 'Nelson';
+				// formData.email = 'nelson119@outlook.com';
+				// formData.facebookid = '123';
+				// end
 				formData.timestamp = new Date() * 1;
-				$('#step3 .name').html(formData.name);
-				$('#step3 .families01').html(formData.families01);
-				$('#step3 .families02').html(formData.families02);
-				$('#step3 .families03').html(formData.families03);
-				$('#step3 .families04').html(formData.families04);
-				$('#step3 .families05').html(formData.families05);
-				$('#step3 .number').html(formData.random);
+				$('#step3 .name,#step3 .me span').html(formData.name);
+				$('#step3 ul li:eq(0)').html(formData.families01);
+				$('#step3 ul li:eq(1)').html(formData.families02);
+				$('#step3 ul li:eq(2)').html(formData.families03);
+				$('#step3 ul li:eq(3)').html(formData.families04);
+				$('#step3 .dialog span').html(formData.words);
+				$('#step3 .number').html(formData.number);
+				$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 				$('#step4 [name=email]').attr('placeholder',formData.email);
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 					serial = resp.id;
@@ -301,8 +319,7 @@ $(function(){
 		}
 		var tpl = $('#tpl').clone().removeAttr('id');
 		var dragon = $('.dragon');
-		var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
-		tpl.removeClass(houses[0]);
+		tpl.removeClass('house-home');
 		freeze = true;
 		$('.container >.loading').show();
 		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
@@ -312,12 +329,9 @@ $(function(){
 				nextExists = false;
 			}
 			$.each(list,function(idx,obj){
-				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 				var page = document.createElement('section');
 				page = $(page).addClass('page house');
 				var cur = tpl.clone();
-				var random = Math.floor(Math.random() * +new Date() % 99) ;
-				$('.number', cur).html(random);
 				$('.me span', cur).html(obj.name);
 				$('ul li:eq(0)', cur).html(obj.families01);
 				$('ul li:eq(1)', cur).html(obj.families02);
@@ -325,7 +339,8 @@ $(function(){
 				$('ul li:eq(3)', cur).html(obj.families04);
 				$('ul li:eq(4)', cur).html(obj.families05);
 				$(cur).attr('data-serial',obj.id);
-				cur.addClass(randomHouse);
+				$('.number', cur).html(obj.number || 69);
+				cur.addClass(obj.house || 'house-home');
 				page.append(cur);
 				page.appendTo(dragon);
 

@@ -298,7 +298,7 @@ header{
         height: auto;
       }
     }
-    .rule,.house{
+    .rule,.house,#step3{
       width:315px;
       position:relative;
       aside{
@@ -565,6 +565,9 @@ footer{
   border-radius: 5px;
 }
 #cboxTitle{display: none;}
+.label-important{
+  background-color: #f00;
+}
 #terms,#about{
   width:600px;
   h3{
@@ -656,24 +659,113 @@ footer{
   position: relative;
   aside{
     background : url(../images/share-house.png) center center;
-    left:0;
-    top:0;
-    display: block;
-    position:absolute;
-    width: 100%;
-    height: 315px;
-    > span.name{    
-      left: 250px;
-      position: absolute;
-      top: 80px;
+    height: 100%;
+  }
+  h3{
+    font-size: em(26,15);
+    margin:0 0 20px 10px;
+    float: left;
+  }
+  .tpl{
+    width:295px;
+    height: 320px;
+    background:no-repeat 0 95px;
+    // top:50%;
+    // margin-top:-160px;
+    margin: 0 auto;
+    position: relative;
+    @media screen and (max-width: 768px) {
+      margin:0 auto;
+      background-size: 100% auto;
+      background-position: 5px 95px;
     }
-    > span.number{   
-      left: 335px;
+    &.house-home{
+      background-image: url(../images/house-home.png);
+    }
+    &.house-happiness{
+      background-image: url(../images/house-happiness.png);
+    }
+    &.house-equality{
+      background-image: url(../images/house-equality.png);
+    }
+    &.house-plurality{
+      background-image: url(../images/house-plurality.png);
+    }
+  }
+  .dialog{
+    width:268px;
+    height: 90px;
+    line-height: 50px;
+    text-align: left;
+    padding: 10px;
+    margin-bottom: 40px;
+    margin-left: 10px;
+    background:url(../images/dialog.png) no-repeat;
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      width: 270px;
+      margin:0 auto percentage(40/320) ;
+      background-size: 100% auto;
+    }
+    span{
+      display: inline-block;
+      line-height: 1.2em;
+    }
+  }
+  .me{
+    width:100%;
+    text-align: center;
+      line-height: 38px;
+    i{
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      background:url(../images/btn-background.png);
+      border-radius: 50%;
+      margin-right: 2px;
+    }
+    span{
+      line-height: 8px;
+      vertical-align: middle;
+      display: inline-block;
+      height: 38px;
+    }
+  }
+  ul{
+    margin:0 0 0 25px;
+    padding:0;
+    float: left;
+    display: block;
+    width:126px;
+    height: 120px;
+    li{
+      list-style: none;
+      line-height: em(24,15);
+    }
+  }
+  .road-name{
+    width: 15px;
+    line-height: em(24,15);
+    display: block;
+    float: left;
+  }
+  .number{
+    font-size: em(60.82,15);
+    line-height: em(90,60.82);
+    margin-left: 15px;
+    min-width: 90px;
+    max-width: 98px;
+    min-height: 110px;
+    text-align: center;
+    float:left;
+    white-space: nowrap;
+    position: relative;
+    &:after{
+      content:attr(title);
+      font-size: em(15,60.82);
       position: absolute;
-      top: 160px; 
-      font-size: 60.82px;
-      min-width:72px;
-      text-align: right;
+      bottom:-30px;
+      right:10px;
     }
   }
   canvas{
@@ -683,25 +775,6 @@ footer{
     width: 100%;
     height: 315px;
     display: none;
-  }
-  h3{
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
-  }
-  ul{
-    left: 172px;
-    position: absolute;
-    top: 120px;
-    margin:0;
-    padding:0;
-    display: block;
-    width:126px;
-    height: 120px;
-    li{
-      list-style: none;
-      line-height: em(24,15);
-    }
   }
   .button{
     background: rgba(0, 0, 0, 0) url("../images/btn-background.png");
@@ -719,8 +792,8 @@ footer{
     transition-duration: 0.2s;
     transition-property: background-position;
     width: 265px;
-    top:280px;
-    left:157px;
+    top:312px;
+    left:162px;
   }
 }
 #step4 {
