@@ -26,14 +26,19 @@ $(function(){
 		if(req.sn){
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
 				(function(one){
+					r.number = r.number || 69;
+					r.house = r.house || 'house-home';
+					var positionX =  (38-500) * (r.number/100);
+					var positionY =  (38-209) * (r.number/100);
 					$('.dialog span',one).html(r.words);
 					$('.me span',one).html(r.name);
 					$('.tpl ul li:eq(0)',one).html(r.families01);
 					$('.tpl ul li:eq(1)',one).html(r.families02);
 					$('.tpl ul li:eq(2)',one).html(r.families03);
 					$('.tpl ul li:eq(3)',one).html(r.families04);
-					$('.tpl').removeClass('house-home').addClass(r.house || 'house-home');
-					$('.tpl .number',one).html(r.number|| 69);
+					$('.tpl').removeClass('house-home').addClass(r.house);
+					$('.tpl .number',one).html(r.number);
+					$('.me .dot', one).css('background-position', positionX + 'px ' + positionY + 'px');
 					$('h1').trigger('click');
 					one.fadeIn(250);
 				}($('.one')));				
@@ -202,6 +207,8 @@ $(function(){
 				// formData.facebookid = '123';
 				// end
 				formData.timestamp = new Date() * 1;
+				var positionX =  (38-500) * (formData.number/100);
+				var positionY =  (38-209) * (formData.number/100);
 				$('#step3 .name,#step3 .me span').html(formData.name);
 				$('#step3 ul li:eq(0)').html(formData.families01);
 				$('#step3 ul li:eq(1)').html(formData.families02);
@@ -209,6 +216,7 @@ $(function(){
 				$('#step3 ul li:eq(3)').html(formData.families04);
 				$('#step3 .dialog span').html(formData.words);
 				$('#step3 .number').html(formData.number);
+				$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
 				$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 				$('#step4 [name=email]').attr('placeholder',formData.email);
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
@@ -332,15 +340,20 @@ $(function(){
 				var page = document.createElement('section');
 				page = $(page).addClass('page house');
 				var cur = tpl.clone();
+				obj.number = obj.number || 69;
+				obj.house = obj.house || 'house-home';
+				var positionX =  (38-500) * (obj.number/100);
+				var positionY =  (38-209) * (obj.number/100);
 				$('.me span', cur).html(obj.name);
+				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
 				$('ul li:eq(0)', cur).html(obj.families01);
 				$('ul li:eq(1)', cur).html(obj.families02);
 				$('ul li:eq(2)', cur).html(obj.families03);
 				$('ul li:eq(3)', cur).html(obj.families04);
 				$('ul li:eq(4)', cur).html(obj.families05);
 				$(cur).attr('data-serial',obj.id);
-				$('.number', cur).html(obj.number || 69);
-				cur.addClass(obj.house || 'house-home');
+				$('.number', cur).html(obj.number);
+				cur.addClass(obj.house);
 				page.append(cur);
 				page.appendTo(dragon);
 
