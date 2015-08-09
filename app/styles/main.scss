@@ -674,9 +674,7 @@ footer{
   overflow: hidden;
   >aside {
     background : url(../images/share-house.png) center center;
-    height: 100%;
-    margin-left: -50px;
-    width: 700px;
+    height: 314px;
   }
   h3{
     font-size: em(26,15);
@@ -687,8 +685,6 @@ footer{
     width:295px;
     height: 320px;
     background:no-repeat 0 95px;
-    // top:50%;
-    // margin-top:-160px;
     margin: 0 auto;
     position: relative;
     @media screen and (max-width: 768px) {
