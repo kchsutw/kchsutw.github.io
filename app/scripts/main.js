@@ -355,6 +355,7 @@ $(function(){
 				$('ul li:eq(4)', cur).html(obj.families05);
 				$(cur).attr('data-serial',obj.id);
 				$('.number', cur).html(obj.number);
+				$('.dialog span', cur).html(obj.words);
 				cur.addClass(obj.house);
 				page.append(cur);
 				page.appendTo(dragon);
