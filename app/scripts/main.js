@@ -70,7 +70,7 @@ $(function(){
 		var req = querystring.parse(location.search.replace('?',''));
 		FB.ui({
 		  method: 'share',
-		  href: 'http://api.kchsu.com/r/' + req
+		  href: 'http://api.kchsu.com/r/' + req.sn
 		}, function(response){
 			colorbox('#step4');
 		});
