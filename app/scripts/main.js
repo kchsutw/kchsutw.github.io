@@ -72,7 +72,6 @@ $(function(){
 		  method: 'share',
 		  href: 'http://api.kchsu.com/r/' + req.sn
 		}, function(response){
-			colorbox('#step4');
 		});
 
 	});
