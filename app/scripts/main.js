@@ -6,6 +6,7 @@ $(function(){
 	// $('html').removeClass('desktop').addClass('mobile');
 
 
+
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
 		$.colorbox({
@@ -21,11 +22,13 @@ $(function(){
 			onComplete:callback
 		});
 	};
-	var req = querystring.parse(location.search.replace('?',''));
-	function showOne(){
+	function showOne(event){
+		var req = querystring.parse(location.search.replace('?',''));
 		if(req.sn){
+			$('.dragon').hide();
+			$('.one').hide();
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
-				(function(one){
+				(function(one, dragon){
 					r.number = r.number || 69;
 					r.house = r.house || 'house-home';
 					var positionX =  (38-500) * (r.number/100);
@@ -41,14 +44,38 @@ $(function(){
 					$('.me .dot', one).css('background-position', positionX + 'px ' + positionY + 'px');
 					$('h1').trigger('click');
 					one.fadeIn(250);
-				}($('.one')));				
+					$('.close ',one).one('click',function(){
+						one.hide();
+						dragon.fadeIn(250,function(){
+							if (window.history && window.history.pushState)
+							{
+								history.pushState('home','home','./');
+								window.onpopstate = showOne;
+							}else{
+								location.href='./';
+							}
+						});
+					});
+				}($('.one'), $('.dragon')));				
 			});
 		}else{
+			$('.dragon').fadeIn();
 			$('.one').hide();
 		}
 
 	}
 	showOne();
+	$('.one .button').on('click',
+	function oneShare(){
+		var req = querystring.parse(location.search.replace('?',''));
+		FB.ui({
+		  method: 'share',
+		  href: 'http://api.kchsu.com/r/' + req
+		}, function(response){
+			colorbox('#step4');
+		});
+
+	});
 
 	$('#step2 [name=words],#step2 input').maxlength({
 		alwaysShow: true,
