@@ -378,12 +378,12 @@ $(function(){
 			});	
 			$('.build-a-home',mobile).on('click touchstart',function(){
 
-				// FB.login(function(r){
-				//   if(r.status === 'connected'){
-			 //      	next();
-				//   }
-				// }); 
+				FB.login(function(r){
+				  if(r.status === 'connected'){
 			      	next();
+				  }
+				}); 
+			      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
 				}
