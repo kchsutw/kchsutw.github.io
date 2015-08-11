@@ -161,14 +161,18 @@ header{
     height:auto;
   }
   .loading{
-    width:20px;
-    height:100%;
+    width:40px;
+    height:47px;
     position: absolute;
     right:20px;
     top:50%;
     opacity: .75;
     display: none;
-    img{width:100%;}
+    background-image: url(../images/loading.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    animation: 0.4s steps(1, end) 0s normal none infinite running loading;
+    img{width:100%;display: none;}
   }
   .road{
     position: absolute;
@@ -968,7 +972,6 @@ body{
       height: auto;
       width:20%;
       position: relative;
-      margin-top:55px;
       > aside{
         margin-top:percentage(117/600);
         margin-left:0;
@@ -1020,12 +1023,15 @@ body{
         display: block;
         margin:0 auto;
       }
+      aside{
+        margin-bottom:20px;
+      }
       .button{
         width:274px;
         display: block;
         margin: 0 auto;
         &:nth-child(1) {
-          margin: 30px auto 10px;
+          margin: 10px auto;
         }
         &:nth-child(2) {
           background-position: 335px 244px;
@@ -1034,6 +1040,24 @@ body{
     }
     #terms{
       display: none;
+    }
+    .container {
+      .loading{
+        bottom: 50px;
+        height: 47px;
+        left: 50%;
+        margin-left: -20px;
+        top: auto;
+        transform: rotateZ(90deg);
+      }
+    }
+  }
+}
+
+@keyframes loading{
+  @for $i from 0 to 15{
+    #{percentage($i/15)}{
+      background-position: $i*-40px 0;
     }
   }
 }

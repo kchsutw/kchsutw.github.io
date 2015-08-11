@@ -335,10 +335,16 @@ $(function(){
 		}(window));
 
 		(function(mobile){
-			window.colorbox = function(target,callback){
+			var colorbox = function(target,callback){
 				callback = callback || function(){};
-				$(target).height('auto').siblings().css($(window).height());
-				TweenMax.to($('body >.container'),0.2,{opcity:0,display:'none'});
+				TweenMax.set($(target),{
+					'overflow':'auto',
+					'height':'auto'
+				});
+				TweenMax.set($(target).siblings(),{
+					'overflow':'hidden',
+					'height':$(window).height()
+				});
 				TweenMax.to($('body >.box >.hide'),0.2,{left : $(target).index() * -100 + '%' });
 				TweenMax.set($('body >.container .dragon'),{
 					display:'none'
@@ -357,7 +363,6 @@ $(function(){
 				TweenMax.set($('.box'),{
 					width:0
 				});
-				TweenMax.to($('body >.hide'),0.2,{left : '100%' });
 				TweenMax.set($('body >.container .dragon'),{
 					opacity:0,
 					display:'block'
@@ -368,7 +373,7 @@ $(function(){
 			};
 			$('.goto-rule',mobile).on('click',function(){
 				TweenMax.to($('html,body'),0.25,{
-					scrollTop : $(window).height()
+					scrollTop : $('.go').offset().top -100
 				});
 			});	
 			$('.build-a-home',mobile).on('click',function(){
@@ -378,6 +383,7 @@ $(function(){
 			      	next();
 				  }
 				}); 
+			      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
 				}
@@ -417,8 +423,8 @@ $(function(){
 					$('#step4 [name=email]').attr('placeholder',formData.email);
 					$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 						serial = resp.id;
+						$('#step3 .button').hide();
 						colorbox('#step3',function(){
-							$('#step3 .button').hide();
 							html2canvas($('#step3 >aside'), {
 							  onrendered: function(canvas) {
 							    $('#step3').append(canvas);
