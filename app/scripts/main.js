@@ -315,7 +315,6 @@ $(function(){
 				var width = $(w).width();
 				var height = $(w).height() > 530 ? $(w).height() : 530;
 				$('body').width(width);
-				$('body').height(height);
 				$('.home').width(width);
 				if(!$('.pageSizeHeight').length){
 					$('<style></style>').addClass('pageSizeHeight').appendTo($('head'));
@@ -325,6 +324,28 @@ $(function(){
 		}(window));
 
 		(function(mobile){
+			var colorbox = function(target,callback){
+				callback = callback || function(){};
+				TweenMax.to($('body >.container'),0.2,{opcity:0});
+				TweenMax.to($('body >.hide'),0.2,{left : $(target).index() * -100 + '%' });
+				TweenMax.set($('body'),{
+					height:$(target).height()
+				});
+				TweenMax.set($('body >.container .dragon'),{
+					display:'none'
+				});
+				TweenMax.to($('html,body'),0.2,{
+					scrollTop:0,
+					delay:0.2,
+					onComplete:callback
+				});
+
+			};
+			$('.goto-rule',mobile).on('click',function(){
+				TweenMax.to($('html,body'),0.25,{
+					scrollTop : $(window).height()
+				});
+			});	
 			$('.build-a-home',mobile).on('click',function(){
 
 				FB.login(function(r){
@@ -332,10 +353,100 @@ $(function(){
 			      	next();
 				  }
 				}); 
+				// bypass fb login
+		      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
 				}
+			})
+			//fake click
+			// .trigger('click');	
+
+			$('#step2 .add-button').on('click', function(){
+				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 			});	
+			var serial;
+			var formData = {};
+			$('#step2 .submit').on('click',function(){
+				var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
+				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
+				formData.words = $('#step2 [name=words]').val();
+				formData.families01 = $('#step2 [name=families01]').val();
+				formData.families02 = $('#step2 [name=families02]').val();
+				formData.families03 = $('#step2 [name=families03]').val();
+				formData.families04 = $('#step2 [name=families04]').val();
+				formData.number = Math.floor(Math.random() * +new Date() % 99) ;
+				formData.house = randomHouse ;
+				FB.api('/me',function(me){
+					formData.name = me.name;
+					formData.email = me.email;
+					formData.facebookid = me.id;
+					// fake
+					// formData.name = 'Nelson';
+					// formData.email = 'nelson119@outlook.com';
+					// formData.facebookid = '123';
+					// end
+					formData.timestamp = new Date() * 1;
+					var positionX =  (38-500) * (formData.number/100);
+					var positionY =  (38-209) * (formData.number/100);
+					$('#step3 .name,#step3 .me span').html(formData.name);
+					$('#step3 ul li:eq(0)').html(formData.families01);
+					$('#step3 ul li:eq(1)').html(formData.families02);
+					$('#step3 ul li:eq(2)').html(formData.families03);
+					$('#step3 ul li:eq(3)').html(formData.families04);
+					$('#step3 .dialog span').html(formData.words);
+					$('#step3 .number').html(formData.number);
+					$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
+					$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
+					$('#step4 [name=email]').attr('placeholder',formData.email);
+					$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+						serial = resp.id;
+						colorbox('#step3',function(){
+							console.log
+							$('#step3 .button').hide();
+							html2canvas($('#step3 >aside'), {
+							  onrendered: function(canvas) {
+							  	console.log(canvas)
+							    $('#step3').append(canvas);
+							    var img    = canvas.toDataURL('image/png');
+							    var capt = document.createElement('img');
+							    capt.src=img;
+							    TweenMax.set(capt,{
+							      position:'absolute',
+							      left:0,
+							      top:0,
+							      display:'none'
+							    });
+								$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
+									base64Url : $(capt).attr('src')},function(){
+									var serial = resp.id;
+									$('#step3 .button').fadeIn();
+								});
+							    $(capt).appendTo($('#step3'));
+							  }
+							});
+						});
+
+					});
+
+				});
+			});	
+
+			var scrollTop = 0;
+
+			// infiniteList scroll
+			$(window).on('mousewheel', function(evt){
+				var direction = 0;
+				if($(window).scrollTop() < scrollTop ){
+					direction = -1;
+				}else if($(window).scrollTop() > scrollTop){
+					direction = 1;
+				}
+				scrollTop = $(window).scrollTop();
+				if(direction === 1 && $(window).scrollTop() >= $('body').height() -$(window).height() *1.5){
+					infiniteList();
+				}
+			});
 		}($('html.mobile')));
 
 

@@ -532,6 +532,7 @@ footer{
   border-top:1px solid #bbb;
   @media screen and (max-width: 768px) {
     text-align: center;
+    z-index: 1;
   }
   .copy{
     margin-left: 23px;
@@ -901,6 +902,115 @@ footer{
     }
     &:nth-child(2) {
       background-position: 250px 395px;
+    }
+  }
+}
+
+body{
+  @media screen and (max-width: 768px) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    .box{
+      right:0;
+      position: absolute;
+      top: 0;
+      height:100%;
+      width: 0;
+      overflow: hidden;
+    }
+    .hide{
+      position: absolute;
+      top:0;
+      left:100%;
+      background: rgba(255, 255, 255, 0.6) ;
+      display: block !important;
+      height: 100%;
+      width: 500%;
+      >section {
+        width:20%;
+        position:absolute;
+        height: auto;
+        &:nth-child(1){
+          left:0%;
+        }
+        &:nth-child(2){
+          left:20%;
+        }
+        &:nth-child(3){
+          left:40%;
+        }
+        &:nth-child(4){
+          left:60%;
+        }
+        &:nth-child(5){
+          left:80%;
+        }
+      }
+    }
+    #step2{
+      h3{
+        margin-top:percentage(95/320);
+      }
+      p{
+        width: 274px;
+        padding: 0;
+      }
+      .w175h90,.w175h130{
+        width: 274px;
+        height: auto;
+        margin: 35px auto 10px;
+        text-align: left;
+        display: block;
+      }
+      .button{
+        width:274px;
+      }
+      aside{
+        width:274px;
+        margin: 0 auto;
+        display: block;
+        .families{
+          width:274px;
+          display: inline-block;
+        }
+        &:last-child{
+          margin-bottom:45px;
+        }
+      }
+    }
+    #step3{
+      height: auto;
+      width:20%;
+      position: relative;
+      margin-top:55px;
+      > aside{
+        margin-top:percentage(117/600);
+        margin-left:0;
+        height: 358px;
+        width:100%;
+        position: relative;
+        h3{
+          margin-left:10%;
+          width: 40%;
+        }
+        .dialog {
+          background-size: 100% 100%;
+          width: 50%;
+          margin-left: 50%;
+        }
+      }
+      .button{
+        position: static;
+        margin-left:13%;
+        margin-bottom:10%;
+        margin-top:10%;
+      }
+      canvas{
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
     }
   }
 }
