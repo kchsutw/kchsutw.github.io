@@ -437,10 +437,25 @@ $(function(){
 							      top:0,
 							      display:'none'
 							    });
-								$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
-									base64Url : $(capt).attr('src')},function(){
+								// $.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
+								// 	base64Url : $(capt).attr('src')},function(){
+								// 	var serial = resp.id;
+								// 	$('#step3 .button').fadeIn();
+								// });
+								$.ajax({
+								  method:'POST',
+								  headers: {          
+								    Accept : 'application/json'
+								  },
+								  // jshint quotmark: false
+								  data :{ base64Url : $(capt).attr('src')},
+								  contentType:'application/json; charset=UTF-8',
+								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+								}).done(function(){
 									var serial = resp.id;
 									$('#step3 .button').fadeIn();
+								}).error(function(){
+									alert('圖片無法上傳');
 								});
 							    $(capt).appendTo($('#step3'));
 							  }
