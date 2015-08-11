@@ -914,37 +914,22 @@ body{
       right:0;
       position: absolute;
       top: 0;
-      height:100%;
       width: 0;
       overflow-x: hidden;
       overflow-y: visible;
-    }
-    .hide{
-      position: absolute;
-      top:0;
-      left:100%;
-      background: rgba(255, 255, 255, 0.6) ;
-      display: block !important;
-      height: 100%;
-      width: 500%;
-      >section {
-        width:20%;
-        position:absolute;
-        height: auto;
-        &:nth-child(1){
-          left:0%;
-        }
-        &:nth-child(2){
-          left:20%;
-        }
-        &:nth-child(3){
-          left:40%;
-        }
-        &:nth-child(4){
-          left:60%;
-        }
-        &:nth-child(5){
-          left:80%;
+      >.hide{
+        line-height: 0;
+        background: rgba(255, 255, 255, 0.6) ;
+        display: block !important;
+        width: 500%;
+        position: relative;
+        margin-bottom: 40px;
+        >section {
+          display: inline-block;
+          height: auto;
+          line-height: 1.5em;
+          vertical-align: top;
+          width: 20%;
         }
       }
     }
@@ -1014,8 +999,6 @@ body{
       }
     }
     #step4{
-      position:absolute;
-      top:0;
       height: 100%;
       width:20%;
       h3{
@@ -1048,6 +1031,9 @@ body{
           background-position: 335px 244px;
         }
       }
+    }
+    #terms{
+      display: none;
     }
   }
 }

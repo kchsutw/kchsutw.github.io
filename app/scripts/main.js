@@ -335,13 +335,12 @@ $(function(){
 		}(window));
 
 		(function(mobile){
-			var colorbox = function(target,callback){
+			window.colorbox = function(target,callback){
 				callback = callback || function(){};
+				$(target).height('auto').siblings().css($(window).height());
 				TweenMax.to($('body >.container'),0.2,{opcity:0,display:'none'});
+				console.log(target)
 				TweenMax.to($('body >.box >.hide'),0.2,{left : $(target).index() * -100 + '%' });
-				TweenMax.set($('body'),{
-					height:$(target).height()
-				});
 				TweenMax.set($('body >.container .dragon'),{
 					display:'none'
 				});
