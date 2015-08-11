@@ -311,6 +311,7 @@ $(function(){
 		// $('p').appendTo($('body')).html($('html').attr('class'));
 	// fit window size
 		(function(w){
+			var scrollTop = 0;
 			$(w).on('scroll resize',function(){
 				var width = $(w).width();
 				var height = $(w).height() > 530 ? $(w).height() : 530;
@@ -476,7 +477,6 @@ $(function(){
 				});
 			});
 
-			var scrollTop = 0;
 
 		}($('html.mobile')));
 
