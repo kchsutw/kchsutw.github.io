@@ -378,12 +378,12 @@ $(function(){
 			});	
 			$('.build-a-home',mobile).on('click touchstart',function(){
 
-				FB.login(function(r){
-				  if(r.status === 'connected'){
+				// FB.login(function(r){
+				//   if(r.status === 'connected'){
+			 //      	next();
+				//   }
+				// }); 
 			      	next();
-				  }
-				}); 
-			      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
 				}
@@ -444,12 +444,7 @@ $(function(){
 								// });
 								$.ajax({
 								  method:'POST',
-								  headers: {          
-								    Accept : 'application/json'
-								  },
-								  // jshint quotmark: false
 								  data :{ base64Url : $(capt).attr('src')},
-								  contentType:'application/json; charset=UTF-8',
 								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
 								}).done(function(){
 									var serial = resp.id;
