@@ -434,8 +434,8 @@ $(function(){
 							    TweenMax.set(capt,{
 							      position:'absolute',
 							      left:0,
-							      top:0,
-							      display:'none'
+							      top:0
+							      // display:'none'
 							    });
 								// $.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
 								// 	base64Url : $(capt).attr('src')},function(){
