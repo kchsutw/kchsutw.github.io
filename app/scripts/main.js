@@ -450,6 +450,7 @@ $(function(){
 									var serial = resp.id;
 									$('#step3 .button').fadeIn();
 								}).error(function(){
+									alert($(capt).attr('src'));
 									alert('圖片無法上傳');
 								});
 							    $(capt).appendTo($('#step3'));
