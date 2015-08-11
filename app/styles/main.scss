@@ -1012,5 +1012,41 @@ body{
         width: 100%;
       }
     }
+    #step4{
+      position:absolute;
+      top:0;
+      height: 100%;
+      width:20%;
+      h3{
+        margin-top:85px;
+      }
+      p{
+        width:274px;
+        margin:10px auto;
+        text-align: left;
+      }
+      label{
+        width: 274px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+      input{
+        width:268px;
+        display: block;
+        margin:0 auto;
+      }
+      .button{
+        width:274px;
+        display: block;
+        margin: 0 auto;
+        &:nth-child(1) {
+          margin: 30px auto 10px;
+        }
+        &:nth-child(2) {
+          background-position: 335px 244px;
+        }
+      }
+    }
   }
 }

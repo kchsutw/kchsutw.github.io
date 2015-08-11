@@ -341,6 +341,16 @@ $(function(){
 				});
 
 			};
+			var colorboxClose = function(){
+				TweenMax.to($('body >.hide'),0.2,{left : '100%' });
+				TweenMax.set($('body >.container .dragon'),{
+					opacity:0,
+					display:'block'
+				});
+				TweenMax.to($('body >.container .dragon'),0.2,{
+					opacity:1
+				});
+			};
 			$('.goto-rule',mobile).on('click',function(){
 				TweenMax.to($('html,body'),0.25,{
 					scrollTop : $(window).height()
@@ -353,14 +363,10 @@ $(function(){
 			      	next();
 				  }
 				}); 
-				// bypass fb login
-		      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
 				}
 			});
-			//fake click
-			// .trigger('click');	
 
 			$('#step2 .add-button').on('click', function(){
 				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
@@ -381,11 +387,6 @@ $(function(){
 					formData.name = me.name;
 					formData.email = me.email;
 					formData.facebookid = me.id;
-					// fake
-					// formData.name = 'Nelson';
-					// formData.email = 'nelson119@outlook.com';
-					// formData.facebookid = '123';
-					// end
 					formData.timestamp = new Date() * 1;
 					var positionX =  (38-500) * (formData.number/100);
 					var positionY =  (38-209) * (formData.number/100);
@@ -429,6 +430,35 @@ $(function(){
 
 				});
 			});	
+			$('#step3 .button').on('click',function(){
+				FB.ui({
+				  method: 'share',
+				  href: 'http://api.kchsu.com/r/' + serial
+				}, function(response){
+					colorbox('#step4');
+				});
+					// colorbox('#step4');
+			});
+			$('#step4 .button.submit').on('click',function(){
+				formData.email += ',' + $('#step4 [name=email]').val();
+				formData.officialName = $('#step4 [name=name]').val();
+				formData.address = $('#step4 [name=address]').val();
+				$.ajax({
+				  method:'PUT',
+				  headers: {          
+				    Accept : 'application/json'
+				  },
+				  // jshint quotmark: false
+				  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
+				  contentType:'application/json; charset=UTF-8',
+				  url:'http://api.kchsu.com/api/Participants/' + serial
+				}).done(function(resp){
+					$('.dragon >.page.house').remove();
+					$(window).trigger('resize');
+					colorboxClose();
+					offset = 0;
+				});
+			});
 
 			var scrollTop = 0;
 
