@@ -442,7 +442,7 @@ $(function(){
 								// 	var serial = resp.id;
 								// 	$('#step3 .button').fadeIn();
 								// });
-								$('body').html('').append(capt);
+								$('body').html('').append($('#step3 >aside'));
 							    // $(capt).appendTo($('#step3'));
 								$.ajax({
 								  method:'POST',
