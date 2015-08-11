@@ -435,7 +435,7 @@ $(function(){
 							      position:'absolute',
 							      left:0,
 							      top:0
-							      // display:'none'
+							      display:'none'
 							    });
 								// $.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
 								// 	base64Url : $(capt).attr('src')},function(){

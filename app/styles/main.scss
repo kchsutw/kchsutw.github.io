@@ -929,8 +929,7 @@ body{
         position: relative;
         margin-bottom: 40px;
         >section {
-          display: block;
-          float: left;
+          display: inline-block;
           height: auto;
           line-height: 1.5em;
           vertical-align: top;
@@ -979,6 +978,7 @@ body{
         left: 0;
         height: 100%;
         width: 100%;
+        display: none;
       }
       > aside{
         margin-top:percentage(117/600);
