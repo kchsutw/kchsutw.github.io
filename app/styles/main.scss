@@ -929,7 +929,8 @@ body{
         position: relative;
         margin-bottom: 40px;
         >section {
-          display: inline-block;
+          display: block;
+          float: left;
           height: auto;
           line-height: 1.5em;
           vertical-align: top;
