@@ -449,8 +449,10 @@ $(function(){
 								}).done(function(){
 									var serial = resp.id;
 									$('#step3 .button').fadeIn();
-								}).error(function(){
+								}).error(function(e,x){
 									alert($(capt).attr('src'));
+									alert(e);
+									alert(x);
 									alert('圖片無法上傳');
 								});
 							    $(capt).appendTo($('#step3'));
