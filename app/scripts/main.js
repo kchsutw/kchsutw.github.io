@@ -442,8 +442,8 @@ $(function(){
 								// 	var serial = resp.id;
 								// 	$('#step3 .button').fadeIn();
 								// });
-								$('body').html('').append(capt);
-							    // $(capt).appendTo($('#step3'));
+								// $('body').html('').append(capt);
+							    $(capt).appendTo($('#step3'));
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
