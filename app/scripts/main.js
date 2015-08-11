@@ -358,7 +358,7 @@ $(function(){
 				function next(){
 					colorbox($('#step2',mobile));
 				}
-			})
+			});
 			//fake click
 			// .trigger('click');	
 
@@ -402,11 +402,9 @@ $(function(){
 					$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 						serial = resp.id;
 						colorbox('#step3',function(){
-							console.log
 							$('#step3 .button').hide();
 							html2canvas($('#step3 >aside'), {
 							  onrendered: function(canvas) {
-							  	console.log(canvas)
 							    $('#step3').append(canvas);
 							    var img    = canvas.toDataURL('image/png');
 							    var capt = document.createElement('img');
