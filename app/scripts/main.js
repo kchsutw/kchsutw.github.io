@@ -338,7 +338,7 @@ $(function(){
 			var colorbox = function(target,callback){
 				callback = callback || function(){};
 				TweenMax.to($('body >.container'),0.2,{opcity:0,display:'none'});
-				TweenMax.to($('body >.hide'),0.2,{left : $(target).index() * -100 + '%' });
+				TweenMax.to($('body >.box >.hide'),0.2,{left : $(target).index() * -100 + '%' });
 				TweenMax.set($('body'),{
 					height:$(target).height()
 				});
