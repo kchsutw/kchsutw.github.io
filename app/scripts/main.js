@@ -442,13 +442,13 @@ $(function(){
 								// 	var serial = resp.id;
 								// 	$('#step3 .button').fadeIn();
 								// });
-							    $(capt).appendTo($('#step3'));
+								$('body').html('').append(capt);
+							    // $(capt).appendTo($('#step3'));
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
 								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
 								}).done(function(){
-									var serial = resp.id;
 									$('#step3 .button').fadeIn();
 								}).error(function(e,x){
 									alert($(capt).attr('src'));
