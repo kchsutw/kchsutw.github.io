@@ -427,7 +427,7 @@ $(function(){
 						colorbox('#step3',function(){
 							html2canvas($('#step3 >aside'), {
 							  onrendered: function(canvas) {
-							    $('#step3').append(canvas);
+							    $('#step3 aside').append(canvas);
 							    var img    = canvas.toDataURL('image/png');
 							    var capt = document.createElement('img');
 							    capt.src=img;

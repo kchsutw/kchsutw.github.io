@@ -972,6 +972,13 @@ body{
       height: auto;
       width:20%;
       position: relative;
+      > canvas{
+        position: absolute;
+        top:0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
       > aside{
         margin-top:percentage(117/600);
         margin-left:0;
