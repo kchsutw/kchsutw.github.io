@@ -427,7 +427,7 @@ $(function(){
 						colorbox('#step3',function(){
 							html2canvas($('#step3 >aside'), {
 							  onrendered: function(canvas) {
-							    $('#step3 aside').append(canvas);
+							    $('#step3 >aside').append(canvas);
 							    var img    = canvas.toDataURL('image/png');
 							    var capt = document.createElement('img');
 							    capt.src=img;
@@ -443,7 +443,7 @@ $(function(){
 								// 	$('#step3 .button').fadeIn();
 								// });
 								// $('body').html('').append(capt);
-							    $(capt).appendTo($('#step3'));
+							    $(capt).appendTo($('#step3 >aside'));
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
