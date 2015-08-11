@@ -371,12 +371,12 @@ $(function(){
 					opacity:1
 				});
 			};
-			$('.goto-rule',mobile).on('click',function(){
+			$('.goto-rule',mobile).on('click touchstart',function(){
 				TweenMax.to($('html,body'),0.25,{
 					scrollTop : $('.go').offset().top -100
 				});
 			});	
-			$('.build-a-home',mobile).on('click',function(){
+			$('.build-a-home',mobile).on('click touchstart',function(){
 
 				FB.login(function(r){
 				  if(r.status === 'connected'){
@@ -389,12 +389,12 @@ $(function(){
 				}
 			});
 
-			$('#step2 .add-button').on('click', function(){
+			$('#step2 .add-button',mobile).on('click touchstart', function(){
 				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 			});	
 			var serial;
 			var formData = {};
-			$('#step2 .submit').on('click',function(){
+			$('#step2 .submit', mobile).on('click touchstart',function(){
 				var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 				formData.words = $('#step2 [name=words]').val();
@@ -451,7 +451,7 @@ $(function(){
 
 				});
 			});	
-			$('#step3 .button').on('click',function(){
+			$('#step3 .button',mobile).on('click touchstart',function(){
 				FB.ui({
 				  method: 'share',
 				  href: 'http://api.kchsu.com/r/' + serial
@@ -460,7 +460,7 @@ $(function(){
 				});
 					// colorbox('#step4');
 			});
-			$('#step4 .button.submit').on('click',function(){
+			$('#step4 .button.submit',mobile).on('click touchstart',function(){
 				formData.email += ',' + $('#step4 [name=email]').val();
 				formData.officialName = $('#step4 [name=name]').val();
 				formData.address = $('#step4 [name=address]').val();
