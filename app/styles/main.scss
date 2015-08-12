@@ -1129,68 +1129,68 @@ body{
       }
       // border-top:1px solid #c0c0c0;
       border-bottom:1px solid #c0c0c0;
-    }
-    li ,li.active {
-      display: block;
-      height: 72px;
-      width:100%;
-      text-align: center;
-      transition:0.2s all;
-      float: none;
-      background:rgba(255,255,255,.9);
-      a{
+      li ,li.active {
         display: block;
-        width:166px;
-        height: 100%;
-        margin: 0 auto;
-        border-bottom: 1px solid #e0dcdc;
-        text-indent: -999em;
-        line-height: 12px;
+        height: 72px;
+        width:100%;
         text-align: center;
-        &:after{
-          width:28px!important;
-          height:28px!important;
-          background:url(../images/mobile-nav-button-1.png) center center!important;
-          content:' ';
-          left: 50%!important;
-          margin-left: -14px;
-          top: 50%;
-          margin-top: -14px;
+        transition:0.2s all;
+        float: none;
+        background:rgba(255,255,255,.9);
+        a{
+          display: block;
+          width:166px;
+          height: 100%;
+          margin: 0 auto;
+          border-bottom: 1px solid #e0dcdc;
           text-indent: -999em;
-          position: absolute!important;
-          z-index: 1;
-        }
-        &:after:hover{
-          width:28px;
-          height:28px;
-          display: inline-block;
-          background:url(../images/mobile-nav-button-1.png);
-        }
-        &.fanpage{
-          background: none!important;
-          left: 50%!important;
-          margin-left: -14px!important;
-          top: 50%!important;
-          margin-top: -14px!important;
-          width:28px!important;
-          &:before{
-            display: none;
+          line-height: 12px;
+          text-align: center;
+          &:after{
+            width:28px!important;
+            height:28px!important;
+            background:url(../images/mobile-nav-button-1.png) center center!important;
+            content:' ';
+            left: 50%!important;
+            margin-left: -14px;
+            top: 50%;
+            margin-top: -14px;
+            text-indent: -999em;
+            position: absolute!important;
+            z-index: 1;
+          }
+          &:after:hover{
+            width:28px;
+            height:28px;
+            display: inline-block;
+            background:url(../images/mobile-nav-button-1.png);
+          }
+          &.fanpage{
+            background: none!important;
+            left: 50%!important;
+            margin-left: -14px!important;
+            top: 50%!important;
+            margin-top: -14px!important;
+            width:28px!important;
+            &:before{
+              display: none;
+            }
           }
         }
-      }
-      &:nth-child(2){
-        a:after{
-          background-image:url(../images/mobile-nav-button-2.png)!important;
+        &:nth-child(2){
+          a:after{
+            background-image:url(../images/mobile-nav-button-2.png)!important;
+          }
         }
-      }
-      &:nth-child(3){
-        a:after{
-          background-image:url(../images/mobile-nav-button-3.png)!important;
+        &:nth-child(3){
+          a:after{
+            background-image:url(../images/mobile-nav-button-3.png)!important;
+          }
         }
-      }
-      &:nth-child(4){
-        a:after{
-          background-image:url(../images/mobile-nav-button-4.png)!important;
+        &:nth-child(4){
+          a:after{
+            background-image:url(../images/mobile-nav-button-4.png)!important;
+          }
         }
       }
     }
