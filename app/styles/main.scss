@@ -331,10 +331,10 @@ header{
         top:50%;
         margin-top:-160px;
         position: relative;
+        background-position:center 85px;
         @media screen and (max-width: 768px) {
           margin:0 auto;
           background-size: 100% auto;
-          background-position: 5px 95px;
         }
         &.house-home{
           background-image: url(../images/house-home.png);
@@ -410,6 +410,9 @@ header{
         display: block;
         float: left;
       }
+      .road-number{
+        position: relative;
+      }
       .number{
         font-size: em(60.82,15);
         line-height: em(90,60.82);
@@ -421,13 +424,13 @@ header{
         float:left;
         white-space: nowrap;
         position: relative;
-        i{
-          font-size: normal;
-          font-size: em(15,60.82);
-          position: absolute;
-          bottom:-30px;
-          right:10px;
-        }
+      }
+      i{
+        font-style: normal;
+        font-size: em(15,15);
+        position: absolute;
+        top:100px;
+        right:10px;
       }
     }
     .house{
