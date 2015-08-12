@@ -1016,11 +1016,11 @@ body{
         position: relative;
       }
       > aside{
-        margin-top:percentage(117/600);
-        margin-left:0;
         height: 358px;
-        width:100%;
+        margin: 19.5% auto 0;
+        max-width: 600px;
         position: relative;
+        width: 100%;
         h3{
           margin-left:10%;
           width: 40%;
@@ -1033,12 +1033,10 @@ body{
       }
       .button{
         display: block;
-        left: 0;
-        margin-bottom: 7%;
-        margin-left: 8.3%;
-        margin-top: -15%;
+        left: auto;
+        margin: -5% auto 7%;
         position: relative;
-        top: 0;
+        top: auto;
       }
       canvas{
         height: 100%;
