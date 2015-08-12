@@ -406,6 +406,7 @@ header{
       }
       .road-name{
         width: 15px;
+        height: 100%;
         line-height: em(24,15);
         display: block;
         float: left;
@@ -982,6 +983,35 @@ body{
         height: 100%;
         width: 100%;
         display: none;
+      }
+      .road-name{
+        width: 15px;
+        height: 100%;
+        line-height: em(24,15);
+        display: block;
+        float: left;
+      }
+      .road-number{
+        position: relative;
+        i{
+          font-style: normal;
+          font-size: em(15,15);
+          position: absolute;
+          top:100px;
+          right:10px;
+        }
+      }
+      .number{
+        font-size: em(60.82,15);
+        line-height: em(90,60.82);
+        margin-left: 15px;
+        min-width: 90px;
+        max-width: 98px;
+        min-height: 110px;
+        text-align: center;
+        float:left;
+        white-space: nowrap;
+        position: relative;
       }
       > aside{
         margin-top:percentage(117/600);
