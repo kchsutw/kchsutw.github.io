@@ -458,6 +458,7 @@ $(function(){
 								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
 								}).done(function(){
 									$('#step3 .button').fadeIn();
+									step2Processing = false;
 								}).error(function(e,x){
 									alert('圖片無法上傳');
 								});
