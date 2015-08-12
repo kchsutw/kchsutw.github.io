@@ -425,22 +425,20 @@ $(function(){
 						serial = resp.id;
 						$('#step3 .button').hide();
 						colorbox('#step3',function(){
-							html2canvas($('#step3 >aside'), {
-							  onrendered: function(canvas) {
-							    $('#step3 >aside').append(canvas);
-							    var img = canvas.toDataURL('image/png');
-							    var capt = document.createElement('img');
-							    TweenMax.set(capt,{
-							      position:'absolute',
-							      left:0,
-							      top:0
-							    });
-							    capt.src=img;
-						        $('#step3').append('<h4>img</h4>');
-							    $(capt).appendTo($('#step3'));
-						        $('#step3').append('<h4>canvas</h4>');
-						        $(canvas).css('display','block').css('position','static');
-  								$('#step3').append(canvas);
+					        html2canvas($('#step3 >aside'), {
+					          onrendered: function(canvas) {
+					            $('#step3').append('<h4>canvas</h4>');
+					            $(canvas).css('display','block').css('position','static');
+					            $('#step3').append(canvas);
+					            var capt = document.createElement('img');
+					            capt.src = canvas.toDataURL('image/png');
+					            TweenMax.set(capt,{
+					              left:0,
+					              top:0
+					            });
+					            // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
+					            $('#step3').append('<h4>img</h4>');
+					            $(capt).appendTo($('#step3'));
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
@@ -450,8 +448,8 @@ $(function(){
 								}).error(function(e,x){
 									alert('圖片無法上傳');
 								});
-							  }
-							});
+					          }
+					        });
 						});
 
 					});
