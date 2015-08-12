@@ -86,7 +86,7 @@ $(function(){
 		postText: ' 個字。'
 	});
 
-	if($('html.desktop').length){
+	if($('html.desktop,html.tablet').length){
 
 	// fit window size
 		(function(w){
