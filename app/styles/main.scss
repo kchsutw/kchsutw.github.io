@@ -406,7 +406,7 @@ header{
       }
       .road-name{
         width: 15px;
-        height: 100%;
+        max-width: 15px;
         line-height: em(24,15);
         display: block;
         float: left;
@@ -986,7 +986,7 @@ body{
       }
       .road-name{
         width: 15px;
-        height: 100%;
+        max-width: 15px;
         line-height: em(24,15);
         display: block;
         float: left;
