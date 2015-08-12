@@ -742,7 +742,7 @@ footer{
     @media screen and (max-width: 768px) {
       margin:0 auto;
       background-size: auto auto;
-      background-position: 5px 95px;
+      background-position: 5px 75px;
     }
     &.house-home{
       background-image: url(../images/house-home.png);
@@ -1028,14 +1028,17 @@ body{
         .dialog {
           background-size: 100% 100%;
           width: 50%;
-          margin-left: 50%;
+          margin: 0 0 6.6% 50%;
         }
       }
       .button{
-        position: static;
-        margin-left:13%;
-        margin-bottom:10%;
-        margin-top:10%;
+        display: block;
+        left: 0;
+        margin-bottom: 7%;
+        margin-left: 8.3%;
+        margin-top: -15%;
+        position: relative;
+        top: 0;
       }
       canvas{
         height: 100%;
