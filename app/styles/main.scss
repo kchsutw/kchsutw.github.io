@@ -421,8 +421,8 @@ header{
         float:left;
         white-space: nowrap;
         position: relative;
-        &:after{
-          content:attr(title);
+        i{
+          font-size: normal;
           font-size: em(15,60.82);
           position: absolute;
           bottom:-30px;
