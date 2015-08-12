@@ -351,13 +351,14 @@ $(function(){
 					'overflow':'hidden',
 					'height':$(window).height()
 				});
-				TweenMax.to($('body >.box >.hide'),0.2,{left : $(target).index() * -100 + '%' });
 				TweenMax.set($('body >.container .dragon'),{
 					display:'none'
 				});
 				TweenMax.set($('.box'),{
 					width:'100%'
 				});
+				TweenMax.to($(target),0.2,{'width':'100%' });
+				TweenMax.to($(target).siblings(),0.2,{'width':0 });
 				TweenMax.to($('html,body'),0.2,{
 					scrollTop:0,
 					delay:0.2,

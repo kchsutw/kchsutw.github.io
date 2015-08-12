@@ -920,15 +920,17 @@ body{
         line-height: 0;
         background: rgba(255, 255, 255, 0.6) ;
         display: block !important;
-        width: 500%;
+        width: 100%;
         position: relative;
         margin-bottom: 40px;
         >section {
-          display: inline-block;
+          display: block;
+          float: left;
           height: auto;
           line-height: 1.5em;
           vertical-align: top;
-          width: 20%;
+          width: 100%;
+          overflow: hidden;
         }
       }
     }
