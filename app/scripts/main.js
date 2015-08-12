@@ -162,23 +162,29 @@ $(function(){
 			return false;
 		});
 		// drag
-		var from,to,tween;
-		var draggie = new Draggabilly( '.dragon', {
-		  axis: 'x'
-		}).on('dragStart' ,function(e){
-			from = e.clientX;
-		}).on('pointerUp' ,function(e){
-			to = e.clientX;
-			var diff = from - to;
-			var container = $('.dragon');
-				try{tween.kill();}catch(e){}
-				tween = TweenMax.to(container,1,{
-				left :'-=' + diff/2,
-				onComplete: function(){
-					$('.dragon').trigger('mousewheel');
-				}
+		if($('html.desktop')){
+			var from,to,tween;
+			var draggie = new Draggabilly( '.dragon', {
+			  axis: 'x'
+			}).on('dragStart' ,function(e){
+				from = e.clientX;
+			}).on('pointerUp' ,function(e){
+				to = e.clientX;
+				var diff = from - to;
+				var container = $('.dragon');
+					try{tween.kill();}catch(e){}
+					tween = TweenMax.to(container,1,{
+					left :'-=' + diff/2,
+					onComplete: function(){
+						$('.dragon').trigger('mousewheel');
+					}
+				});
 			});
-		});
+
+		}
+		if($('html.tablet')){
+			
+		}
 		$('.nav-pills li:eq(0)').on('click',function(){
 			colorbox('#about');
 		});
