@@ -335,6 +335,12 @@ $(function(){
 		}(window));
 
 		(function(mobile){
+			$('.menu', mobile).on('click touchstart',function(){
+				$('.nav-pills', mobile).toggleClass('on');
+				$('.container').one('click touchstart',function(){
+					$('.nav-pills', mobile).removeClass('on');
+				});
+			});
 			var colorbox = function(target,callback){
 				callback = callback || function(){};
 				TweenMax.set($(target),{
