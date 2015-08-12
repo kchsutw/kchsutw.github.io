@@ -404,7 +404,7 @@ $(function(){
 			var formData = {};
 			var step2Processing = false;
 			$('#step2 .submit', mobile).on('click touchstart',function(){
-				if(step2Submitted){
+				if(step2Processing){
 					return false;
 				}
 				step2Processing = true;
