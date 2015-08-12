@@ -358,6 +358,7 @@ $(function(){
 					onComplete:callback
 				});
 
+				freeze = true;
 			};
 			var colorboxClose = function(){
 				TweenMax.set($('.box'),{
@@ -370,6 +371,7 @@ $(function(){
 				TweenMax.to($('body >.container .dragon'),0.2,{
 					opacity:1
 				});
+				freeze = false;
 			};
 			$('.goto-rule',mobile).on('click touchstart',function(){
 				TweenMax.to($('html,body'),0.25,{
@@ -394,7 +396,12 @@ $(function(){
 			});	
 			var serial;
 			var formData = {};
+			var step2Processing = false;
 			$('#step2 .submit', mobile).on('click touchstart',function(){
+				if(step2Submitted){
+					return false;
+				}
+				step2Processing = true;
 				var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 				formData.words = $('#step2 [name=words]').val();
