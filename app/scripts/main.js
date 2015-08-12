@@ -429,21 +429,18 @@ $(function(){
 							  onrendered: function(canvas) {
 							    $('#step3 >aside').append(canvas);
 							    var img    = canvas.toDataURL('image/png');
-							    var capt = document.createElement('img');
-							    capt.src=img;
 							    TweenMax.set(capt,{
 							      position:'absolute',
 							      left:0,
-							      top:0,
-							      display:'none'
+							      top:0
 							    });
-								// $.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
-								// 	base64Url : $(capt).attr('src')},function(){
-								// 	var serial = resp.id;
-								// 	$('#step3 .button').fadeIn();
-								// });
-								// $('body').html('').append(capt);
+							    var capt = document.createElement('img');
+							    capt.src=img;
+						        $('#step3 >aside').append('<h4>img</h4>');
 							    $(capt).appendTo($('#step3 >aside'));
+						        $('#step3 >aside').append('<h4>canvas</h4>');
+						        $(canvas).css('display','block').css('position','static');
+  								$('#step3').append(canvas);
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
@@ -451,9 +448,6 @@ $(function(){
 								}).done(function(){
 									$('#step3 .button').fadeIn();
 								}).error(function(e,x){
-									alert($(capt).attr('src'));
-									alert(e);
-									alert(x);
 									alert('圖片無法上傳');
 								});
 							  }
