@@ -212,6 +212,9 @@ $(function(){
 		var formData = {};
 		$('#step2 .add-button').on('click', function(){
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
+			if(!$('#step2 .families.hide:eq(0)').length){
+				$(this).fadeOut(250);
+			}
 		});	
 		$('#step2 .submit').on('click',function(){
 			var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
@@ -400,6 +403,9 @@ $(function(){
 
 			$('#step2 .add-button',mobile).on('click touchstart', function(){
 				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
+				if(!$('#step2 .families.hide:eq(0)').length){
+					$(this).fadeOut(250);
+				}
 			});	
 			var serial;
 			var formData = {};
@@ -441,18 +447,12 @@ $(function(){
 						colorbox('#step3',function(){
 					        html2canvas($('#step3 >aside'), {
 					          onrendered: function(canvas) {
-					            $('#step3').append('<h4>canvas</h4>');
-					            $(canvas).css('display','block').css('position','static');
-					            $('#step3').append(canvas);
 					            var capt = document.createElement('img');
 					            capt.src = canvas.toDataURL('image/png');
 					            TweenMax.set(capt,{
 					              left:0,
 					              top:0
 					            });
-					            // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
-					            $('#step3').append('<h4>img</h4>');
-					            $(capt).appendTo($('#step3'));
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
