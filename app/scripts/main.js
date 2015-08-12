@@ -436,9 +436,9 @@ $(function(){
 							    });
 							    var capt = document.createElement('img');
 							    capt.src=img;
-						        $('#step3 >aside').append('<h4>img</h4>');
-							    $(capt).appendTo($('#step3 >aside'));
-						        $('#step3 >aside').append('<h4>canvas</h4>');
+						        $('#step3').append('<h4>img</h4>');
+							    $(capt).appendTo($('#step3'));
+						        $('#step3').append('<h4>canvas</h4>');
 						        $(canvas).css('display','block').css('position','static');
   								$('#step3').append(canvas);
 								$.ajax({
