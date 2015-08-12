@@ -359,13 +359,13 @@ header{
         line-height: 50px;
         text-align: left;
         padding: 10px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         margin-left: 10px;
         background:url(../images/dialog.png) no-repeat;
         @media screen and (max-width: 768px) {
           max-width: 100%;
           width: 270px;
-          margin:0 auto percentage(40/320) ;
+          margin:0 auto 10%;
           background-size: 100% auto;
         }
         span{
@@ -414,6 +414,13 @@ header{
       }
       .road-number{
         position: relative;
+        i{
+          font-style: normal;
+          font-size: em(15,15);
+          position: absolute;
+          top:100px;
+          right:10px;
+        }
       }
       .number{
         font-size: em(60.82,15);
@@ -426,13 +433,6 @@ header{
         float:left;
         white-space: nowrap;
         position: relative;
-      }
-      i{
-        font-style: normal;
-        font-size: em(15,15);
-        position: absolute;
-        top:100px;
-        right:10px;
       }
     }
     .house{
