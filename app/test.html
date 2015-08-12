@@ -50,23 +50,23 @@
   <body>
 
 
-    <section class="container">
-      <section id="step3" style="width:100%;">
+    <section class="container" style="width:500%;">
+      <section id="step3" style="width:20%;">
           <aside>
-            <h3><span class="name">aaa</span>的家</h3>
+            <h3><span class="name">Nelson Jr Obana</span>的家</h3>
             <aside class="tpl house-home" style="background-size:auto auto">
               <figure class="dialog">
-                <span>111dwfewfweff</span>
+                <span>Hello world</span>
               </figure>
               <figure class="me">
                 <i class="dot"></i>
-                <span></span>
+                <span>Nelson Jr Obana</span>
               </figure>
               <ul>
-                <li>fewrwe</li>
-                <li>rewrew</li>
-                <li>rwerew</li>
-                <li>rwerwe</li>
+                <li>ZZZZZZ</li>
+                <li>NNNNNN</li>
+                <li>AAAAAA</li>
+                <li>123456</li>
               </ul>
               <span class="road-name">平<br>等<br>二<br>路</span>
               <span class="road-number"><span class="number">99</span><i>號</i></span>
@@ -119,26 +119,26 @@
     <script>
     $(function(){
         html2canvas($('#step3 >aside'), {
-    onrendered: function(canvas) {
-      $('#step3').append('<h4>canvas</h4>');
-      $(canvas).css('display','block').css('position','static');
-      $('#step3').append(canvas);
-      var img    = canvas.toDataURL('image/png');
-      var capt = document.createElement('img');
-      capt.src=img;
-      TweenMax.set(capt,{
-        left:0,
-        top:0
-      });
-    $.post('http://api.kchsu.com/api/Participants/s/100000', {
-      base64Url : $(capt).attr('src')},function(){
-      $('#step3 .button').fadeIn();
-    });
-      // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
-      $('#step3').append('<h4>img</h4>');
-      $(capt).appendTo($('#step3'));
-    }
-  });
+          onrendered: function(canvas) {
+            $('#step3').append('<h4>canvas</h4>');
+            $(canvas).css('display','block').css('position','static');
+            $('#step3').append(canvas);
+            var img    = canvas.toDataURL('image/png');
+            var capt = document.createElement('img');
+            capt.src=img;
+            TweenMax.set(capt,{
+              left:0,
+              top:0
+            });
+          $.post('http://api.kchsu.com/api/Participants/s/100000', {
+            base64Url : $(capt).attr('src')},function(){
+            $('#step3 .button').fadeIn();
+          });
+            // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
+            $('#step3').append('<h4>img</h4>');
+            $(capt).appendTo($('#step3'));
+          }
+        });
       
     });
     </script>
