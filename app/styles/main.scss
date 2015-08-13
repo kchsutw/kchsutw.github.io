@@ -582,7 +582,7 @@ footer{
   transition:0.6s opacity;
 }
 #cboxClose {
-  background:url(../images/btn-background.png);
+  background:url(../images/btn-background.png) 0 0/ cover;
   overflow: hidden;
   border-radius: 15px;
   top: 20px;

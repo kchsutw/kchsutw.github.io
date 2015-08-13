@@ -524,7 +524,7 @@ $(function(){
 						colorbox('#step3',function(){
 					        html2canvas($('#step3 >aside'), {
 					          onrendered: function(canvas) {
-						    	addPicture(pic, canvas);
+						    	// addPicture(pic, canvas);
 					            var capt = document.createElement('img');
 					            capt.src = canvas.toDataURL('image/png');
 					            TweenMax.set(capt,{
