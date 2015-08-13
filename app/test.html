@@ -61,7 +61,7 @@
                 <span>Hello world</span>
               </figure>
               <figure class="me">
-                <figure class="dot"><img src="https://graph.facebook.com/1447149769/picture?type=large" width="30px"></figure>
+                <figure class="dot"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p200x200/10985268_10206433523184023_5037063332987726923_n.jpg?oh=68c519fc69590d3bf5ec9ab6519fe54e&oe=56377FCC&__gda__=1447932340_fa1a76fbbcbe40c61e571989549ded7f" width="30px"></figure>
                 
                 <span>Nelson Jr Obana</span>
               </figure>
@@ -123,13 +123,45 @@
 
     <script>
     $(function(){
-        var img = new Image();
-        img.onload = function(){
+        var pic = new Image();
+        pic.onload = function(){
           html2canvas($('#step3 >aside'), {
             onrendered: function(canvas) {
               $('#step3').append('<h4>canvas</h4>');
               $(canvas).css('display','block').css('position','static');
-              $('#step3').append(canvas);
+
+              make_base();
+
+              function make_base()
+              {
+                var context = canvas.getContext('2d');
+                TweenMax.set(pic,{
+                  borderRadius:19,
+                  width:38,
+                  height:38
+                });
+
+                roundedImage(105, 110,38,38,19);
+                context.clip();
+                context.globalAlpha = 0.3;
+                context.drawImage(pic, 105, 110,38,38);
+                $('#step3').append(canvas);
+
+
+                function roundedImage(x,y,width,height,radius){
+                  context.beginPath();
+                  context.moveTo(x + radius, y);
+                  context.lineTo(x + width - radius, y);
+                  context.quadraticCurveTo(x + width, y, x + width, y + radius);
+                  context.lineTo(x + width, y + height - radius);
+                  context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                  context.lineTo(x + radius, y + height);
+                  context.quadraticCurveTo(x, y + height, x, y + height - radius);
+                  context.lineTo(x, y + radius);
+                  context.quadraticCurveTo(x, y, x + radius, y);
+                  context.closePath();
+                }
+              }
               var img    = canvas.toDataURL('image/png');
               var capt = document.createElement('img');
               capt.src=img;
@@ -147,7 +179,7 @@
             }
           });
         }
-        img.src='https://graph.facebook.com/1447149769/picture?type=large'
+        pic.src='https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p200x200/10985268_10206433523184023_5037063332987726923_n.jpg?oh=68c519fc69590d3bf5ec9ab6519fe54e&oe=56377FCC&__gda__=1447932340_fa1a76fbbcbe40c61e571989549ded7f'
       
     });
     </script>

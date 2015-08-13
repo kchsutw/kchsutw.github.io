@@ -67,6 +67,37 @@ $(function(){
 		}
 
 	}
+
+	function addPicture(pic, canvas)
+	{
+		var context = canvas.getContext('2d');
+		TweenMax.set(pic,{
+			borderRadius:19,
+			width:38,
+			height:38
+		});
+
+		roundedImage(105, 110,38,38,19);
+		context.clip();
+		context.globalAlpha = 0.3;
+		context.drawImage(pic, 105, 110,38,38);
+		$('#step3').append(canvas);
+
+
+		function roundedImage(x,y,width,height,radius){
+			context.beginPath();
+			context.moveTo(x + radius, y);
+			context.lineTo(x + width - radius, y);
+			context.quadraticCurveTo(x + width, y, x + width, y + radius);
+			context.lineTo(x + width, y + height - radius);
+			context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+			context.lineTo(x + radius, y + height);
+			context.quadraticCurveTo(x, y + height, x, y + height - radius);
+			context.lineTo(x, y + radius);
+			context.quadraticCurveTo(x, y, x + radius, y);
+			context.closePath();
+		}
+	}
 	showOne();
 	$('.one .button').on('click',
 	function oneShare(){
@@ -297,6 +328,7 @@ $(function(){
 						html2canvas($('#step3 >aside'), {
 						  onrendered: function(canvas) {
 						    $('#step3').append(canvas);
+						    addPicture(pic, canvas);
 						    var img    = canvas.toDataURL('image/png');
 						    var capt = document.createElement('img');
 						    capt.src=img;
@@ -492,6 +524,7 @@ $(function(){
 						colorbox('#step3',function(){
 					        html2canvas($('#step3 >aside'), {
 					          onrendered: function(canvas) {
+						    	addPicture(pic, canvas);
 					            var capt = document.createElement('img');
 					            capt.src = canvas.toDataURL('image/png');
 					            TweenMax.set(capt,{
