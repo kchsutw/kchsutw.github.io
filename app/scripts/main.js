@@ -285,7 +285,7 @@ $(function(){
 				$(this).fadeOut(250);
 			}
 		});	
-		var step2Processing = true;
+		var step2Processing = false;
 		$('#step2 .submit').on('click',function(){
 			if(step2Processing){
 				return false;
