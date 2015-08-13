@@ -125,25 +125,22 @@
     $(function(){
       pic = 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p200x200/10985268_10206433523184023_5037063332987726923_n.jpg?oh=68c519fc69590d3bf5ec9ab6519fe54e&oe=56377FCC&__gda__=1447932340_fa1a76fbbcbe40c61e571989549ded7f';
       html2canvas($('#step3 >aside'), {
+
+        useCORS: true,
+        allowTaint:true,
         onrendered: function(canvas) {
-          addPicture(pic, canvas, function(cvs){
-            $('#step3').append('<h4>canvas</h4>');
-            $(canvas).css('display','block').css('position','static');
-            var img = canvas.toDataURL('image/png');
-            var capt = document.createElement('img');
-            capt.src=img;
-            TweenMax.set(capt,{
-              left:0,
-              top:0
-            });
-          // $.post('http://api.kchsu.com/api/Participants/s/100000', {
-          //   base64Url : $(capt).attr('src')},function(){
-          //   $('#step3 .button').fadeIn();
-          // });
-            // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
-            $('#step3').append('<h4>img</h4>');
-            $(capt).appendTo($('#step3'));
+          $('#step3').append('<h4>canvas</h4>');
+          $(canvas).css('display','block').css('position','static');
+        $('#step3').append(canvas);
+          var img = canvas.toDataURL('image/png');
+          var capt = document.createElement('img');
+          capt.src=img;
+          TweenMax.set(capt,{
+            left:0,
+            top:0
           });
+          $('#step3').append('<h4>img</h4>');
+          $(capt).appendTo($('#step3'));
         }
       });
       
@@ -164,7 +161,7 @@
         context.clip();
         context.globalAlpha = 0.3;
         context.drawImage(draw, 105, 110,38,38);
-        
+
         context.restore();
         $('#step3').append(canvas);
         callback(canvas);
@@ -184,6 +181,7 @@
       }
       picture.crossOrigin = 'anonymous';
       picture.src = pic;
+      console.log(pic);
     }
     </script>
 </body>
