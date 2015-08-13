@@ -307,7 +307,8 @@ $(function(){
 				// end
 				formData.timestamp = new Date() * 1;
 				var pic = new Image();
-				pic.src = 'https://graph.facebook.com/'+formData.facebookid+'/picture?type=large';
+				pic.src = '//graph.facebook.com/'+formData.facebookid+'/picture?type=large';
+				$('#step3 .me .dot').html('');
 				$('#step3 .me .dot').append(pic);
 				var positionX =  (38-500) * (formData.number/100);
 				var positionY =  (38-209) * (formData.number/100);
