@@ -102,12 +102,19 @@ $(function(){
 			}).trigger('resize');
 		}(window));
 		$('.text-muted a').on('click',function(){
-			TweenMax.to($('.dragon'),0.3,{
-				left : 60,
-				onComplete: function(){
-					$(window).trigger('mousewheel');
-				}
-			});
+			if($('html.desktop').length){
+				TweenMax.to($('.dragon'),0.3,{
+					left : 60,
+					onComplete: function(){
+						$(window).trigger('mousewheel');
+					}
+				});
+			}
+			if($('html.tablet').length){
+				TweenMax.to($(window),0.3,{
+					scrollLeft : -20
+				});
+			}
 			return false;
 		});
 
