@@ -207,11 +207,11 @@ $(function(){
 				}
 			}).trigger('resize');
 		}
-		// $('.nav-pills li:eq(0)').on('click',function(){
-		// 	colorbox('#about');
-		// });
+		$('.nav-pills li:eq(0)').on('click',function(){
+			colorbox('#about');
+		});
 		$('.go .term').on('click',function(){
-			colorbox('#terms');
+			colorbox('#about');
 		});
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
