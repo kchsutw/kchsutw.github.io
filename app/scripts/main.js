@@ -331,7 +331,7 @@ $(function(){
 						  onrendered: function(canvas) {
 							var pic = new Image();
 							pic.onload = function(){
-						    	// addPicture(pic, canvas);
+						    	addPicture(pic, canvas);
 								$('#step3 .me .dot').html('');
 								$('#step3 .me .dot').append($(pic).clone);
 							    $('#step3').append(canvas);
@@ -536,7 +536,7 @@ $(function(){
 					          onrendered: function(canvas) {
 								var pic = new Image();
 								pic.onload = function(){
-							    	// addPicture(pic, canvas);
+							    	addPicture(pic, canvas);
 									$('#step3 .me .dot').html('');
 									$('#step3 .me .dot').append($(pic).clone);
 								    $('#step3').append(canvas);
