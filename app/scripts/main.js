@@ -306,10 +306,6 @@ $(function(){
 				// formData.facebookid = '123';
 				// end
 				formData.timestamp = new Date() * 1;
-				var pic = new Image();
-				pic.src = '//graph.facebook.com/'+formData.facebookid+'/picture?type=large';
-				$('#step3 .me .dot').html('');
-				$('#step3 .me .dot').append(pic);
 				var positionX =  (38-500) * (formData.number/100);
 				var positionY =  (38-209) * (formData.number/100);
 				$('#step3 .name,#step3 .me span').html(formData.name);
@@ -328,23 +324,29 @@ $(function(){
 						$('#step3 .button').hide();
 						html2canvas($('#step3 >aside'), {
 						  onrendered: function(canvas) {
-						    $('#step3').append(canvas);
-						    addPicture(pic, canvas);
-						    var img    = canvas.toDataURL('image/png');
-						    var capt = document.createElement('img');
-						    capt.src=img;
-						    TweenMax.set(capt,{
-						      position:'absolute',
-						      left:0,
-						      top:0,
-						      display:'none'
-						    });
-							$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
-								base64Url : $(capt).attr('src')},function(){
-								var serial = resp.id;
-								$('#step3 .button').fadeIn();
-							});
-						    $(capt).appendTo($('#step3'));
+							var pic = new Image();
+							pic.onload = function(){
+						    	addPicture(pic, canvas);
+								$('#step3 .me .dot').html('');
+								$('#step3 .me .dot').append($(pic).clone);
+							    $('#step3').append(canvas);
+							    var img    = canvas.toDataURL('image/png');
+							    var capt = document.createElement('img');
+							    capt.src=img;
+							    TweenMax.set(capt,{
+							      position:'absolute',
+							      left:0,
+							      top:0,
+							      display:'none'
+							    });
+								$.post('http://api.kchsu.com/api/Participants/s/' + serial ,{
+									base64Url : $(capt).attr('src')},function(){
+									var serial = resp.id;
+									$('#step3 .button').fadeIn();
+								});
+							    $(capt).appendTo($('#step3'));
+							}
+							pic.src = '//graph.facebook.com/'+formData.facebookid+'/picture?type=large';
 						  }
 						});
 					});
