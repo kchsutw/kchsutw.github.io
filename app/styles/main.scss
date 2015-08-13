@@ -582,7 +582,9 @@ footer{
   transition:0.6s opacity;
 }
 #cboxClose {
-  background: rgba(0, 0, 0, 0) url("../images/close-button.png") ;
+  background:url(../images/btn-background.png);
+  overflow: hidden;
+  border-radius: 15px;
   top: 20px;
   height: 30px;
   position: absolute;
@@ -590,11 +592,24 @@ footer{
   text-indent: -9999px;
   width: 30px;
   border:0;
-  transform:rotateZ(-720deg);
-  transition:transform 0.2s;
   display: block;
-  font-size: 0;
-  &:hover{
+  font-color: rgba(0,0,0,0);
+  &:before{
+    text-indent: 0;
+  transition:transform 0.2s;
+    transform:rotateZ(-1080deg);
+    content:"";
+    font-family: FontAwesome;
+    position: absolute;top: 0;
+    left:0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    color:#fff;
+    line-height: 30px;
+  }
+  &:hover:before{
     transform:none;
   }
 }
@@ -628,6 +643,7 @@ footer{
   width:600px;
   max-height: 400px;
   overflow: auto;
+  margin-top: 30px;
   h3{
     text-align: center;
     margin-top: 0;
@@ -1166,52 +1182,54 @@ body{
           height: 100%;
           margin: 0 auto;
           border-bottom: 1px solid #e0dcdc;
-          text-indent: -999em;
-          line-height: 12px;
+          text-indent: 0;
+          line-height: 50px;
           text-align: center;
-          &:after{
-            width:28px!important;
-            height:28px!important;
-            background:url(../images/mobile-nav-button-1.png) center center!important;
+          &:before{
+            vertical-align: middle;
+            width:35px!important;
+            height:33px!important;
+            background:url(../images/mobile-nav-button-1.png) no-repeat left 0 !important;
             content:' ';
-            left: 50%!important;
-            margin-left: -14px;
-            top: 50%;
-            margin-top: -14px;
+            left: auto!important;
+            display: inline-block;
             text-indent: -999em;
-            position: absolute!important;
+            position: relative!important;
             z-index: 1;
           }
-          &:after:hover{
-            width:28px;
-            height:28px;
-            display: inline-block;
-            background:url(../images/mobile-nav-button-1.png);
+          &:before:hover{
+            border-bottom: none;
+          }
+          &:focus:after{
+            background: none!important;
+          }
+          &:hover:after{
+            background: none!important;
+            border-bottom: none;
+            transform:scale(0.95);
           }
           &.fanpage{
             background: none!important;
-            left: 0!important;
+            left: auto!important;
             margin: 0 auto!important;
-            top: 0!important;
+            top: auto!important;
             margin-top: 0!important;
             width:166px!important;
-            &:before{
-              display: none;
-            }
+            border-bottom: 0;
           }
         }
         &:nth-child(2){
-          a:after{
+          a:before{
             background-image:url(../images/mobile-nav-button-2.png)!important;
           }
         }
         &:nth-child(3){
-          a:after{
+          a:before{
             background-image:url(../images/mobile-nav-button-3.png)!important;
           }
         }
         &:nth-child(4){
-          a:after{
+          a:before{
             background-image:url(../images/mobile-nav-button-4.png)!important;
           }
         }
