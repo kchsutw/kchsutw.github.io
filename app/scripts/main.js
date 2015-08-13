@@ -108,6 +108,7 @@ $(function(){
 			return false;
 		});
 
+		if($('html.desktop').length){
 			//mouse wheel dragon
 			$('.dragon:not(.one),.cross').on('mousewheel',function(evt){
 				var direction = 0;
@@ -161,7 +162,6 @@ $(function(){
 				});
 				return false;
 			});
-		if($('html.desktop')){
 			// drag
 			var from,to,tween;
 			var draggie = new Draggabilly( '.dragon', {
@@ -182,8 +182,30 @@ $(function(){
 			});
 
 		}
-		if($('html.tablet')){
+		if($('html.tablet').length){
+			var scrollLeft = 0;
+			$(window).on('scroll resize',function(){
 
+				var direction = 0;
+				var container = $('.dragon');
+				var pageTotalWidth = $('.page.home').width() + 1 +
+					625 +
+					( $('.page.house').width() + 2 )* $('.page.house').length ;
+				// if(dragonWidth < pageTotalWidth){
+					$('.container, .dragon').width(pageTotalWidth);
+				// }
+				var dragonWidth = $('.dragon').width();
+				var ceil = $(window).width() - dragonWidth;
+				if($(window).scrollLeft() < scrollLeft ){
+					direction = -1;
+				}else if($(window).scrollLeft() > scrollLeft){
+					direction = 1;
+				}
+				scrollLeft = $(window).scrollLeft();
+				if(direction === 1 && $(window).scrollLeft() >= $('.container').width() -$(window).width() *1.5){
+					infiniteList();
+				}
+			}).trigger('resize');
 		}
 		// $('.nav-pills li:eq(0)').on('click',function(){
 		// 	colorbox('#about');
