@@ -285,7 +285,12 @@ $(function(){
 				$(this).fadeOut(250);
 			}
 		});	
+		var step2Processing = true;
 		$('#step2 .submit').on('click',function(){
+			if(step2Processing){
+				return false;
+			}
+			step2Processing = true;
 			var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 			var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 			formData.words = $('#step2 [name=words]').val();
@@ -350,7 +355,7 @@ $(function(){
 									alert('圖片無法上傳');
 								});
 							    $(capt).appendTo($('#step3'));
-							}
+							};
 							pic.src = '//graph.facebook.com/'+formData.facebookid+'/picture?type=large';
 						  }
 						});
@@ -555,7 +560,7 @@ $(function(){
 										alert('圖片無法上傳');
 									});
 								    $(capt).appendTo($('#step3'));
-								}
+								};
 								pic.src = '//graph.facebook.com/'+formData.facebookid+'/picture?type=large';
 					          }
 					        });
