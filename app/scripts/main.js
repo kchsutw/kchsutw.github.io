@@ -281,7 +281,8 @@ $(function(){
 				// end
 				formData.timestamp = new Date() * 1;
 				var pic = new Image();
-				pic.src = 'https://graph.facebook.com/'+formData.facebookid+'/picture?type=large';
+				pic.src = 'http://api.kchsu.com/face/'+formData.facebookid;
+				$('#step3 .me .dot').html('');
 				$('#step3 .me .dot').append(pic);
 				var positionX =  (38-500) * (formData.number/100);
 				var positionY =  (38-209) * (formData.number/100);
@@ -483,6 +484,7 @@ $(function(){
 					formData.timestamp = new Date() * 1;
 					var pic = new Image();
 					pic.src = 'http://api.kchsu.com/face/'+formData.facebookid;
+					$('#step3 .me .dot').html('');
 					$('#step3 .me .dot').append(pic);
 					var positionX =  (38-500) * (formData.number/100);
 					var positionY =  (38-209) * (formData.number/100);
@@ -595,7 +597,7 @@ $(function(){
 				var positionY =  (38-209) * (obj.number/100);
 				$('.me span', cur).html(obj.name);
 				var pic = new Image();
-				pic.src = 'http://api.kchsu.com/face/'+obj.facebookid;
+				pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
 				$('.me i', cur).html(pic);
 				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
 				$('ul li:eq(0)', cur).html(obj.families01);
