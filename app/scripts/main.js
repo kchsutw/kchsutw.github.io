@@ -41,6 +41,9 @@ $(function(){
 					$('.tpl ul li:eq(3)',one).html(r.families04);
 					$('.tpl').removeClass('house-home').addClass(r.house);
 					$('.tpl .number',one).html(r.number);
+					var pic = new Image();
+					pic.src = 'https://graph.facebook.com/'+one.facebookid+'/picture?type=large';
+					$('#step3 .me .dot').append(pic);
 					$('.me .dot', one).css('background-position', positionX + 'px ' + positionY + 'px');
 					$('h1').trigger('click');
 					one.fadeIn(250);
