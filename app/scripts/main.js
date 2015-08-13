@@ -236,7 +236,6 @@ $(function(){
 				formData.name = me.name;
 				formData.email = me.email;
 				formData.facebookid = me.id;
-				var pic = new Image();
 
 				// fake
 				// formData.name = 'Nelson';
@@ -244,8 +243,9 @@ $(function(){
 				// formData.facebookid = '123';
 				// end
 				formData.timestamp = new Date() * 1;
+				var pic = new Image();
 				pic.src = 'https://graph.facebook.com/'+formData.facebookid+'/picture?type=large';
-				$('#step3 .name,#step3 .me dot').append(pic);
+				$('#step3 .me .dot').append(pic);
 				var positionX =  (38-500) * (formData.number/100);
 				var positionY =  (38-209) * (formData.number/100);
 				$('#step3 .name,#step3 .me span').html(formData.name);
@@ -439,6 +439,9 @@ $(function(){
 					formData.email = me.email;
 					formData.facebookid = me.id;
 					formData.timestamp = new Date() * 1;
+					var pic = new Image();
+					pic.src = 'https://graph.facebook.com/'+formData.facebookid+'/picture?type=large';
+					$('#step3 .me .dot').append(pic);
 					var positionX =  (38-500) * (formData.number/100);
 					var positionY =  (38-209) * (formData.number/100);
 					$('#step3 .name,#step3 .me span').html(formData.name);
@@ -549,6 +552,9 @@ $(function(){
 				var positionX =  (38-500) * (obj.number/100);
 				var positionY =  (38-209) * (obj.number/100);
 				$('.me span', cur).html(obj.name);
+				var pic = new Image();
+				pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
+				$('.me i', cur).html(pic);
 				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
 				$('ul li:eq(0)', cur).html(obj.families01);
 				$('ul li:eq(1)', cur).html(obj.families02);
