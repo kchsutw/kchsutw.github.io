@@ -61,7 +61,8 @@
                 <span>Hello world</span>
               </figure>
               <figure class="me">
-                <i class="dot"></i>
+                <figure class="dot"><img src="https://graph.facebook.com/1447149769/picture?type=large" width="30px"></figure>
+                
                 <span>Nelson Jr Obana</span>
               </figure>
               <ul>
@@ -122,27 +123,31 @@
 
     <script>
     $(function(){
-        html2canvas($('#step3 >aside'), {
-          onrendered: function(canvas) {
-            $('#step3').append('<h4>canvas</h4>');
-            $(canvas).css('display','block').css('position','static');
-            $('#step3').append(canvas);
-            var img    = canvas.toDataURL('image/png');
-            var capt = document.createElement('img');
-            capt.src=img;
-            TweenMax.set(capt,{
-              left:0,
-              top:0
-            });
-          $.post('http://api.kchsu.com/api/Participants/s/100000', {
-            base64Url : $(capt).attr('src')},function(){
-            $('#step3 .button').fadeIn();
+        var img = new Image();
+        img.onload = function(){
+          html2canvas($('#step3 >aside'), {
+            onrendered: function(canvas) {
+              $('#step3').append('<h4>canvas</h4>');
+              $(canvas).css('display','block').css('position','static');
+              $('#step3').append(canvas);
+              var img    = canvas.toDataURL('image/png');
+              var capt = document.createElement('img');
+              capt.src=img;
+              TweenMax.set(capt,{
+                left:0,
+                top:0
+              });
+            // $.post('http://api.kchsu.com/api/Participants/s/100000', {
+            //   base64Url : $(capt).attr('src')},function(){
+            //   $('#step3 .button').fadeIn();
+            // });
+              // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
+              $('#step3').append('<h4>img</h4>');
+              $(capt).appendTo($('#step3'));
+            }
           });
-            // $(capt).attr('src','http://api.kchsu.com/u/100000.png');
-            $('#step3').append('<h4>img</h4>');
-            $(capt).appendTo($('#step3'));
-          }
-        });
+        }
+        img.src='https://graph.facebook.com/1447149769/picture?type=large'
       
     });
     </script>

@@ -214,7 +214,7 @@ $(function(){
 			colorbox('#about');
 		});
 		$('.go .term').on('click',function(){
-			colorbox('#about');
+			colorbox('#term');
 		});
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
