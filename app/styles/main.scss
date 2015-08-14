@@ -770,6 +770,7 @@ footer{
   >aside {
     background : url(../images/share-house.png) center center;
     height: 314px;
+    padding-top: 1px;
   }
   h3{
     font-size: em(26,15);
@@ -779,7 +780,7 @@ footer{
   .tpl{
     width:295px;
     height: 320px;
-    background:no-repeat 0 95px;
+    background:no-repeat 0 85px;
     margin: 0 auto;
     position: relative;
     @media screen and (max-width: 767px) {
@@ -806,7 +807,8 @@ footer{
     line-height: 50px;
     text-align: left;
     padding: 10px;
-    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
     background:url(../images/dialog.png) no-repeat;
