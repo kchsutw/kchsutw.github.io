@@ -433,7 +433,7 @@ $(function(){
 				TweenMax.set($('.box'),{
 					width:'100%'
 				});
-				TweenMax.to($(target),0.2,{'width':'100%' });
+				TweenMax.to($(target),0.2,{'width':'100%',display:'block' });
 				TweenMax.to($(target).siblings(),0.2,{'width':0,display:'none' });
 				TweenMax.to($('html,body'),0.2,{
 					scrollTop:0,
@@ -648,7 +648,7 @@ $(function(){
 	infiniteList();
 });
 window.fbAsyncInit = function() {
-	var appId = /locahost/.test(location.href) ? '1649099138703605' : '1645980782348774';
+	var appId = /localhost/.test(location.href) ? '1649099138703605' : '1645980782348774';
 	FB.init({
 	  appId 	 : appId,
 	  xfbml      : true,
