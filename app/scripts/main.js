@@ -348,9 +348,15 @@ $(function(){
 		$('#step3 .button').on('click',function(){
 			FB.ui({
 			  method: 'share',
+
 			  href: 'http://api.kchsu.com/r/' + serial
 			}, function(response){
-				colorbox('#step4');
+
+			    if (response && !response.error_code) {
+					colorbox('#step4');
+			    } else {
+			        
+			    }
 			});
 		});
 		$('#step4 .button.submit').on('click',function(){
@@ -455,6 +461,9 @@ $(function(){
 					scrollTop : $('.go').offset().top -100
 				});
 			});	
+			$('.go .term',mobile).on('click',function(){
+				colorbox('#terms');
+			});
 			$('.build-a-home',mobile).on('click',function(){
 
 				FB.login(function(r){
