@@ -92,6 +92,10 @@ $(function(){
 	}
 	showOne();
 
+	$.get('http://api.kchsu.com/api/Participants/count',function(r){
+		$('.party-count').html(r.count);
+	})
+
 	$('#step2 [name=words],#step2 input').maxlength({
 		alwaysShow: true,
 		threshold: 30,

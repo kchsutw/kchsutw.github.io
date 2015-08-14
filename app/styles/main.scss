@@ -317,6 +317,18 @@ header{
           }
         }
       }
+      p{
+        margin-left:10px;
+        @media screen and (max-width: 767px) {
+          max-width: percentage(270/320);
+          margin:0 auto percentage(25/320) ;
+        }
+        .party-count{
+          font-size:em(24,15);
+          color:#ff6f86;
+          padding: 0 10px;
+        }
+      }
       .tpl{
         width:295px;
         height: 320px;
