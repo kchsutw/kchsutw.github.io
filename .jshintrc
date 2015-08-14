@@ -16,5 +16,5 @@
   "unused": true,
   "strict": true,
   "jquery": true,
-  "predef": ["TweenMax","_","TimelineMax","Linear","Elastic","window","document","Back","Ease","Draggabilly","FB","html2canvas","querystring"]
+  "predef": ["TweenMax","_","TimelineMax","Linear","Elastic","window","document","Back","Ease","Draggabilly","FB","html2canvas","querystring","ga"]
 }
