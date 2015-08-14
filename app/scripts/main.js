@@ -28,6 +28,7 @@ $(function(){
 		});
 	};
 	var colorboxClose = function(){
+		ga('send', 'event', 'colorbox', 'colorbox', 'close', 1);
 		$.colorbox.close();
 	};
 	function showOne(event){
@@ -238,6 +239,7 @@ $(function(){
 			colorbox('#about');
 		});
 		$('.go .term').on('click',function(){
+			ga('send', 'event', 'terms', 'terms', 'click', 1);
 			colorbox('#terms');
 		});
 		$('.goto-rule').on('click',function(){
@@ -254,8 +256,10 @@ $(function(){
 			FB.login(function(r){
 			  if(r.status === 'connected'){
 		      	next();
+		      	return;
 			  }
 			}, {scope:'email'}); 
+			ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
 
 			function next(){
 				colorbox('#step2');
@@ -264,6 +268,7 @@ $(function(){
 		var serial;
 		var formData = {};
 		$('#step2 .add-button').on('click', function(){
+			ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
 			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 			if(!$('#step2 .families.hide:eq(0)').length){
 				$(this).fadeOut(250);
@@ -271,6 +276,7 @@ $(function(){
 		});	
 		var step2Processing = false;
 		$('#step2 .submit').on('click',function(){
+			ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
 			if(step2Processing){
 				return false;
 			}
@@ -285,8 +291,8 @@ $(function(){
 			formData.number = Math.floor(Math.random() * +new Date() % 99) ;
 			formData.house = randomHouse ;
 			formData.street = lineBreak(randomStreet, 10);
-			FB.api('/me',function(me){
-				formData.name = me.name;
+			FB.api('/me?fields=email,name,first_name',function(me){
+				formData.name = me.first_name;
 				formData.email = me.email;
 				formData.facebookid = me.id;
 				formData.timestamp = new Date() * 1;
@@ -345,6 +351,7 @@ $(function(){
 			});
 		});	
 		$('#step3 .button').on('click',function(){
+			ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 			FB.ui({
 			  method: 'share',
 
@@ -359,7 +366,8 @@ $(function(){
 			});
 		});
 		$('#step4 .button.submit').on('click',function(){
-			formData.email += ',' + $('#step4 [name=email]').val();
+			ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
+			formData.email = $('#step4 [name=email]').val() || formData.email;
 			formData.officialName = $('#step4 [name=name]').val();
 			formData.address = $('#step4 [name=address]').val();
 			$.ajax({
@@ -411,6 +419,7 @@ $(function(){
 
 		(function(mobile){
 			$('.menu', mobile).on('click',function(){
+				ga('send', 'event', 'menu', 'menu', 'slide', 1);
 				$('.nav-pills', mobile).toggleClass('on');
 				$('.container').one('click',function(){
 					$('.nav-pills', mobile).removeClass('on');
@@ -447,6 +456,7 @@ $(function(){
 				freeze = true;
 			};
 			colorboxClose = function(){
+				ga('send', 'event', 'colorbox', 'colorbox', 'close', 1);
 				TweenMax.set($('.box'),{
 					width:0
 				});
@@ -469,15 +479,18 @@ $(function(){
 				});
 			});	
 			$('.go .term',mobile).on('click',function(){
+				ga('send', 'event', 'terms', 'terms', 'click', 1);
 				colorbox('#terms');
 			});
 			$('.build-a-home',mobile).on('click',function(){
-
+				ga('send', 'event', 'participants-steps', 'facebook-login', 'start', 1);
 				FB.login(function(r){
 				  if(r.status === 'connected'){
 			      	next();
+			      	return;
 				  }
-				}); 
+				}, {scope:'email'}); 
+				ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
 			      	// next();
 				function next(){
 					colorbox($('#step2',mobile));
@@ -485,6 +498,7 @@ $(function(){
 			});
 
 			$('#step2 .add-button',mobile).on('click', function(){
+				ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
 				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 				if(!$('#step2 .families.hide:eq(0)').length){
 					$(this).fadeOut(250);
@@ -494,6 +508,7 @@ $(function(){
 			var formData = {};
 			var step2Processing = false;
 			$('#step2 .submit', mobile).on('click',function(){
+				ga('send', 'event', 'participants-steps', 'create-house', 'submit', 1);
 				if(step2Processing){
 					return false;
 				}
@@ -507,8 +522,8 @@ $(function(){
 				formData.families04 = $('#step2 [name=families04]').val();
 				formData.number = Math.floor(Math.random() * +new Date() % 99) ;
 				formData.house = randomHouse ;
-				FB.api('/me',function(me){
-					formData.name = me.name;
+				FB.api('/me?fields=email,name,first_name',function(me){
+					formData.name = me.first_name;
 					formData.email = me.email;
 					formData.facebookid = me.id;
 					formData.timestamp = new Date() * 1;
@@ -567,12 +582,14 @@ $(function(){
 				});
 			});	
 			$('#step3 .button',mobile).on('click',function(){
+				ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 				FB.ui({
 				  method: 'share',
 				  href: 'http://api.kchsu.com/r/' + serial
 				}, function(response){
 
 				    if (response && !response.error_code) {
+						ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
 						colorbox('#step4');
 				    } else {
 			        	colorboxClose();				        
@@ -581,7 +598,8 @@ $(function(){
 					// colorbox('#step4');
 			});
 			$('#step4 .button.submit',mobile).on('click',function(){
-				formData.email += ',' + $('#step4 [name=email]').val();
+				ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
+				formData.email = $('#step4 [name=email]').val() || formData.email;
 				formData.officialName = $('#step4 [name=name]').val();
 				formData.address = $('#step4 [name=address]').val();
 				$.ajax({
@@ -613,6 +631,7 @@ $(function(){
 	var nextExists = true;
 	var freeze = false;
 	function infiniteList(){
+		ga('send', 'event', 'load-counting', 'infinite-list', 'offset', offset);
 		if(freeze){
 			return false;
 		}
@@ -704,7 +723,6 @@ function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
 e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 e.src='//www.google-analytics.com/analytics.js';
 r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-ga('create','UA-XXXXX-X');ga('send','pageview');
+ga('create','UA-50961568-3');ga('send','pageview');
 /* jshint ignore:end */
-
 
