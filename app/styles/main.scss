@@ -418,12 +418,15 @@ header{
       }
       .road-number{
         position: relative;
+        display: block;
+
         i{
           font-style: normal;
           font-size: em(15,15);
           position: absolute;
-          top:100px;
-          right:10px;
+          display: block;
+          top:90px;
+          right:30px;
         }
       }
       .number{
@@ -498,29 +501,30 @@ header{
         float: none;
       }
       .close{
-        right: -20px;
-        top: 50px;
-        opacity: inherit;
+        right: -50px;
+        top: 0;
         background:url(../images/btn-background.png) 0 0/ cover;
         overflow: hidden;
         border-radius: 15px;
-        top: 20px;
+        opacity: inherit;
         height: 30px;
         position: absolute;
-        right: 20px;
         text-indent: -9999px;
         width: 30px;
         border:0;
         display: block;
         font-color: rgba(0,0,0,0);
+        font-size: 15px;
         &:before{
           text-indent: 0;
-        transition:transform 0.2s;
+          transition:transform 0.2s;
           transform:rotateZ(-1080deg);
           content:"";
           font-family: FontAwesome;
           position: absolute;top: 0;
           left:0;
+        font-weight: normal;
+        font-transform: normal;
           display: block;
           width: 100%;
           height: 100%;
@@ -803,7 +807,8 @@ footer{
     text-align: left;
     padding: 10px;
     margin-bottom: 40px;
-    margin-left: 130px;
+    margin-left: auto;
+    margin-right: auto;
     background:url(../images/dialog.png) no-repeat;
     @media screen and (max-width: 767px) {
       max-width: 100%;
@@ -863,6 +868,19 @@ footer{
     line-height: em(24,15);
     display: block;
     float: left;
+  }
+  .road-number{
+    position: relative;
+    display: block;
+
+    i{
+      font-style: normal;
+      font-size: em(15,15);
+      position: absolute;
+      display: block;
+      top:90px;
+      right:30px;
+    }
   }
   .number{
     font-size: em(60.82,15);
@@ -1011,6 +1029,9 @@ body{
       }
       .button{
         width:274px;
+        &.submit{
+          margin-bottom:50px;
+        }
       }
       aside{
         width:274px;
@@ -1051,8 +1072,8 @@ body{
           font-style: normal;
           font-size: em(15,15);
           position: absolute;
-          top:100px;
-          right:10px;
+          top:90px;
+          right:30px;
         }
       }
       .number{
@@ -1068,7 +1089,7 @@ body{
         position: relative;
       }
       > aside{
-        height: 358px;
+        height: 328px;
         margin: 19.5% auto 0;
         max-width: 100%;
         position: relative;
@@ -1079,8 +1100,8 @@ body{
         }
         .dialog {
           background-size: 100% 100%;
-          width: 50%;
-          margin: 0 0 6.6% 50%;
+          width: 90%;
+          margin: 0 auto 6.6% ;
         }
       }
       .button{
@@ -1100,6 +1121,7 @@ body{
     #step4{
       height: 100%;
       width:20%;
+      margin-bottom: 50px;
       h3{
         margin-top:85px;
       }
@@ -1148,7 +1170,13 @@ body{
       }
     }
     .one{
-      position: relative;
+      height: 550px !important;
+      margin-top: 80px !important;
+      position: relative !important;
+      .close{
+        right:-10px!important;
+        top:-70px!important;
+      }
     }
     header{
       &:before{

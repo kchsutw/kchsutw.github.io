@@ -6,7 +6,6 @@ $(function(){
 	// $('html').removeClass('desktop').addClass('mobile');
 
 
-
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
 		$.colorbox({
@@ -21,6 +20,9 @@ $(function(){
 			escKey:false,
 			onComplete:callback
 		});
+	};
+	var colorboxClose = function(){
+		$.colorbox.close();
 	};
 	function showOne(event){
 		var req = querystring.parse(location.search.replace('?',''));
@@ -42,13 +44,26 @@ $(function(){
 					$('.tpl').removeClass('house-home').addClass(r.house);
 					$('.tpl .number',one).html(r.number);
 					var pic = new Image();
-					pic.src = 'https://graph.facebook.com/'+one.facebookid+'/picture?type=large';
+					pic.src = 'https://graph.facebook.com/'+r.facebookid+'/picture?type=large';
 					$('.me .dot', one).append(pic);
 					$('.me .dot', one).css('background-position', positionX + 'px ' + positionY + 'px');
 					$('h1').trigger('click');
 					one.fadeIn(250);
 					$('.close ',one).one('click',function(){
 						one.hide();
+						dragon.fadeIn(250,function(){
+							if (window.history && window.history.pushState)
+							{
+								history.pushState('home','home','./');
+								window.onpopstate = showOne;
+							}else{
+								location.href='./';
+							}
+						});
+					});
+					$('.one .button.start').on('click', function(){
+						one.hide();
+								$('.build-a-home').trigger('click');
 						dragon.fadeIn(250,function(){
 							if (window.history && window.history.pushState)
 							{
@@ -68,16 +83,15 @@ $(function(){
 
 	}
 	showOne();
-	$('.one .button').on('click',
-	function oneShare(){
-		var req = querystring.parse(location.search.replace('?',''));
-		FB.ui({
-		  method: 'share',
-		  href: 'http://api.kchsu.com/r/' + req.sn
-		}, function(response){
-		});
+		// function oneShare(){
+		// 	var req = querystring.parse(location.search.replace('?',''));
+		// 	FB.ui({
+		// 	  method: 'share',
+		// 	  href: 'http://api.kchsu.com/r/' + req.sn
+		// 	}, function(response){
+		// 	});
 
-	});
+		// });
 
 	$('#step2 [name=words],#step2 input').maxlength({
 		alwaysShow: true,
@@ -397,7 +411,7 @@ $(function(){
 					$('.nav-pills', mobile).removeClass('on');
 				});
 			});
-			var colorbox = function(target,callback){
+			colorbox = function(target,callback){
 				callback = callback || function(){};
 				TweenMax.set($(target),{
 					'overflow':'auto',
@@ -423,7 +437,7 @@ $(function(){
 
 				freeze = true;
 			};
-			var colorboxClose = function(){
+			colorboxClose = function(){
 				TweenMax.set($('.box'),{
 					width:0
 				});
@@ -621,7 +635,8 @@ $(function(){
 });
 window.fbAsyncInit = function() {
 	FB.init({
-	  appId      : '1645980782348774',
+	  // appId      : '1645980782348774',
+	  appId 	 : '1649099138703605',
 	  xfbml      : true,
 	  version    : 'v2.4'
 	});
