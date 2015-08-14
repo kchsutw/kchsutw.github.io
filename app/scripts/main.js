@@ -391,9 +391,9 @@ $(function(){
 		}(window));
 
 		(function(mobile){
-			$('.menu', mobile).on('click touchend',function(){
+			$('.menu', mobile).on('click',function(){
 				$('.nav-pills', mobile).toggleClass('on');
-				$('.container').one('click touchend',function(){
+				$('.container').one('click',function(){
 					$('.nav-pills', mobile).removeClass('on');
 				});
 			});
@@ -436,12 +436,12 @@ $(function(){
 				});
 				freeze = false;
 			};
-			$('.goto-rule',mobile).on('click touchend',function(){
+			$('.goto-rule',mobile).on('click',function(){
 				TweenMax.to($('html,body'),0.25,{
 					scrollTop : $('.go').offset().top -100
 				});
 			});	
-			$('.build-a-home',mobile).on('click touchend',function(){
+			$('.build-a-home',mobile).on('click',function(){
 
 				FB.login(function(r){
 				  if(r.status === 'connected'){
@@ -454,7 +454,7 @@ $(function(){
 				}
 			});
 
-			$('#step2 .add-button',mobile).on('click touchend', function(){
+			$('#step2 .add-button',mobile).on('click', function(){
 				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 				if(!$('#step2 .families.hide:eq(0)').length){
 					$(this).fadeOut(250);
@@ -463,7 +463,7 @@ $(function(){
 			var serial;
 			var formData = {};
 			var step2Processing = false;
-			$('#step2 .submit', mobile).on('click touchend',function(){
+			$('#step2 .submit', mobile).on('click',function(){
 				if(step2Processing){
 					return false;
 				}
@@ -528,7 +528,7 @@ $(function(){
 
 				});
 			});	
-			$('#step3 .button',mobile).on('click touchend',function(){
+			$('#step3 .button',mobile).on('click',function(){
 				FB.ui({
 				  method: 'share',
 				  href: 'http://api.kchsu.com/r/' + serial
@@ -537,7 +537,7 @@ $(function(){
 				});
 					// colorbox('#step4');
 			});
-			$('#step4 .button.submit',mobile).on('click touchend',function(){
+			$('#step4 .button.submit',mobile).on('click',function(){
 				formData.email += ',' + $('#step4 [name=email]').val();
 				formData.officialName = $('#step4 [name=name]').val();
 				formData.address = $('#step4 [name=address]').val();
