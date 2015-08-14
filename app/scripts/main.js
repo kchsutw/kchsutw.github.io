@@ -1,4 +1,4 @@
-/* jshint devel:true , unused : false*/
+/* jshint devel:true , unused : false, camelcase : false*/
 'use strict';
 // console.log('\'Allo \'Allo!');
 $(function(){
@@ -556,7 +556,12 @@ $(function(){
 				  method: 'share',
 				  href: 'http://api.kchsu.com/r/' + serial
 				}, function(response){
-					colorbox('#step4');
+
+				    if (response && !response.error_code) {
+						colorbox('#step4');
+				    } else {
+				        
+				    }
 				});
 					// colorbox('#step4');
 			});
