@@ -735,6 +735,11 @@ footer{
     img{
       vertical-align: top;
     }
+    &:hover img{
+      transform:scale(0.96);
+      transition-duration: 0.2s;
+      transition-property: background-position;
+    }
   }
   .button{
     background: rgba(0, 0, 0, 0) url("../images/btn-background.png");
@@ -754,6 +759,22 @@ footer{
     transition-duration: 0.2s;
     transition-property: background-position;
     width: 150px;
+    i{
+      color:rgba(255,255,255,0.8);
+      line-height: em(30,15);
+      font-size: em(15,18);
+      position: absolute;
+      right: 5px;
+      transition-duration:0.2s;
+      transition-property: color,right;
+    }      
+    &:hover{
+      background-position:-10px -50px;
+      i{
+        right: 3px;
+        color:rgba(255,255,255,0.98);
+      }
+    }
     &:nth-child(2){
       background-position: 875px 160px;
     }
@@ -834,17 +855,17 @@ footer{
       background:url(../images/btn-background.png);
       border-radius: 19px;
       margin-right: 2px;
-          position: relative;
-          img{
-            display: block;
-            height: 38px;
-            background:url(https://graph.facebook.com/1447149769/picture?type=large) center center ;
-            background-size: 38px auto;
-            opacity: 0.3;
-            position: relative;
-            width: 38px;
-            border-radius: 19px;
-          }
+      position: relative;
+      img{
+        display: block;
+        height: 38px;
+        background:url(https://graph.facebook.com/1447149769/picture?type=large) center center ;
+        background-size: 38px auto;
+        opacity: 0.3;
+        position: relative;
+        width: 38px;
+        border-radius: 19px;
+      }
     }
     span{
       line-height: 8px;
@@ -922,6 +943,23 @@ footer{
     width: 265px;
     top:312px;
     left:162px;
+    i{
+      color:rgba(255,255,255,0.8);
+      line-height: em(30,15);
+      font-size: em(15,18);
+      position: absolute;
+      right: 5px;
+      transition-duration:0.2s;
+      transition-property: color,right;
+    }      
+    &:hover{
+      background-position:-235px -180px;
+      color:#696969;
+      i{
+        right: 3px;
+        color:rgba(69,69,69,0.98);
+      }
+    }
   }
 }
 #step4 {

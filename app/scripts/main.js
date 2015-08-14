@@ -286,10 +286,6 @@ $(function(){
 				formData.email = me.email;
 				formData.facebookid = me.id;
 				formData.timestamp = new Date() * 1;
-				var pic = new Image();
-				pic.src = 'http://api.kchsu.com/face/'+formData.facebookid;
-				$('#step3 .me .dot').html('');
-				$('#step3 .me .dot').append(pic);
 				var positionX =  (38-500) * (formData.number/100);
 				var positionY =  (38-209) * (formData.number/100);
 				$('#step3 .name,#step3 .me span').html(formData.name);
@@ -307,30 +303,36 @@ $(function(){
 					serial = resp.id;
 					colorbox('#step3',function(){
 						$('#step3 .button').hide();
-						html2canvas($('#step3 >aside'), {
-						  onrendered: function(canvas) {
-						    $('#step3').append(canvas);
-						    var img    = canvas.toDataURL('image/png');
-						    var capt = document.createElement('img');
-						    capt.src=img;
-						    TweenMax.set(capt,{
-						      position:'absolute',
-						      left:0,
-						      top:0,
-						      display:'none'
-						    });
-							$.ajax({
-							  method:'POST',
-							  data :{ base64Url : $(capt).attr('src')},
-							  url:'http://api.kchsu.com/api/Participants/s/' + serial 
-							}).done(function(){
-								$('#step3 .button').fadeIn();
-								step2Processing = false;
-							}).error(function(e,x){
-								alert('圖片無法上傳');
+						$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
+							var pic = new Image();				
+							pic.src = r.dataUrl;
+							$('#step3 .me .dot').html('');
+							$('#step3 .me .dot').append(pic);
+							html2canvas($('#step3 >aside'), {
+							  onrendered: function(canvas) {
+							    $('#step3').append(canvas);
+							    var img    = canvas.toDataURL('image/png');
+							    var capt = document.createElement('img');
+							    capt.src=img;
+							    TweenMax.set(capt,{
+							      position:'absolute',
+							      left:0,
+							      top:0,
+							      display:'none'
+							    });
+								$.ajax({
+								  method:'POST',
+								  data :{ base64Url : $(capt).attr('src')},
+								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+								}).done(function(){
+									$('#step3 .button').fadeIn();
+									step2Processing = false;
+								}).error(function(e,x){
+									alert('圖片無法上傳');
+								});
+							    $(capt).appendTo($('#step3'));
+							  }
 							});
-						    $(capt).appendTo($('#step3'));
-						  }
 						});
 					});
 
@@ -506,10 +508,6 @@ $(function(){
 					formData.email = me.email;
 					formData.facebookid = me.id;
 					formData.timestamp = new Date() * 1;
-					var pic = new Image();
-					pic.src = 'http://api.kchsu.com/face/'+formData.facebookid;
-					$('#step3 .me .dot').html('');
-					$('#step3 .me .dot').append(pic);
 					var positionX =  (38-500) * (formData.number/100);
 					var positionY =  (38-209) * (formData.number/100);
 					$('#step3 .name,#step3 .me span').html(formData.name);
@@ -527,14 +525,23 @@ $(function(){
 						serial = resp.id;
 						$('#step3 .button').hide();
 						colorbox('#step3',function(){
-					        html2canvas($('#step3 >aside'), {
-					          onrendered: function(canvas) {
-					            var capt = document.createElement('img');
-					            capt.src = canvas.toDataURL('image/png');
-					            TweenMax.set(capt,{
-					              left:0,
-					              top:0
-					            });
+						$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
+							var pic = new Image();				
+							pic.src = r.dataUrl;
+							$('#step3 .me .dot').html('');
+							$('#step3 .me .dot').append(pic);
+							html2canvas($('#step3 >aside'), {
+							  onrendered: function(canvas) {
+							    $('#step3').append(canvas);
+							    var img    = canvas.toDataURL('image/png');
+							    var capt = document.createElement('img');
+							    capt.src=img;
+							    TweenMax.set(capt,{
+							      position:'absolute',
+							      left:0,
+							      top:0,
+							      display:'none'
+							    });
 								$.ajax({
 								  method:'POST',
 								  data :{ base64Url : $(capt).attr('src')},
@@ -545,8 +552,10 @@ $(function(){
 								}).error(function(e,x){
 									alert('圖片無法上傳');
 								});
-					          }
-					        });
+							    $(capt).appendTo($('#step3'));
+							  }
+							});
+						});
 						});
 
 					});
