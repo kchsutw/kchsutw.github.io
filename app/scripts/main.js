@@ -4,7 +4,13 @@
 $(function(){
 	// fake mobile
 	// $('html').removeClass('desktop').addClass('mobile');
-
+	var streets = ['光譜一街','光譜二街', '光譜三街', '平等一路', 
+				'平等二路','平等三路','和諧街','陽光大道','石牆路',
+				'伴侶南路','伴侶北路','平權東路','平權西路','擇愛一路',
+				'擇愛二路','擇愛三路','擇愛四路','擇愛五路','成家一路',
+				'成家二路','成家三路','成家四路','成家五路','家屬南路',
+				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
+	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
@@ -32,7 +38,8 @@ $(function(){
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
 				(function(one, dragon){
 					r.number = r.number || 69;
-					r.house = r.house || 'house-home';
+					r.house = r.house || houses[0];
+					r.street = r.street || streets[0];
 					var positionX =  (38-500) * (r.number/100);
 					var positionY =  (38-209) * (r.number/100);
 					$('.dialog span',one).html(r.words);
@@ -43,6 +50,7 @@ $(function(){
 					$('.tpl ul li:eq(3)',one).html(r.families04);
 					$('.tpl').removeClass('house-home').addClass(r.house);
 					$('.tpl .number',one).html(r.number);
+					$('.tpl .road-name', one).html(r.street);
 					var pic = new Image();
 					pic.src = 'https://graph.facebook.com/'+r.facebookid+'/picture?type=large';
 					$('.me .dot', one).append(pic);
@@ -83,15 +91,6 @@ $(function(){
 
 	}
 	showOne();
-		// function oneShare(){
-		// 	var req = querystring.parse(location.search.replace('?',''));
-		// 	FB.ui({
-		// 	  method: 'share',
-		// 	  href: 'http://api.kchsu.com/r/' + req.sn
-		// 	}, function(response){
-		// 	});
-
-		// });
 
 	$('#step2 [name=words],#step2 input').maxlength({
 		alwaysShow: true,
@@ -253,8 +252,6 @@ $(function(){
 		      	next();
 			  }
 			}, {scope:'email'}); 
-			// bypass login
-			// next();
 
 			function next(){
 				colorbox('#step2');
@@ -274,25 +271,20 @@ $(function(){
 				return false;
 			}
 			step2Processing = true;
-			var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 			var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
-			formData.words = $('#step2 [name=words]').val();
+			var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
+			formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
 			formData.families01 = $('#step2 [name=families01]').val();
 			formData.families02 = $('#step2 [name=families02]').val();
 			formData.families03 = $('#step2 [name=families03]').val();
 			formData.families04 = $('#step2 [name=families04]').val();
 			formData.number = Math.floor(Math.random() * +new Date() % 99) ;
 			formData.house = randomHouse ;
+			formData.street = lineBreak(randomStreet, 10);
 			FB.api('/me',function(me){
 				formData.name = me.name;
 				formData.email = me.email;
 				formData.facebookid = me.id;
-
-				// fake
-				// formData.name = 'Nelson';
-				// formData.email = 'nelson119@outlook.com';
-				// formData.facebookid = '123';
-				// end
 				formData.timestamp = new Date() * 1;
 				var pic = new Image();
 				pic.src = 'http://api.kchsu.com/face/'+formData.facebookid;
@@ -309,6 +301,7 @@ $(function(){
 				$('#step3 .number').html(formData.number);
 				$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
 				$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
+				$('#step3 .road-name').html(formData.street);
 				$('#step4 [name=email]').attr('placeholder',formData.email);
 				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
 					serial = resp.id;
@@ -499,8 +492,8 @@ $(function(){
 					return false;
 				}
 				step2Processing = true;
-				var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
+				var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
 				formData.words = $('#step2 [name=words]').val();
 				formData.families01 = $('#step2 [name=families01]').val();
 				formData.families02 = $('#step2 [name=families02]').val();
@@ -526,6 +519,7 @@ $(function(){
 					$('#step3 ul li:eq(3)').html(formData.families04);
 					$('#step3 .dialog span').html(formData.words);
 					$('#step3 .number').html(formData.number);
+					$('#step3 .road-name').html(formData.street);
 					$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
 					$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 					$('#step4 [name=email]').attr('placeholder',formData.email);
@@ -628,7 +622,8 @@ $(function(){
 				page = $(page).addClass('page house');
 				var cur = tpl.clone();
 				obj.number = obj.number || 69;
-				obj.house = obj.house || 'house-home';
+				obj.house = obj.house || houses[0];
+				obj.street = obj.street || streets[0];
 				var positionX =  (38-500) * (obj.number/100);
 				var positionY =  (38-209) * (obj.number/100);
 				$('.me span', cur).html(obj.name);
@@ -643,6 +638,7 @@ $(function(){
 				$('ul li:eq(4)', cur).html(obj.families05);
 				$(cur).attr('data-serial',obj.id);
 				$('.number', cur).html(obj.number);
+				$('.road-name', cur).html(obj.street);
 				$('.dialog span', cur).html(obj.words);
 				cur.addClass(obj.house);
 				page.append(cur);
@@ -654,6 +650,23 @@ $(function(){
 		});
 	}
 	infiniteList();
+
+	function lineBreak(str, width){
+    var canvas =  document.createElement('canvas');
+		var ctx = canvas.getContext('2d'),        
+			offset = 0,
+			res = '';
+		for(var i in str){
+			offset += ctx.measureText(str[i]).width;
+			res += str[i];
+			if(offset >= width){
+				res += '-<br>';
+    			offset = 0;
+			}
+		}
+		return res.replace(/([\W])-/ig, '$1');
+	}
+
 });
 window.fbAsyncInit = function() {
 	var appId = /localhost/.test(location.href) ? '1649099138703605' : '1645980782348774';
@@ -680,3 +693,5 @@ e.src='//www.google-analytics.com/analytics.js';
 r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-XXXXX-X');ga('send','pageview');
 /* jshint ignore:end */
+
+
