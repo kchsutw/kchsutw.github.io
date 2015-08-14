@@ -498,18 +498,37 @@ header{
         float: none;
       }
       .close{
-        background: transparent url("../images/close-button.png") repeat scroll 0 0;
-        border: 0 none;
+        right: -20px;
+        top: 50px;
+        opacity: inherit;
+        background:url(../images/btn-background.png) 0 0/ cover;
+        overflow: hidden;
+        border-radius: 15px;
+        top: 20px;
         height: 30px;
         position: absolute;
-        right: -20px;
+        right: 20px;
         text-indent: -9999px;
-        top: 50px;
         width: 30px;
-        opacity: inherit;
-        transform:rotateZ(-720deg);
+        border:0;
+        display: block;
+        font-color: rgba(0,0,0,0);
+        &:before{
+          text-indent: 0;
         transition:transform 0.2s;
-        &:hover{
+          transform:rotateZ(-1080deg);
+          content:"";
+          font-family: FontAwesome;
+          position: absolute;top: 0;
+          left:0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          font-size: 1em;
+          color:#fff;
+          line-height: 30px;
+        }
+        &:hover:before{
           transform:none;
         }
       }
