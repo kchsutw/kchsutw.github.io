@@ -430,6 +430,10 @@ $(function(){
 				TweenMax.set($('body >.container .dragon'),{
 					display:'none'
 				});
+				TweenMax.set($('body >.container'),{
+					position:'absolute',
+					height:'100%'
+				});
 				TweenMax.set($('.box'),{
 					width:'100%'
 				});
@@ -450,6 +454,10 @@ $(function(){
 				TweenMax.set($('body >.container .dragon'),{
 					opacity:0,
 					display:'block'
+				});
+				TweenMax.set($('body >.container'),{
+					position:'static',
+					height:'auto'
 				});
 				TweenMax.to($('body >.container .dragon'),0.2,{
 					opacity:1
