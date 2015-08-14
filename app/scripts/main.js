@@ -354,7 +354,7 @@ $(function(){
 			    if (response && !response.error_code) {
 					colorbox('#step4');
 			    } else {
-			        
+			        colorboxClose();
 			    }
 			});
 		});
@@ -575,7 +575,7 @@ $(function(){
 				    if (response && !response.error_code) {
 						colorbox('#step4');
 				    } else {
-				        
+			        	colorboxClose();				        
 				    }
 				});
 					// colorbox('#step4');
