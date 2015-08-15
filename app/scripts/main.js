@@ -242,8 +242,9 @@ $(function(){
 			colorbox('#about');
 		});
 		$('.goto-rule').on('click',function(){
+			var container = $('.dragon');
 			if($('html.tablet').length){
-				var container = $('.container');
+				container = $('.container');
 				TweenMax.to(container,0.3,{
 					scrollLeft : $(window).width() * -0.8,
 					onComplete:function(){
@@ -251,7 +252,6 @@ $(function(){
 					}
 				});
 			}else{
-				var container = $('.dragon');
 				TweenMax.to(container,0.3,{
 					left : $(window).width() * -0.8,
 					onComplete:function(){
