@@ -34,6 +34,7 @@ $(function(){
 	function showOne(event){
 		var req = querystring.parse(location.search.replace('?',''));
 		if(req.sn){
+			$('.container >.loading').hide();
 			$('.dragon').hide();
 			$('.one').hide();
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
