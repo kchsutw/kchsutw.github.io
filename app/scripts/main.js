@@ -360,9 +360,7 @@ $(function(){
 
 			    if (response && !response.error_code) {
 					colorbox('#step4');
-			    } else {
-			        colorboxClose();
-			    }
+			    } 
 			});
 		});
 		$('#step4 .button.submit').on('click',function(){
@@ -592,11 +590,8 @@ $(function(){
 				    if (response && !response.error_code) {
 						ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
 						colorbox('#step4');
-				    } else {
-			        	colorboxClose();				        
 				    }
 				});
-					// colorbox('#step4');
 			});
 			$('#step4 .button.submit',mobile).on('click',function(){
 				ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);

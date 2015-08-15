@@ -288,7 +288,7 @@ header{
     }
     .rule{
       top:50%;
-      margin-top:-205px;
+      margin-top:-250px;
       @media screen and (max-width: 767px) {
         top:0;
         margin:0 auto;
@@ -319,6 +319,7 @@ header{
       }
       p{
         margin-left:10px;
+        margin-bottom: 20px;
         @media screen and (max-width: 767px) {
           max-width: percentage(270/320);
           margin:0 auto percentage(25/320) ;
@@ -1025,12 +1026,23 @@ footer{
     transition-duration: 0.2s;
     transition-property: background-position;
     width: 150px;
-    &:nth-child(1) {
-      background-position: 875px 160px;
-      margin-left:150px;
+    i{
+      color:rgba(255,255,255,0.8);
+      line-height: em(30,15);
+      font-size: em(15,18);
+      position: absolute;
+      right: 5px;
+      transition-duration:0.2s;
+      transition-property: color,right;
+    }      
+    &:hover{
+      background-position:-50px -100px;
+      i{
+        right: 3px;
+      }
     }
-    &:nth-child(2) {
-      background-position: 250px 395px;
+    &:nth-child(1) {
+      margin-left:150px;
     }
   }
 }
