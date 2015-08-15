@@ -244,7 +244,7 @@ $(function(){
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
 			if($('html.tablet').length){
-				container = $('.container');
+				container = $('html,body');
 				TweenMax.to(container,0.3,{
 					scrollLeft : $(window).width() * -0.8,
 					onComplete:function(){
