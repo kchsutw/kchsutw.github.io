@@ -1,4 +1,4 @@
-/* jshint devel:true , unused : false, camelcase : false*/
+/* jshint devel:true , unused : false, camelcase : false, latedef : nofunc*/
 'use strict';
 // console.log('\'Allo \'Allo!');
 $(function(){
@@ -319,29 +319,31 @@ $(function(){
 							$('#step3 .me .dot').html('');
 							$('#step3 .me .dot').append(pic);
 							html2canvas($('#step3 >aside'), {
-							  onrendered: function(canvas) {
-							    $('#step3').append(canvas);
-							    var img    = canvas.toDataURL('image/png');
-							    var capt = document.createElement('img');
-							    capt.src=img;
-							    TweenMax.set(capt,{
-							      position:'absolute',
-							      left:0,
-							      top:0,
-							      display:'none'
-							    });
-								$.ajax({
-								  method:'POST',
-								  data :{ base64Url : $(capt).attr('src')},
-								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
-								}).done(function(){
-									$('#step3 .button').fadeIn();
-									step2Processing = false;
-								}).error(function(e,x){
-									alert('圖片無法上傳');
-								});
-							    $(capt).appendTo($('#step3'));
-							  }
+							    onrendered: function(canvas) {
+						    		addPicture(pic.src, canvas, function(){
+									    $('#step3').append(canvas);
+									    var img    = canvas.toDataURL('image/png');
+									    var capt = document.createElement('img');
+									    capt.src=img;
+									    TweenMax.set(capt,{
+									      position:'absolute',
+									      left:0,
+									      top:0,
+									      display:'none'
+									    });
+										$.ajax({
+										  method:'POST',
+										  data :{ base64Url : $(capt).attr('src')},
+										  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+										}).done(function(){
+											$('#step3 .button').fadeIn();
+											step2Processing = false;
+										}).error(function(e,x){
+											alert('圖片無法上傳');
+										});
+									    $(capt).appendTo($('#step3'));
+									});
+							    }
 							});
 						});
 					});
@@ -543,37 +545,39 @@ $(function(){
 						serial = resp.id;
 						$('#step3 .button').hide();
 						colorbox('#step3',function(){
-						$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
-							var pic = new Image();				
-							pic.src = r.dataUrl;
-							$('#step3 .me .dot').html('');
-							$('#step3 .me .dot').append(pic);
-							html2canvas($('#step3 >aside'), {
-							  onrendered: function(canvas) {
-							    $('#step3').append(canvas);
-							    var img    = canvas.toDataURL('image/png');
-							    var capt = document.createElement('img');
-							    capt.src=img;
-							    TweenMax.set(capt,{
-							      position:'absolute',
-							      left:0,
-							      top:0,
-							      display:'none'
-							    });
-								$.ajax({
-								  method:'POST',
-								  data :{ base64Url : $(capt).attr('src')},
-								  url:'http://api.kchsu.com/api/Participants/s/' + serial 
-								}).done(function(){
-									$('#step3 .button').fadeIn();
-									step2Processing = false;
-								}).error(function(e,x){
-									alert('圖片無法上傳');
+							$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
+								var pic = new Image();				
+								pic.src = r.dataUrl;
+								$('#step3 .me .dot').html('');
+								$('#step3 .me .dot').append(pic);
+								html2canvas($('#step3 >aside'), {
+								    onrendered: function(canvas) {
+							    		addPicture(pic.src, canvas, function(){
+										    $('#step3').append(canvas);
+										    var img    = canvas.toDataURL('image/png');
+										    var capt = document.createElement('img');
+										    capt.src=img;
+										    TweenMax.set(capt,{
+										      position:'absolute',
+										      left:0,
+										      top:0,
+										      display:'none'
+										    });
+											$.ajax({
+											  method:'POST',
+											  data :{ base64Url : $(capt).attr('src')},
+											  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+											}).done(function(){
+												$('#step3 .button').fadeIn();
+												step2Processing = false;
+											}).error(function(e,x){
+												alert('圖片無法上傳');
+											});
+										    $(capt).appendTo($('#step3'));
+										});
+								    }
 								});
-							    $(capt).appendTo($('#step3'));
-							  }
 							});
-						});
 						});
 
 					});
@@ -694,7 +698,36 @@ $(function(){
 		}
 		return res.replace(/([\W])-/ig, '$1');
 	}
-
+    function addPicture(pic, canvas, callback)
+	{
+	  var picture = new Image(),
+	  	x = $('#step3 .me img').offset().left - $('#step3 >aside').offset().left, 
+	  	y = $('#step3 .me img').offset().top - $('#step3 >aside').offset().top;
+	  picture.onload = function(){
+	    var context = canvas.getContext('2d');
+	    roundedImage(x,y,38,38,20);
+	    context.clip();
+	    context.globalAlpha = 0.3;
+	    context.drawImage(this, x, y,38,38);	    
+	    context.restore();
+	    $('#step3').append(canvas);
+	    callback(canvas);
+	    function roundedImage(x,y,width,height,radius){
+	      context.beginPath();
+	      context.moveTo(x + radius, y);
+	      context.lineTo(x + width - radius, y);
+	      context.quadraticCurveTo(x + width, y, x + width, y + radius);
+	      context.lineTo(x + width, y + height - radius);
+	      context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+	      context.lineTo(x + radius, y + height);
+	      context.quadraticCurveTo(x, y + height, x, y + height - radius);
+	      context.lineTo(x, y + radius);
+	      context.quadraticCurveTo(x, y, x + radius, y);
+	      context.closePath();
+	    }
+	  };
+	  picture.src = pic;
+	}
 });
 window.fbAsyncInit = function() {
 	var appId = /localhost/.test(location.href) ? '1649099138703605' : '1645980782348774';
