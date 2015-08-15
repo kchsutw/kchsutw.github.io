@@ -241,10 +241,6 @@ $(function(){
 		$('.nav-pills li:eq(0)').on('click',function(){
 			colorbox('#about');
 		});
-		$('.go .term').on('click',function(){
-			ga('send', 'event', 'terms', 'terms', 'click', 1);
-			colorbox('#terms');
-		});
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
 			TweenMax.to(container,0.3,{
@@ -254,147 +250,11 @@ $(function(){
 				}
 			});
 		});	
-		$('.build-a-home').on('click',function(){
-
-			FB.login(function(r){
-			  if(r.status === 'connected'){
-		      	next();
-		      	return;
-			  }
-			}, {scope:'email'}); 
-			ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
-
-			function next(){
-				colorbox('#step2');
-			}
-		});		
-		var serial;
-		var formData = {};
-		$('#step2 .add-button').on('click', function(){
-			ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
-			$('#colorbox #step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
-			if(!$('#step2 .families.hide:eq(0)').length){
-				$(this).fadeOut(250);
-			}
-		});	
-		var step2Processing = false;
-		$('#step2 .submit').on('click',function(){
-			ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
-			if(step2Processing){
-				return false;
-			}
-			step2Processing = true;
-			var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
-			var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
-			formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
-			formData.street = lineBreak(randomStreet, 10);
-			formData.families01 = $('#step2 [name=families01]').val();
-			formData.families02 = $('#step2 [name=families02]').val();
-			formData.families03 = $('#step2 [name=families03]').val();
-			formData.families04 = $('#step2 [name=families04]').val();
-			formData.number = Math.floor(Math.random() * +new Date() % 99) ;
-			formData.house = randomHouse ;
-			FB.api('/me?fields=email,name,first_name',function(me){
-				formData.name = me.first_name;
-				formData.email = me.email;
-				formData.facebookid = me.id;
-				formData.timestamp = new Date() * 1;
-				var positionX =  (38-500) * (formData.number/100);
-				var positionY =  (38-209) * (formData.number/100);
-				$('#step3 .name,#step3 .me span').html(formData.name);
-				$('#step3 ul li:eq(0)').html(formData.families01);
-				$('#step3 ul li:eq(1)').html(formData.families02);
-				$('#step3 ul li:eq(2)').html(formData.families03);
-				$('#step3 ul li:eq(3)').html(formData.families04);
-				$('#step3 .dialog span').html(formData.words);
-				$('#step3 .number').html(formData.number);
-				$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
-				$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
-				$('#step3 .road-name').html(formData.street);
-				$('#step4 [name=email]').attr('placeholder',formData.email);
-				$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
-					serial = resp.id;
-					colorbox('#step3',function(){
-						$('#step3 .button').hide();
-						$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
-							var pic = new Image();				
-							pic.src = r.dataUrl;
-							$('#step3 .me .dot').html('');
-							$('#step3 .me .dot').append(pic);
-							html2canvas($('#step3 >aside'), {
-							    onrendered: function(canvas) {
-						    		addPicture(pic.src, canvas, function(){
-									    $('#step3').append(canvas);
-									    var img    = canvas.toDataURL('image/png');
-									    var capt = document.createElement('img');
-									    capt.src=img;
-									    TweenMax.set(capt,{
-									      position:'absolute',
-									      left:0,
-									      top:0,
-									      display:'none'
-									    });
-										$.ajax({
-										  method:'POST',
-										  data :{ base64Url : $(capt).attr('src')},
-										  url:'http://api.kchsu.com/api/Participants/s/' + serial 
-										}).done(function(){
-											$('#step3 .button').fadeIn();
-											step2Processing = false;
-										}).error(function(e,x){
-											alert('圖片無法上傳');
-										});
-									    $(capt).appendTo($('#step3'));
-									});
-							    }
-							});
-						});
-					});
-
-				});
-
-			});
-		});	
-		$('#step3 .button').on('click',function(){
-			ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-			FB.ui({
-			  method: 'share',
-
-			  href: 'http://api.kchsu.com/r/' + serial
-			}, function(response){
-
-			    if (response && !response.error_code) {
-					colorbox('#step4');
-			    } 
-			});
-		});
-		$('#step4 .button.submit').on('click',function(){
-			ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
-			formData.email = $('#step4 [name=email]').val() || formData.email;
-			formData.officialName = $('#step4 [name=name]').val();
-			formData.address = $('#step4 [name=address]').val();
-			$.ajax({
-			  method:'PUT',
-			  headers: {          
-			    Accept : 'application/json'
-			  },
-			  // jshint quotmark: false
-			  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
-			  contentType:'application/json; charset=UTF-8',
-			  url:'http://api.kchsu.com/api/Participants/' + serial
-			}).done(function(resp){
-				$('.dragon >.page.house').remove();
-				$(window).trigger('resize');
-				$.colorbox.close();
-				offset = 0;
-			});
-		});
 		$(window).trigger('resize');
 
 	}
 
 	if($('html.mobile').length){
-		// $('p').appendTo($('body')).html($('html').attr('class'));
 	// fit window size
 		(function(w){
 			var scrollTop = 0;
@@ -481,153 +341,180 @@ $(function(){
 					scrollTop : $('.go').offset().top -100
 				});
 			});	
-			$('.go .term',mobile).on('click',function(){
-				ga('send', 'event', 'terms', 'terms', 'click', 1);
-				colorbox('#terms');
-			});
-			$('.build-a-home',mobile).on('click',function(){
-				ga('send', 'event', 'participants-steps', 'facebook-login', 'start', 1);
-				FB.login(function(r){
-				  if(r.status === 'connected'){
-			      	next();
-			      	return;
-				  }
-				}, {scope:'email'}); 
-				ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
-			      	// next();
-				function next(){
-					colorbox($('#step2',mobile));
-				}
-			});
-
-			$('#step2 .add-button',mobile).on('click', function(){
-				ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
-				$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
-				if(!$('#step2 .families.hide:eq(0)').length){
-					$(this).fadeOut(250);
-				}
-			});	
-			var serial;
-			var formData = {};
-			var step2Processing = false;
-			$('#step2 .submit', mobile).on('click',function(){
-				ga('send', 'event', 'participants-steps', 'create-house', 'submit', 1);
-				if(step2Processing){
-					return false;
-				}
-				step2Processing = true;
-				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
-				var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
-				formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
-				formData.street = lineBreak(randomStreet, 10);
-				formData.families01 = $('#step2 [name=families01]').val();
-				formData.families02 = $('#step2 [name=families02]').val();
-				formData.families03 = $('#step2 [name=families03]').val();
-				formData.families04 = $('#step2 [name=families04]').val();
-				formData.number = Math.floor(Math.random() * +new Date() % 99) ;
-				formData.house = randomHouse ;
-				FB.api('/me?fields=email,name,first_name',function(me){
-					formData.name = me.first_name;
-					formData.email = me.email;
-					formData.facebookid = me.id;
-					formData.timestamp = new Date() * 1;
-					var positionX =  (38-500) * (formData.number/100);
-					var positionY =  (38-209) * (formData.number/100);
-					$('#step3 .name,#step3 .me span').html(formData.name);
-					$('#step3 ul li:eq(0)').html(formData.families01);
-					$('#step3 ul li:eq(1)').html(formData.families02);
-					$('#step3 ul li:eq(2)').html(formData.families03);
-					$('#step3 ul li:eq(3)').html(formData.families04);
-					$('#step3 .dialog span').html(formData.words);
-					$('#step3 .number').html(formData.number);
-					$('#step3 .road-name').html(formData.street);
-					$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
-					$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
-					$('#step4 [name=email]').attr('placeholder',formData.email);
-					$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
-						serial = resp.id;
-						$('#step3 .button').hide();
-						colorbox('#step3',function(){
-							$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
-								var pic = new Image();				
-								pic.src = r.dataUrl;
-								$('#step3 .me .dot').html('');
-								$('#step3 .me .dot').append(pic);
-								html2canvas($('#step3 >aside'), {
-								    onrendered: function(canvas) {
-							    		addPicture(pic.src, canvas, function(){
-										    $('#step3').append(canvas);
-										    var img    = canvas.toDataURL('image/png');
-										    var capt = document.createElement('img');
-										    capt.src=img;
-										    TweenMax.set(capt,{
-										      position:'absolute',
-										      left:0,
-										      top:0,
-										      display:'none'
-										    });
-											$.ajax({
-											  method:'POST',
-											  data :{ base64Url : $(capt).attr('src')},
-											  url:'http://api.kchsu.com/api/Participants/s/' + serial 
-											}).done(function(){
-												$('#step3 .button').fadeIn();
-												step2Processing = false;
-											}).error(function(e,x){
-												alert('圖片無法上傳');
-											});
-										    $(capt).appendTo($('#step3'));
-										});
-								    }
-								});
-							});
-						});
-
-					});
-
-				});
-			});	
-			$('#step3 .button',mobile).on('click',function(){
-				ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-				FB.ui({
-				  method: 'share',
-				  href: 'http://api.kchsu.com/r/' + serial
-				}, function(response){
-
-				    if (response && !response.error_code) {
-						ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
-						colorbox('#step4');
-				    }
-				});
-			});
-			$('#step4 .button.submit',mobile).on('click',function(){
-				ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
-				formData.email = $('#step4 [name=email]').val() || formData.email;
-				formData.officialName = $('#step4 [name=name]').val();
-				formData.address = $('#step4 [name=address]').val();
-				$.ajax({
-				  method:'PUT',
-				  headers: {          
-				    Accept : 'application/json'
-				  },
-				  // jshint quotmark: false
-				  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
-				  contentType:'application/json; charset=UTF-8',
-				  url:'http://api.kchsu.com/api/Participants/' + serial
-				}).done(function(resp){
-					$('.dragon >.page.house').remove();
-					$(window).trigger('resize');
-					colorboxClose();
-					offset = 0;
-				});
-			});
 
 
 		}($('html.mobile')));
-
-
 	}
 
+	var serial;
+	var formData = {};
+	var step2Processing = false;
+	var pictures = [];
+	var celebrities = [];
+
+	$('.go .term').on('click',function(){
+		ga('send', 'event', 'terms', 'terms', 'click', 1);
+		colorbox('#terms');
+	});
+
+
+	$('#step2 .add-button').on('click', function(){
+		ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
+		$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
+		if(!$('#step2 .families.hide:eq(0)').length){
+			$(this).fadeOut(250);
+		}
+	});	
+
+	$('.build-a-home').on('click',function(){
+		ga('send', 'event', 'participants-steps', 'facebook-login', 'start', 1);
+		FB.login(function(r){
+		  if(r.status === 'connected'){
+			FB.api('/me?fields=email,name,first_name',function(me){
+				formData.name = me.first_name;
+				formData.email = me.email;
+				formData.facebookid = me.id;
+				formData.timestamp = new Date() * 1;
+				$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
+					var pic = new Image();				
+					pic.src = 'https://graph.facebook.com/'+me.id+'/picture';
+					$('#step3 .me .dot').html(pic);
+					var img = new Image();				
+					img.src = r.dataUrl;
+					pictures.push({image:img,target:$('#step3 .me img')});
+				});
+	      		next();
+			});
+	      	return;
+		  }
+		}, {scope:'email'}); 
+		ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
+		function next(){
+			colorbox($('#step2'));
+		}
+	});
+
+	$('#step2 .submit').on('click',function(){
+		ga('send', 'event', 'participants-steps', 'create-house', 'submit', 1);
+		if(step2Processing){
+			return false;
+		}
+		step2Processing = true;
+		var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
+		var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
+		formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
+		formData.street = lineBreak(randomStreet, 10);
+		formData.number = Math.floor(Math.random() * +new Date() % 99) ;
+		var positionX =  (38-500) * (formData.number/100);
+		var positionY =  (38-209) * (formData.number/100);
+
+
+		var cel = $(document.createElement('i'));
+
+		cel.html($('#step2 [data-target=families01]').clone().removeAttr('style')
+			.css('background-position', positionX + 'px ' + positionY + 'px'));
+		formData.families01 = $('#step2 [name=families01]').val() + cel.html();
+
+		cel.html($('#step2 [data-target=families02]').clone().removeAttr('style')
+			.css('background-position', positionX + 'px ' + positionY + 'px'));
+		formData.families02 = $('#step2 [name=families02]').val() + cel.html();
+
+		cel.html($('#step2 [data-target=families03]').clone().removeAttr('style')
+			.css('background-position', positionX + 'px ' + positionY + 'px'));
+		formData.families03 = $('#step2 [name=families03]').val() + cel.html();
+
+		cel.html($('#step2 [data-target=families04]').clone().removeAttr('style')
+			.css('background-position', positionX + 'px ' + positionY + 'px'));
+		formData.families04 = $('#step2 [name=families04]').val() + cel.html();
+
+		addCelebrities();
+
+		formData.house = randomHouse ;
+		$('#step3 .name,#step3 .me span').html(formData.name);
+		$('#step3 ul li:eq(0)').html(formData.families01);
+		$('#step3 ul li:eq(1)').html(formData.families02);
+		$('#step3 ul li:eq(2)').html(formData.families03);
+		$('#step3 ul li:eq(3)').html(formData.families04);
+		$('#step3 .dialog span').html(formData.words);
+		$('#step3 .number').html(formData.number);
+		$('#step3 .road-name').html(formData.street);
+		$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
+		$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
+		$('#step4 [name=email]').attr('placeholder',formData.email);
+		$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+			serial = resp.id;
+			$('#step3 .button').hide();
+			colorbox('#step3',function(){
+				html2canvas($('#step3 >aside'), {
+				    onrendered: function(canvas) {
+						addCelebrities();
+			    		addPictures(canvas, function(cvs){
+						    $('#step3').append(canvas);
+						    var img    = cvs.toDataURL('image/png');
+						    var capt = document.createElement('img');
+						    capt.src=img;
+						    TweenMax.set(capt,{
+						      position:'absolute',
+						      left:0,
+						      top:0,
+						      display:'none'
+						    });
+							$.ajax({
+							  method:'POST',
+							  data :{ base64Url : $(capt).attr('src')},
+							  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+							}).done(function(){
+								$('#step3 .button').fadeIn();
+								step2Processing = false;
+							}).error(function(e,x){
+								alert('圖片無法上傳');
+							});
+						    $(capt).appendTo($('#step3'));
+
+			    		});
+
+				    }
+				});
+			});
+
+		});
+	});	
+
+	$('#step3 .button').on('click',function(){
+		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
+		FB.ui({
+		  method: 'share',
+		  href: 'http://api.kchsu.com/r/' + serial
+		}, function(response){
+
+		    if (response && !response.error_code) {
+				ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
+				colorbox('#step4');
+		    }
+		});
+	});
+
+	$('#step4 .button.submit').on('click',function(){
+		ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
+		formData.email = $('#step4 [name=email]').val() || formData.email;
+		formData.officialName = $('#step4 [name=name]').val();
+		formData.address = $('#step4 [name=address]').val();
+		$.ajax({
+		  method:'PUT',
+		  headers: {          
+		    Accept : 'application/json'
+		  },
+		  // jshint quotmark: false
+		  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
+		  contentType:'application/json; charset=UTF-8',
+		  url:'http://api.kchsu.com/api/Participants/' + serial
+		}).done(function(resp){
+			$('.dragon >.page.house').remove();
+			$(window).trigger('resize');
+			colorboxClose();
+			offset = 0;
+		});
+	});
 
 	//list
 	var offset = 0;
@@ -704,20 +591,30 @@ $(function(){
 		}
 		return res.replace(/([\W])-/ig, '$1');
 	}
-    function addPicture(pic, canvas, callback)
+    function addPictures(canvas, callback)
 	{
-	  var picture = new Image(),
-	  	x = $('#step3 .me img').offset().left - $('#step3 >aside').offset().left, 
-	  	y = $('#step3 .me img').offset().top - $('#step3 >aside').offset().top;
-	  picture.onload = function(){
 	    var context = canvas.getContext('2d');
-	    roundedImage(x,y,38,38,20);
-	    context.clip();
 	    context.globalAlpha = 0.3;
-	    context.drawImage(this, x, y,38,38);	    
-	    context.restore();
-	    $('#step3').append(canvas);
-	    callback(canvas);
+		function loadImages(pictures, callback) {
+			var images = [];
+			var loadedImages = 0;
+			var numImages = 0;
+			// get num of sources
+			for(var idx in pictures) {
+			  numImages++;
+			}
+			for(var idx in pictures) {
+				images[idx] = {};
+				images[idx].target = pictures[idx].target;
+				images[idx].image = new Image();
+				images[idx].image.onload = function() {
+					if(++loadedImages >= numImages) {
+						callback(images);
+					}
+				};
+				images[idx].image.src = pictures[idx].image.src;
+			}
+		}
 	    function roundedImage(x,y,width,height,radius){
 	      context.beginPath();
 	      context.moveTo(x + radius, y);
@@ -731,8 +628,94 @@ $(function(){
 	      context.quadraticCurveTo(x, y, x + radius, y);
 	      context.closePath();
 	    }
-	  };
-	  picture.src = pic;
+		loadImages(pictures, function(images) {
+			$.each(images,function(i,d){
+				var target = d.target,
+			  	x = target.offset().left - $('#step3 >aside').offset().left, 
+			  	y = target.offset().top - $('#step3 >aside').offset().top,
+			  	width = 38,
+			  	height = 38,
+			  	radius = 20;
+
+			    context.save();
+			    roundedImage(x, y, width, height, radius);
+			    context.clip();
+			    context.drawImage(d.image, x, y,width,height);
+			    context.restore();
+			});
+			callback(canvas);
+		});
+	}
+	$.getJSON('celebrities/today.json?_='+new Date() * 1,function(r){
+		celebrities = r.celebrities;
+	});
+	function checkCelebrities(input){
+		var result = {};
+		$.each(celebrities,function(i,cel){
+			if(new Date() < new Date(cel.launch)){
+				return true;
+			}
+			var reg = new RegExp(cel.pattern, "ig");
+
+			if(reg.test(input)){
+				result.match = true;
+				result.url = cel.url;
+				result.name = cel.name;
+				result.index = i;
+				if(!celebrities[i].dataUrl){
+					$.get('http://api.kchsu.com/face/' + cel.facebookId,function(r){
+						celebrities[i].dataUrl = r.dataUrl;
+					});	
+				}
+				return false;
+			}
+
+		});
+		if(result.match){
+			return result;
+		}
+		return {
+			match : false,
+			url : null
+		};
+	}
+	$('[name=families01],[name=families02],[name=families03],[name=families04]').on('keyup',function(){
+		var cel = checkCelebrities($(this).val());
+		if(cel.match){
+			var parent = $(this).parents('#step2,#step3 aside');
+			var target = $(this);
+			var celebrityPic = document.createElement('i');
+			$(celebrityPic).addClass('celebrities')
+				.attr('data-target',this.name)
+				.attr('data-index',cel.index);
+			var img = new Image();
+			$(celebrityPic).append(img);
+			TweenMax.set(celebrityPic,{
+				left: target.offset().left + 
+					target.width() +
+					+target.css('margin-left').replace(/px/,'') - 
+					parent.offset().left,
+				top: target.offset().top - parent.offset().top +
+					target.height()
+			});
+			img.onload = function(){
+				$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
+				$(parent).append(celebrityPic);
+			};
+			img.src = cel.url;
+		}else{
+			$('i.celebrities[data-target='+this.name+']',parent).remove();			
+		}
+	});
+	function addCelebrities(canvas, callback){
+		$('#step3 ul li i').each(function(i,d){
+			var img = new Image();
+			img.src = celebrities[$(d).attr('data-index')*1].dataUrl;
+			pictures.push({
+				image : img,
+				target : $(d)
+			});
+		})
 	}
 });
 window.fbAsyncInit = function() {
