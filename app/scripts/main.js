@@ -731,7 +731,7 @@ $(function(){
 	}
 	function keypressEventInit(){
 
-		$('body').on('keypress',function(){
+		$(document).on('keypress',function(){
 
 			$('[name=families01],[name=families02],[name=families03],[name=families04]').each(function(i,d){
 				var cel = checkCelebrities($(this).val());
