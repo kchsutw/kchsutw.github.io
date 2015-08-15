@@ -377,7 +377,7 @@ $(function(){
 				formData.timestamp = new Date() * 1;
 				$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
 					var pic = new Image();				
-					pic.src = 'https://graph.facebook.com/'+me.id+'/picture';
+					pic.src = 'https://graph.facebook.com/'+me.id+'/picture?type=large';
 					$('#step3 .me .dot').html(pic);
 					var img = new Image();				
 					img.src = r.dataUrl;
