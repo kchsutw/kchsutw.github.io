@@ -284,13 +284,13 @@ $(function(){
 			var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 			var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
 			formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
+			formData.street = lineBreak(randomStreet, 10);
 			formData.families01 = $('#step2 [name=families01]').val();
 			formData.families02 = $('#step2 [name=families02]').val();
 			formData.families03 = $('#step2 [name=families03]').val();
 			formData.families04 = $('#step2 [name=families04]').val();
 			formData.number = Math.floor(Math.random() * +new Date() % 99) ;
 			formData.house = randomHouse ;
-			formData.street = lineBreak(randomStreet, 10);
 			FB.api('/me?fields=email,name,first_name',function(me){
 				formData.name = me.first_name;
 				formData.email = me.email;
@@ -515,7 +515,8 @@ $(function(){
 				step2Processing = true;
 				var randomHouse =  houses[Math.floor(Math.random() * +new Date() % houses.length) ];
 				var randomStreet =  streets[Math.floor(Math.random() * +new Date() % streets.length) ];
-				formData.words = $('#step2 [name=words]').val();
+				formData.words =  lineBreak($('#step2 [name=words]').val(), 160);
+				formData.street = lineBreak(randomStreet, 10);
 				formData.families01 = $('#step2 [name=families01]').val();
 				formData.families02 = $('#step2 [name=families02]').val();
 				formData.families03 = $('#step2 [name=families03]').val();
