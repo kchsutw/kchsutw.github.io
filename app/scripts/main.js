@@ -564,7 +564,7 @@ $(function(){
 				$('.dialog span', cur).html(obj.words);
 				cur.addClass(obj.house);
 				page.append(cur);
-				$(cur).on('click',function(){
+				$(cur).css('cursor','pointer').on('click',function(){
 					location.href='./?sn=' + $(this).attr('data-serial');
 				});
 				page.appendTo(dragon);
