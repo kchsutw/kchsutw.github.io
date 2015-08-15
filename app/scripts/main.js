@@ -603,17 +603,17 @@ $(function(){
 			for(var idx in pictures) {
 			  numImages++;
 			}
-			for(var idx in pictures) {
-				images[idx] = {};
-				images[idx].target = pictures[idx].target;
-				images[idx].image = new Image();
-				images[idx].image.onload = function() {
+			$(pictures).each(function(i, d) {
+				images[i] = {};
+				images[i].target = pictures[i].target;
+				images[i].image = new Image();
+				images[i].image.onload = function() {
 					if(++loadedImages >= numImages) {
 						callback(images);
 					}
 				};
-				images[idx].image.src = pictures[idx].image.src;
-			}
+				images[i].image.src = pictures[i].image.src;
+			});
 		}
 	    function roundedImage(x,y,width,height,radius){
 	      context.beginPath();
@@ -655,7 +655,7 @@ $(function(){
 			if(new Date() < new Date(cel.launch)){
 				return true;
 			}
-			var reg = new RegExp(cel.pattern, "ig");
+			var reg = new RegExp(cel.pattern, 'ig');
 
 			if(reg.test(input)){
 				result.match = true;
@@ -681,8 +681,8 @@ $(function(){
 	}
 	$('[name=families01],[name=families02],[name=families03],[name=families04]').on('keyup',function(){
 		var cel = checkCelebrities($(this).val());
+		var parent = $(this).parents('#step2,#step3 aside');
 		if(cel.match){
-			var parent = $(this).parents('#step2,#step3 aside');
 			var target = $(this);
 			var celebrityPic = document.createElement('i');
 			$(celebrityPic).addClass('celebrities')
@@ -693,7 +693,7 @@ $(function(){
 			TweenMax.set(celebrityPic,{
 				left: target.offset().left + 
 					target.width() +
-					+target.css('margin-left').replace(/px/,'') - 
+					target.css('margin-left').replace(/px/,'') * 1 - 
 					parent.offset().left,
 				top: target.offset().top - parent.offset().top +
 					target.height()
@@ -715,7 +715,7 @@ $(function(){
 				image : img,
 				target : $(d)
 			});
-		})
+		});
 	}
 });
 window.fbAsyncInit = function() {
