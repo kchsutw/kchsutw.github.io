@@ -242,13 +242,23 @@ $(function(){
 			colorbox('#about');
 		});
 		$('.goto-rule').on('click',function(){
-			var container = $('.dragon');
-			TweenMax.to(container,0.3,{
-				left : $(window).width() * -0.8,
-				onComplete:function(){
-					$(window).trigger('resize');
-				}
-			});
+			if($('html.tablet').length){
+				var container = $('.container');
+				TweenMax.to(container,0.3,{
+					scrollLeft : $(window).width() * -0.8,
+					onComplete:function(){
+						$(window).trigger('resize');
+					}
+				});
+			}else{
+				var container = $('.dragon');
+				TweenMax.to(container,0.3,{
+					left : $(window).width() * -0.8,
+					onComplete:function(){
+						$(window).trigger('resize');
+					}
+				});				
+			}
 		});	
 		$(window).trigger('resize');
 
