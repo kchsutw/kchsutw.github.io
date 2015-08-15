@@ -237,6 +237,7 @@ $(function(){
 					infiniteList();
 				}
 			}).trigger('resize');
+			keypressEventInit();
 		}
 		$('.nav-pills li:eq(0)').on('click',function(){
 			colorbox('#about');
@@ -246,7 +247,7 @@ $(function(){
 			if($('html.tablet').length){
 				container = $('html,body');
 				TweenMax.to(container,0.3,{
-					scrollLeft : $(window).width() * -0.8,
+					scrollLeft : $(window).width() * 0.8,
 					onComplete:function(){
 						$(window).trigger('resize');
 					}
@@ -354,6 +355,7 @@ $(function(){
 
 
 		}($('html.mobile')));
+		keypressEventInit();
 	}
 
 	var serial;
@@ -376,7 +378,7 @@ $(function(){
 		}
 	});	
 
-	$('.build-a-home').on('click',function(){
+	$('.build-a-home').on('click touchend',function(){
 		ga('send', 'event', 'participants-steps', 'facebook-login', 'start', 1);
 		FB.login(function(r){
 		  if(r.status === 'connected'){
@@ -724,6 +726,40 @@ $(function(){
 			pictures.push({
 				image : img,
 				target : $(d)
+			});
+		});
+	}
+	function keypressEventInit(){
+
+		$('body').on('keypress',function(){
+
+			$('[name=families01],[name=families02],[name=families03],[name=families04]').each(function(i,d){
+				var cel = checkCelebrities($(this).val());
+				var parent = $(this).parents('#step2,#step3 aside');
+				if(cel.match){
+					var target = $(this);
+					var celebrityPic = document.createElement('i');
+					$(celebrityPic).addClass('celebrities')
+						.attr('data-target',this.name)
+						.attr('data-index',cel.index);
+					var img = new Image();
+					$(celebrityPic).append(img);
+					TweenMax.set(celebrityPic,{
+						left: target.offset().left + 
+							target.width() +
+							target.css('margin-left').replace(/px/,'') * 1 - 
+							parent.offset().left,
+						top: target.offset().top - parent.offset().top +
+							target.height()
+					});
+					img.onload = function(){
+						$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
+						$(parent).append(celebrityPic);
+					};
+					img.src = cel.url;
+				}else{
+					$('i.celebrities[data-target='+this.name+']',parent).remove();			
+				}
 			});
 		});
 	}
