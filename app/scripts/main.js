@@ -37,6 +37,7 @@ $(function(){
 			$('.container >.loading').hide();
 			$('.dragon').hide();
 			$('.one').hide();
+			$('.container').addClass('show-one');
 			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
 				(function(one, dragon){
 					r.number = r.number || 69;
@@ -61,6 +62,7 @@ $(function(){
 					one.fadeIn(250);
 					$('.close ',one).one('click',function(){
 						one.hide();
+						$('.container').removeClass('show-one');
 						dragon.fadeIn(250,function(){
 							if (window.history && window.history.pushState)
 							{
@@ -675,6 +677,9 @@ $(function(){
 				$('.dialog span', cur).html(obj.words);
 				cur.addClass(obj.house);
 				page.append(cur);
+				$(cur).on('click',function(){
+					location.href='./?sn=' + $(this).attr('data-serial');
+				});
 				page.appendTo(dragon);
 
 			});

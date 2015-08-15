@@ -139,8 +139,8 @@ header{
   }
   a.menu{ display: none;}
 }
-.tablet .container{
-  width:auto;
+.tablet .container.show-one{
+  width:auto!important;
 }
 .container{
   width:100%;
