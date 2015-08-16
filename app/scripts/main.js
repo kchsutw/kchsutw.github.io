@@ -1,4 +1,4 @@
-/* jshint devel:true , unused : false, camelcase : false, latedef : nofunc*/
+﻿/* jshint devel:true , unused : false, camelcase : false, latedef : nofunc*/
 'use strict';
 // console.log('\'Allo \'Allo!');
 $(function(){
@@ -360,24 +360,7 @@ $(function(){
 	var formData = {};
 	var step2Processing = false;
 	var pictures = [];
-	var celebrities = [
-	{
-		"name":"Anne Hathaway",
-		"url":"https://graph.facebook.com/Hathaway/picture",
-		"pattern":"anne|anne\\s*hathaway|hathaway|a\\s*hathaway|安海瑟薇|海瑟薇|安|貓女",
-		"launch":new Date('2015/8/15'),
-		"expired":new Date('2015/8/15'),
-		"facebookId":"Hathaway"
-	}
-	,{
-		"name": "Ellen Page",
-		"url":"https://graph.facebook.com/EllenPage/picture",
-		"pattern":"Ellen|Ellen\\s*Page|Page|E\\s*Page|艾倫佩姬|艾倫|佩姬",
-		"launch":new Date('2015/8/15'),
-		"expired":new Date('2015/8/15'),
-		"facebookId":"EllenPage"
-	}
-	];
+	var celebrities = [];
 
 	$('.go .term').on('click',function(){
 		ga('send', 'event', 'terms', 'terms', 'click', 1);
