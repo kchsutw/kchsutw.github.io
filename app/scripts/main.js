@@ -734,6 +734,7 @@ $(function(){
 		};
 	}
 	$('[name=families01],[name=families02],[name=families03],[name=families04]').on('input',function(){
+		alert('');
 		var cel = checkCelebrities($(this).val());
 		var parent = $(this).parents('#step2,#step3 aside');
 		if(cel.match){
