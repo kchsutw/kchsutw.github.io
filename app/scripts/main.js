@@ -700,7 +700,7 @@ $(function(){
 			callback(canvas);
 		});
 	}
-	$.getJSON('celebrities/today.json?_='+new Date() * 1,function(r){
+	$.getJSON('celebrities.json?_='+new Date() * 1,function(r){
 		celebrities = r.celebrities;
 	});
 	function checkCelebrities(input){
