@@ -29,6 +29,8 @@ $(function(){
 	};
 	var colorboxClose = function(){
 		ga('send', 'event', 'colorbox', 'colorbox', 'close', 1);
+		offset = 0;
+		$(window).trigger('resize');
 		$.colorbox.close();
 	};
 	function showOne(event){
@@ -285,6 +287,10 @@ $(function(){
 				}
 				scrollTop = $(window).scrollTop();
 				if(direction === 1 && $(window).scrollTop() >= $('body').height() -$(window).height() *1.5){
+					var req = querystring.parse(location.search.replace('?',''));
+					if(req.sn){
+						return;
+					}
 					infiniteList();
 				}
 			}).trigger('resize');
@@ -520,9 +526,7 @@ $(function(){
 		  url:'http://api.kchsu.com/api/Participants/' + serial
 		}).done(function(resp){
 			$('.dragon >.page.house').remove();
-			$(window).trigger('resize');
 			colorboxClose();
-			offset = 0;
 		});
 	});
 
