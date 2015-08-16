@@ -543,46 +543,90 @@ $(function(){
 		tpl.removeClass('house-home');
 		freeze = true;
 		$('.container >.loading').show();
-		$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
-			freeze = false;
-			offset += list.length;
-			if(list.length < 5){
-				nextExists = false;
-			}
-			$.each(list,function(idx,obj){
-				var page = document.createElement('section');
-				page = $(page).addClass('page house');
-				var cur = tpl.clone();
-				obj.number = obj.number || 69;
-				obj.house = obj.house || houses[0];
-				obj.street = obj.street || streets[0];
-				var positionX =  (38-500) * (obj.number/100);
-				var positionY =  (38-209) * (obj.number/100);
-				$('.me span', cur).html(obj.name);
-				var pic = new Image();
-				pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
-				$('.me i', cur).html(pic);
-				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
-				$('ul li:eq(0)', cur).html(obj.families01);
-				$('ul li:eq(1)', cur).html(obj.families02);
-				$('ul li:eq(2)', cur).html(obj.families03);
-				$('ul li:eq(3)', cur).html(obj.families04);
-				$('ul li:eq(4)', cur).html(obj.families05);
-				$(cur).attr('data-serial',obj.id);
-				$('.number', cur).html(obj.number);
-				$('.road-name', cur).html(obj.street);
-				$('.dialog span', cur).html(obj.words);
-				cur.addClass(obj.house);
-				page.append(cur);
-				$(cur).css('cursor','pointer').on('click',function(){
-					location.href='./?sn=' + $(this).attr('data-serial');
-				});
-				page.appendTo(dragon);
 
+
+		if(offset === 0){
+			updateFirstOne(getFiveMore);
+		}else{
+			getFiveMore();
+		}
+
+
+
+		function getFiveMore(){
+			$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
+				freeze = false;
+				offset += list.length;
+				if(list.length < 5){
+					nextExists = false;
+				}
+				$.each(list,function(idx,obj){
+					var page = document.createElement('section');
+					page = $(page).addClass('page house');
+					var cur = tpl.clone();
+					obj.number = obj.number || 69;
+					obj.house = obj.house || houses[0];
+					obj.street = obj.street || streets[0];
+					var positionX =  (38-500) * (obj.number/100);
+					var positionY =  (38-209) * (obj.number/100);
+					$('.me span', cur).html(obj.name);
+					var pic = new Image();
+					pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
+					$('.me i', cur).html(pic);
+					$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
+					$('ul li:eq(0)', cur).html(obj.families01);
+					$('ul li:eq(1)', cur).html(obj.families02);
+					$('ul li:eq(2)', cur).html(obj.families03);
+					$('ul li:eq(3)', cur).html(obj.families04);
+					$('ul li:eq(4)', cur).html(obj.families05);
+					$(cur).attr('data-serial',obj.id);
+					$('.number', cur).html(obj.number);
+					$('.road-name', cur).html(obj.street);
+					$('.dialog span', cur).html(obj.words);
+					cur.addClass(obj.house);
+					page.append(cur);
+					$(cur).css('cursor','pointer').on('click',function(){
+						location.href='./?sn=' + $(this).attr('data-serial');
+					});
+					page.appendTo(dragon);
+
+				});
+				$(window).trigger('resize');
+				$('.container >.loading').hide();
 			});
-			$(window).trigger('resize');
-			$('.container >.loading').hide();
-		});
+		}
+		function updateFirstOne(callback){
+			$.get('http://api.kchsu.com/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
+				offset += list.length;
+				$.each(list,function(idx,obj){
+					var cur = $('#tpl');
+					obj.number = obj.number || 69;
+					obj.house = obj.house || houses[0];
+					obj.street = obj.street || streets[0];
+					var positionX =  (38-500) * (obj.number/100);
+					var positionY =  (38-209) * (obj.number/100);
+					$('.me span', cur).html(obj.name);
+					var pic = new Image();
+					pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
+					$('.me i', cur).html(pic);
+					$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
+					$('ul li:eq(0)', cur).html(obj.families01);
+					$('ul li:eq(1)', cur).html(obj.families02);
+					$('ul li:eq(2)', cur).html(obj.families03);
+					$('ul li:eq(3)', cur).html(obj.families04);
+					$('ul li:eq(4)', cur).html(obj.families05);
+					$(cur).attr('data-serial',obj.id);
+					$('.number', cur).html(obj.number);
+					$('.road-name', cur).html(obj.street);
+					$('.dialog span', cur).html(obj.words);
+					cur.addClass(obj.house);
+					$(cur).css('cursor','pointer').on('click',function(){
+						location.href='./?sn=' + $(this).attr('data-serial');
+					});
+				});
+				callback();
+			});
+		}
 	}
 	infiniteList();
 
@@ -643,9 +687,9 @@ $(function(){
 				var target = d.target,
 			  	x = target.offset().left - $('#step3 >aside').offset().left, 
 			  	y = target.offset().top - $('#step3 >aside').offset().top,
-			  	width = 38,
-			  	height = 38,
-			  	radius = 20;
+			  	width = target.width(),
+			  	height = target.height(),
+			  	radius = target.width() / 2;
 
 			    context.save();
 			    roundedImage(x, y, width, height, radius);

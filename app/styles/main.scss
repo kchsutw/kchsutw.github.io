@@ -424,22 +424,22 @@ header{
           position:relative;
           i.celebrities{
             display: block;
-            width: 38px;
-            height: 38px;
+            width: 24px;
+            height: 24px;
             background:url(../images/btn-background.png);
-            border-radius: 19px;
+            border-radius: 12px;
             position: absolute;
-            right:5px;
-            top:-7px;
+            right:8px;
+            top:0;
             background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
             img{
               display: block;
-              height: 38px;
-              background-size: 38px auto;
+              height: 24px;
+              background-size: 24px auto;
               opacity: inherit;
               position: relative;
-              width: 38px;
-              border-radius: 19px;
+              width: 24px;
+              border-radius: 12px;
               opacity: 0.3;
             }
           }
@@ -591,6 +591,26 @@ header{
         width: 265px;
         margin-left: 10px;
         margin-top: 10px;
+        i{
+          color:rgba(255,255,255,0.8);
+          line-height: em(30,15);
+          font-size: em(15,18);
+          position: absolute;
+          right: 5px;
+          transition-duration:0.2s;
+          transition-property: color,right;
+        }      
+        &:hover{
+          background-position:-10px -50px;
+          i{
+            right: 3px;
+            color:rgba(255,255,255,0.98);
+          }
+        }
+        &:nth-child(8),&:nth-child(9){
+          width:127px;
+          float: left;
+        }
       }
     }
   }
@@ -945,22 +965,22 @@ footer{
       position:relative;
       i.celebrities{
         display: block;
-        width: 38px;
-        height: 38px;
+        width: 24px;
+        height: 24px;
         background:url(../images/btn-background.png);
-        border-radius: 19px;
+        border-radius: 12px;
         position: absolute;
-        right:5px;
-        top:-7px;
+        right:8px;
+        top:0;
         background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
         img{
           display: block;
-          height: 38px;
-          background-size: 38px auto;
+          height: 24px;
+          background-size: 24px auto;
           opacity: inherit;
           position: relative;
-          width: 38px;
-          border-radius: 19px;
+          width: 24px;
+          border-radius: 12px;
           opacity: 0.3;
         }
       }
