@@ -286,11 +286,11 @@ $(function(){
 					direction = 1;
 				}
 				scrollTop = $(window).scrollTop();
+				var req = querystring.parse(location.search.replace('?',''));
+				if(req.sn){
+					return;
+				}
 				if(direction === 1 && $(window).scrollTop() >= $('body').height() -$(window).height() *1.5){
-					var req = querystring.parse(location.search.replace('?',''));
-					if(req.sn){
-						return;
-					}
 					infiniteList();
 				}
 			}).trigger('resize');
