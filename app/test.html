@@ -50,7 +50,7 @@
   <body>
 
 
-    <section class="box" style="width:100%;">
+    <!-- <section class="box" style="width:100%;">
       <section class="hide" style="display:block!important;width:100%;">
         <section id="step2" style="width:0;overflow:hidden">a</section>
         <section id="step3" style="width:100%;">
@@ -79,8 +79,37 @@
           <a class="button" href="javascript:">分享 <i class="fa fa-chevron-right"></i></a>
         </section>
       </section>
-    </section>
+    </section> -->
 
+
+        <section id="step2">
+          <h3>擇愛、成家</h3>
+          <p>選擇你的家庭成員，完成你的成家宣言，並分享到 FACEBOOK<br>就有機會得到《光譜三部曲》書籤乙組。</p>
+          <label class="w175h90">家庭成員：</label>
+          <aside>
+            <input name="families01" maxlength=6 class="families" placeholder="上限六字">
+            <label class="label label-success"></label>
+            <label class="label label-important"></label>
+            <input name="families02" maxlength=6 class="families hide" placeholder="上限六字">
+            <label class="label label-success"></label>
+            <label class="label label-important"></label>
+            <input name="families03" maxlength=6 class="families hide" placeholder="上限六字">
+            <label class="label label-success"></label>
+            <label class="label label-important"></label>
+            <input name="families04" maxlength=6 class="families hide" placeholder="上限六字">
+            <label class="label label-success"></label>
+            <label class="label label-important"></label>
+            <a class="add-button" href="javascript:"><img src="images/add-button.png"></a>
+          </aside>
+          <label class="w175h130">成家宣言：</label>
+          <aside>
+            <textarea name="words" maxlength=30 placeholder="上限三十字" resize="0"></textarea>
+            <label class="label label-success"></label>
+            <label class="label label-important"></label>
+            <a class="button" href="javascript:">虹包 <i class="fa fa-chevron-right"></i></a>
+            <a class="button submit" href="javascript:">登記成家 <i class="fa fa-chevron-right"></i></a>
+          </aside>
+        </section>
     <div id='fb-root'></div>
 
 
@@ -121,6 +150,78 @@
     <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
 
+    <script>
+      // location.href ='celebrities/today.json?_=' + +new Date;
+      var celebrities;
+      $.getJSON('celebrities/today.json?_='+new Date() * 1,function(r){
+        celebrities = r.celebrities;
+      });
+      function checkCelebrities(input){
+        var result = {};
+        $.each(celebrities,function(i,cel){
+          if(new Date() < new Date(cel.launch)){
+            return true;
+          }
+          var reg = new RegExp(cel.pattern, 'ig');
+
+          if(reg.test(input)){
+            result.match = true;
+            result.url = cel.url;
+            result.name = cel.name;
+            result.index = i;
+            if(!celebrities[i].dataUrl){
+              $.get('http://api.kchsu.com/face/' + cel.facebookId,function(r){
+                celebrities[i].dataUrl = r.dataUrl;
+              }); 
+            }
+            return false;
+          }
+
+        });
+        if(result.match){
+          return result;
+        }
+        return {
+          match : false,
+          url : null
+        };
+      }
+      $(function(){
+
+        $('[name=families01],[name=families02],[name=families03],[name=families04]').on('input',function(){
+          var cel = checkCelebrities($(this).val());
+          var parent =$(this).parents('#step2,#step3 aside');
+          if(cel.match){
+            var target = $(this);
+            var celebrityPic = document.createElement('i');
+            $(celebrityPic).addClass('celebrities')
+              .attr('data-target',this.name)
+              .attr('data-index',cel.index);
+            var img = new Image();
+            $(celebrityPic).append(img);
+            var left =target.offset().left + 
+                target.width() +
+                target.css('margin-left').replace(/px/,'') * 1 - 
+                parent.offset().left;
+                alert( left);
+            var top = target.offset().top - parent.offset().top +
+                target.height();
+                alert(top);
+            TweenMax.set(celebrityPic,{
+              left: left,
+              top: top
+            });
+            img.onload = function(){
+              $('i.celebrities[data-target='+target.attr('name')+']',parent).remove();  
+              $(parent).append(celebrityPic);
+            };
+            img.src = cel.url;
+          }else{
+            $('i.celebrities[data-target='+this.name+']',parent).remove();      
+          }
+        });
+      })
+    </script>
     <script>
     $(function(){
       pic = 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p200x200/10985268_10206433523184023_5037063332987726923_n.jpg?oh=68c519fc69590d3bf5ec9ab6519fe54e&oe=56377FCC&__gda__=1447932340_fa1a76fbbcbe40c61e571989549ded7f';

@@ -1,19 +1,19 @@
-{
+﻿{
 	"celebrities" : [
 	{
-		"name": "Anne Hathaway",
-		"url":"https://graph.facebook.com/Hathaway/picture?type=large",
+		"name":"Anne Hathaway",
+		"url":"https://graph.facebook.com/Hathaway/picture",
 		"pattern":"anne|anne\\s*hathaway|hathaway|a\\s*hathaway|安海瑟薇|海瑟薇|安|貓女",
-		"launch":"2015/8/14",
-		"expired":"2015/8/15",
+		"launch":"2015-08-13T16:00:00.000Z",
+		"expired":"2015-08-14T16:00:00.000Z",
 		"facebookId":"Hathaway"
-	},
-	{
+	}
+	,{
 		"name": "Ellen Page",
-		"url":"https://graph.facebook.com/EllenPage/picture?type=large",
+		"url":"https://graph.facebook.com/EllenPage/picture",
 		"pattern":"Ellen|Ellen\\s*Page|Page|E\\s*Page|艾倫佩姬|艾倫|佩姬",
-		"launch":"2015/8/15",
-		"expired":"2016/8/15",
+		"launch":"2015-08-13T16:00:00.000Z",
+		"expired":"2015-08-14T16:00:00.000Z",
 		"facebookId":"EllenPage"
 	}
 	]
