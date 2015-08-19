@@ -800,6 +800,7 @@ $(function(){
 					var reg = new RegExp(q.replace(/\s/ig,'.*|'), 'ig');
 
 		        	if(reg.test(d.name)){
+		        		d.index = i;
 		        		matches.push(d);
 		        	}
 		        });
@@ -845,8 +846,8 @@ $(function(){
 					$(parent).append(celebrityPic);
 					target.val(datum.name);
 					if(!datum.dataUrl){
-						$.get(apiBaseUrl + '/imgData/' + encodeURIComponent(datum.url))
-						.done(function(r){
+						$.getJSON(apiBaseUrl + '/imgData/' + encodeURIComponent(datum.url)).done(function(r){
+							// $('img', celebrityPic).attr('src',r.dataUrl);
 							celebrities[datum.index].dataUrl = r.dataUrl;
 						});	
 					}
