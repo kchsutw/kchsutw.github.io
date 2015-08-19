@@ -11,6 +11,7 @@ $(function(){
 				'成家二路','成家三路','成家四路','成家五路','家屬南路',
 				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
 	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
+	var apiBaseUrl = 'http://' + /localhost/.test(location.href) ? 'localhost:3000' : 'api.kchsu.com';
 
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
@@ -40,7 +41,7 @@ $(function(){
 			$('.dragon').hide();
 			$('.one').hide();
 			$('.container').addClass('show-one');
-			$.get('http://api.kchsu.com/api/Participants/'+req.sn,function(r){
+			$.get(apiBaseUrl+'/api/Participants/'+req.sn,function(r){
 				(function(one, dragon){
 					r.number = r.number || 69;
 					r.house = r.house || houses[0];
@@ -98,7 +99,7 @@ $(function(){
 	}
 	showOne();
 
-	$.get('http://api.kchsu.com/api/Participants/count',function(r){
+	$.get(apiBaseUrl+'/api/Participants/count',function(r){
 		$('.party-count').html(r.count);
 	});
 
@@ -391,7 +392,7 @@ $(function(){
 				formData.email = me.email;
 				formData.facebookid = me.id;
 				formData.timestamp = new Date() * 1;
-				$.get('http://api.kchsu.com/face/'+formData.facebookid,function(r){
+				$.get(apiBaseUrl+'/face/'+formData.facebookid,function(r){
 					var pic = new Image();				
 					pic.src = 'https://graph.facebook.com/'+me.id+'/picture?type=large';
 					$('#step3 .me .dot').html(pic);
@@ -399,11 +400,12 @@ $(function(){
 					img.src = r.dataUrl;
 					pictures.push({image:img,target:$('#step3 .me img')});
 				});
+				importFriends();
 	      		next();
 			});
 	      	return;
 		  }
-		}, {scope:'email'}); 
+		}, {scope:'email,user_friends'}); 
 		ga('send', 'event', 'participants-steps', 'facebook-login', 'denied', 1);
 		function next(){
 			colorbox($('#step2'));
@@ -457,7 +459,7 @@ $(function(){
 		$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
 		$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 		$('#step4 [name=email]').attr('placeholder',formData.email);
-		$.post('http://api.kchsu.com/api/Participants',formData,function(resp){
+		$.post(apiBaseUrl+'/api/Participants',formData,function(resp){
 			serial = resp.id;
 			$('#step3 .button').hide();
 			colorbox('#step3',function(){
@@ -478,7 +480,7 @@ $(function(){
 							$.ajax({
 							  method:'POST',
 							  data :{ base64Url : $(capt).attr('src')},
-							  url:'http://api.kchsu.com/api/Participants/s/' + serial 
+							  url:apiBaseUrl+'/api/Participants/s/' + serial 
 							}).done(function(){
 								$('#step3 .button').fadeIn();
 								step2Processing = false;
@@ -500,7 +502,7 @@ $(function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		FB.ui({
 		  method: 'share',
-		  href: 'http://api.kchsu.com/r/' + serial
+		  href: apiBaseUrl+'/r/' + serial
 		}, function(response){
 
 		    if (response && !response.error_code) {
@@ -523,7 +525,7 @@ $(function(){
 		  // jshint quotmark: false
 		  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
 		  contentType:'application/json; charset=UTF-8',
-		  url:'http://api.kchsu.com/api/Participants/' + serial
+		  url:apiBaseUrl+'/api/Participants/' + serial
 		}).done(function(resp){
 			$('.dragon >.page.house').remove();
 			colorboxClose();
@@ -535,7 +537,6 @@ $(function(){
 	var nextExists = true;
 	var freeze = false;
 	function infiniteList(){
-		ga('send', 'event', 'load-counting', 'infinite-list', 'offset', offset);
 		if(freeze){
 			return false;
 		}
@@ -558,7 +559,8 @@ $(function(){
 
 
 		function getFiveMore(){
-			$.get('http://api.kchsu.com/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
+			ga('send', 'event', 'load-counting', 'infinite-list', 'offset', offset);
+			$.get(apiBaseUrl+'/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
 				freeze = false;
 				offset += list.length;
 				if(list.length < 5){
@@ -600,7 +602,7 @@ $(function(){
 			});
 		}
 		function updateFirstOne(callback){
-			$.get('http://api.kchsu.com/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
+			$.get(apiBaseUrl+'/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
 				offset += list.length;
 				$.each(list,function(idx,obj){
 					var cur = $('#tpl');
@@ -721,7 +723,7 @@ $(function(){
 				result.name = cel.name;
 				result.index = i;
 				if(!celebrities[i].dataUrl){
-					$.get('http://api.kchsu.com/face/' + cel.facebookId,function(r){
+					$.get(apiBaseUrl+'/imgData/' + encodeURIComponent(cel.url) ,function(r){
 						celebrities[i].dataUrl = r.dataUrl;
 					});	
 				}
@@ -772,6 +774,87 @@ $(function(){
 			pictures.push({
 				image : img,
 				target : $(d)
+			});
+		});
+	}
+	function importFriends(){
+		FB.api('/me/taggable_friends?limit=5000',function(resp){
+			$.each(resp.data,function(i,d ){
+				celebrities.push({
+					'name': d.name,
+					'url': d.picture.data.url,
+					'pattern':new Date()*1,
+					'launch':JSON.stringify(new Date()).replace(/\"/ig,''),
+					'expired':'2015-12-31T16:00:00.000Z',
+					'facebookId':null
+				});
+			});
+			var substringMatcher = function() {
+			  return function findMatches(q, cb) {
+			    var matches;
+
+			    // an array that will be populated with substring matches
+			    matches = [];
+
+		        $.each(celebrities,function(i,d){
+					var reg = new RegExp(q.replace(/\s/ig,'.*|'), 'ig');
+
+		        	if(reg.test(d.name)){
+						if(!d.dataUrl){
+							$.getJSON(apiBaseUrl+'/imgData/' + encodeURIComponent(d.url)).done(function(r){
+								celebrities[i].dataUrl = r.dataUrl;
+							});	
+			        		matches.push(d);
+						}else{
+			        		matches.push(d);
+						}
+		        	}
+		        });
+			    cb(matches);
+
+			  };
+			};
+
+			$('[name=families01],[name=families02],[name=families03],[name=families04]').typeahead(null,
+			{
+				name: 'best-pictures',
+				display: 'value',
+				source: substringMatcher(),
+				templates: {
+				    empty: [
+				      '<div class="empty-message">',
+				        '...',
+				      '</div>'
+				    ].join('\n'),
+				    suggestion: function(item){
+      					return '<div><strong>'+item.name+'</strong> <img src=\''+item.url+'\'></div>';
+      				}
+      		    }
+			}).bind("typeahead:selected", function(obj, datum, name) {
+				console.log(obj, datum, name);
+				var parent = $(this).parents('#step2,#step3 aside');
+				var target = $(this);
+				var celebrityPic = document.createElement('i');
+				$(celebrityPic).addClass('celebrities')
+					.attr('data-target',this.name)
+					.attr('data-index',datum.index);
+				var img = new Image();
+				$(celebrityPic).append(img);
+				TweenMax.set(celebrityPic,{
+					left: target.offset().left + 
+						target.width() +
+						target.css('margin-left').replace(/px/,'') * 1 - 
+						parent.offset().left,
+					top: target.offset().top - parent.offset().top +
+						target.height()
+				});
+				img.onload = function(){
+					$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
+					$(parent).append(celebrityPic);
+					target.val(datum.name);
+				};
+				console.log(datum.name)
+				img.src = datum.url;
 			});
 		});
 	}

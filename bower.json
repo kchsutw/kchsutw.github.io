@@ -13,6 +13,7 @@
     "detectizr": "~2.0.0",
     "querystring": "~3.46.1",
     "html2canvas": "~0.4.1",
-    "bootstrap-maxlength": "~1.6.0"
+    "bootstrap-maxlength": "~1.6.0",
+    "typeahead.js": "~0.11.1"
   }
 }
