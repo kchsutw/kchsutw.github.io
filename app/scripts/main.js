@@ -11,7 +11,7 @@ $(function(){
 				'成家二路','成家三路','成家四路','成家五路','家屬南路',
 				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
 	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
-	var apiBaseUrl = 'http://' + /localhost/.test(location.href) ? 'localhost:3000' : 'api.kchsu.com';
+	var apiBaseUrl =  /localhost/.test(location.href) ? 'http://localhost:3000' : 'http://api.kchsu.com';
 
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
@@ -41,7 +41,7 @@ $(function(){
 			$('.dragon').hide();
 			$('.one').hide();
 			$('.container').addClass('show-one');
-			$.get(apiBaseUrl+'/api/Participants/'+req.sn,function(r){
+			$.get(apiBaseUrl + '/api/Participants/'+req.sn,function(r){
 				(function(one, dragon){
 					r.number = r.number || 69;
 					r.house = r.house || houses[0];
@@ -99,7 +99,7 @@ $(function(){
 	}
 	showOne();
 
-	$.get(apiBaseUrl+'/api/Participants/count',function(r){
+	$.get(apiBaseUrl + '/api/Participants/count',function(r){
 		$('.party-count').html(r.count);
 	});
 
@@ -392,7 +392,7 @@ $(function(){
 				formData.email = me.email;
 				formData.facebookid = me.id;
 				formData.timestamp = new Date() * 1;
-				$.get(apiBaseUrl+'/face/'+formData.facebookid,function(r){
+				$.get(apiBaseUrl + '/face/'+formData.facebookid,function(r){
 					var pic = new Image();				
 					pic.src = 'https://graph.facebook.com/'+me.id+'/picture?type=large';
 					$('#step3 .me .dot').html(pic);
@@ -459,7 +459,7 @@ $(function(){
 		$('#step3 .me .dot').css('background-position', positionX + 'px ' + positionY + 'px');
 		$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 		$('#step4 [name=email]').attr('placeholder',formData.email);
-		$.post(apiBaseUrl+'/api/Participants',formData,function(resp){
+		$.post(apiBaseUrl + '/api/Participants',formData,function(resp){
 			serial = resp.id;
 			$('#step3 .button').hide();
 			colorbox('#step3',function(){
@@ -480,7 +480,7 @@ $(function(){
 							$.ajax({
 							  method:'POST',
 							  data :{ base64Url : $(capt).attr('src')},
-							  url:apiBaseUrl+'/api/Participants/s/' + serial 
+							  url:apiBaseUrl + '/api/Participants/s/' + serial 
 							}).done(function(){
 								$('#step3 .button').fadeIn();
 								step2Processing = false;
@@ -502,7 +502,7 @@ $(function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		FB.ui({
 		  method: 'share',
-		  href: apiBaseUrl+'/r/' + serial
+		  href: apiBaseUrl + '/r/' + serial
 		}, function(response){
 
 		    if (response && !response.error_code) {
@@ -525,7 +525,7 @@ $(function(){
 		  // jshint quotmark: false
 		  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
 		  contentType:'application/json; charset=UTF-8',
-		  url:apiBaseUrl+'/api/Participants/' + serial
+		  url:apiBaseUrl + '/api/Participants/' + serial
 		}).done(function(resp){
 			$('.dragon >.page.house').remove();
 			colorboxClose();
@@ -560,7 +560,7 @@ $(function(){
 
 		function getFiveMore(){
 			ga('send', 'event', 'load-counting', 'infinite-list', 'offset', offset);
-			$.get(apiBaseUrl+'/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
+			$.get(apiBaseUrl + '/api/Participants',{filter:{limit:5,offset:offset,order:'id DESC'}},function(list){
 				freeze = false;
 				offset += list.length;
 				if(list.length < 5){
@@ -602,7 +602,7 @@ $(function(){
 			});
 		}
 		function updateFirstOne(callback){
-			$.get(apiBaseUrl+'/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
+			$.get(apiBaseUrl + '/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
 				offset += list.length;
 				$.each(list,function(idx,obj){
 					var cur = $('#tpl');
@@ -723,7 +723,7 @@ $(function(){
 				result.name = cel.name;
 				result.index = i;
 				if(!celebrities[i].dataUrl){
-					$.get(apiBaseUrl+'/imgData/' + encodeURIComponent(cel.url) ,function(r){
+					$.get(apiBaseUrl + '/imgData/' + encodeURIComponent(cel.url) ,function(r){
 						celebrities[i].dataUrl = r.dataUrl;
 					});	
 				}
@@ -800,14 +800,7 @@ $(function(){
 					var reg = new RegExp(q.replace(/\s/ig,'.*|'), 'ig');
 
 		        	if(reg.test(d.name)){
-						if(!d.dataUrl){
-							$.getJSON(apiBaseUrl+'/imgData/' + encodeURIComponent(d.url)).done(function(r){
-								celebrities[i].dataUrl = r.dataUrl;
-							});	
-			        		matches.push(d);
-						}else{
-			        		matches.push(d);
-						}
+		        		matches.push(d);
 		        	}
 		        });
 			    cb(matches);
@@ -831,7 +824,6 @@ $(function(){
       				}
       		    }
 			}).bind('typeahead:selected', function(obj, datum, name) {
-				console.log(obj, datum, name);
 				var parent = $(this).parents('#step2,#step3 aside');
 				var target = $(this);
 				var celebrityPic = document.createElement('i');
@@ -852,6 +844,14 @@ $(function(){
 					$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
 					$(parent).append(celebrityPic);
 					target.val(datum.name);
+					if(!datum.dataUrl){
+						console.log(apiBaseUrl);
+						console.log(datum);
+						$.get(apiBaseUrl + '/imgData/' + encodeURIComponent(datum.url))
+						.done(function(r){
+							celebrities[datum.index].dataUrl = r.dataUrl;
+						});	
+					}
 				};
 				img.src = datum.url;
 			});
