@@ -845,8 +845,6 @@ $(function(){
 					$(parent).append(celebrityPic);
 					target.val(datum.name);
 					if(!datum.dataUrl){
-						console.log(apiBaseUrl);
-						console.log(datum);
 						$.get(apiBaseUrl + '/imgData/' + encodeURIComponent(datum.url))
 						.done(function(r){
 							celebrities[datum.index].dataUrl = r.dataUrl;
