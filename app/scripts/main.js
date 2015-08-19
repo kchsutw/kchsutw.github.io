@@ -830,7 +830,7 @@ $(function(){
       					return '<div><strong>'+item.name+'</strong> <img src=\''+item.url+'\'></div>';
       				}
       		    }
-			}).bind("typeahead:selected", function(obj, datum, name) {
+			}).bind('typeahead:selected', function(obj, datum, name) {
 				console.log(obj, datum, name);
 				var parent = $(this).parents('#step2,#step3 aside');
 				var target = $(this);
@@ -853,7 +853,6 @@ $(function(){
 					$(parent).append(celebrityPic);
 					target.val(datum.name);
 				};
-				console.log(datum.name)
 				img.src = datum.url;
 			});
 		});
