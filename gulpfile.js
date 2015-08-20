@@ -85,7 +85,7 @@ gulp.task('nodemon', function (cb) {
   var started = false;
   
   return $.nodemon({
-    script: '../kcApi/server/index.js'
+    script: '../kc-api/server/index.js'
   }).on('start', function () {
     // to avoid nodemon being started multiple times
     // thanks @matthisk
