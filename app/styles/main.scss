@@ -422,6 +422,7 @@ header{
           list-style: none;
           line-height: em(24,15);
           position:relative;
+          padding-left:18px;
           i.celebrities{
             display: block;
             width: 24px;
@@ -429,7 +430,7 @@ header{
             background:url(../images/btn-background.png);
             border-radius: 12px;
             position: absolute;
-            right:8px;
+            left:-10px;
             top:0;
             background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
             img{
@@ -778,7 +779,7 @@ footer{
     margin-right:10px;
     border: 1px solid #bbb;
     border-radius: 3px;
-    padding: 5px;
+    padding: 5px 5px 5px 30px;
   }
   textarea{
     border: 1px solid #bbb;
@@ -866,7 +867,7 @@ footer{
   .tt-menu{
     top:30px !important;
     border-bottom: 1px solid #bbb;
-    width: 139px;
+    width: 200px;
   }
   .tt-suggestion.tt-selectable{
     display: block;
@@ -877,8 +878,12 @@ footer{
     border-bottom:none;
     cursor: pointer;
     position: relative;
+    &:hover{
+      background:#fefefe;
+    }
     span{
       line-height: 38px;
+      padding-left:40px;
     }
     img{
       display: inline-block;
@@ -888,7 +893,7 @@ footer{
       width: 38px;
       border-radius: 19px;
       position: absolute;
-      right: 0;
+      left: -3px;
       top: 0;
     }
   }
@@ -995,6 +1000,7 @@ footer{
       list-style: none;
       line-height: em(24,15);
       position:relative;
+      padding-left:18px;
       i.celebrities{
         display: block;
         width: 24px;
@@ -1002,7 +1008,7 @@ footer{
         background:url(../images/btn-background.png);
         border-radius: 12px;
         position: absolute;
-        right:8px;
+        left:-10px;
         top:0;
         background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
         img{

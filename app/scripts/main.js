@@ -467,7 +467,6 @@ $(function(){
 				    onrendered: function(canvas) {
 						addCelebrities();
 			    		addPictures(canvas, function(cvs){
-						    $('#step3').append(canvas);
 						    var img    = cvs.toDataURL('image/png');
 						    var capt = document.createElement('img');
 						    capt.src=img;
@@ -790,7 +789,8 @@ $(function(){
 					'pattern':new Date()*1,
 					'launch':JSON.stringify(new Date()).replace(/\"/ig,''),
 					'expired':'2015-12-31T16:00:00.000Z',
-					'facebookId':null
+					'facebookId':null,
+					'value': (d.name.length <= 10 ? d.name : d.name.replace(/^(\S+).*/i,'$1') )
 				});
 			});
 			var substringMatcher = function() {
@@ -815,7 +815,7 @@ $(function(){
 			$('[name=families01],[name=families02],[name=families03],[name=families04]').typeahead(null,
 			{
 				name: 'best-pictures',
-				display: 'name',
+				display: 'value',
 				source: substringMatcher(),
 				templates: {
 				    empty: [
@@ -837,23 +837,22 @@ $(function(){
 				var img = new Image();
 				$(celebrityPic).append(img);
 				TweenMax.set(celebrityPic,{
-					left: target.offset().left + 
-						target.width() +
+					left: target.offset().left +
 						target.css('margin-left').replace(/px/,'') * 1 - 
-						parent.offset().left,
+						parent.offset().left + 16,
 					top: target.offset().top - parent.offset().top +
-						target.height()
+						target.height() - 5
 				});
 				img.onload = function(){
 					$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
 					$(parent).append(celebrityPic);
-					target.val(datum.name);
+					target.val(datum.value);
 					if(!datum.dataUrl){
 						$.post(apiBaseUrl + '/imgData', {
 								imgUrl : datum.url
 							})
 							.done(function(r){
-								// $('img', celebrityPic).attr('src',r.dataUrl);
+								r = $.parseJSON(r);
 								celebrities[datum.index].dataUrl = r.dataUrl;
 							});	
 					}
