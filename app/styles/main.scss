@@ -863,7 +863,34 @@ footer{
   .tt-hint{
     display: none!important;
   }
+  .tt-menu{
+    top:30px !important;
+    border-bottom: 1px solid #bbb;
+    width: 139px;
+  }
   .tt-suggestion.tt-selectable{
+    display: block;
+    width: auto;
+    height: 38px;
+    background:#f3f3f3;
+    border: 1px solid #bbb;
+    border-bottom:none;
+    cursor: pointer;
+    position: relative;
+    span{
+      line-height: 38px;
+    }
+    img{
+      display: inline-block;
+      height: 38px;
+      background-size: 38px auto;
+      opacity: inherit;
+      width: 38px;
+      border-radius: 19px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 }
 #step3{

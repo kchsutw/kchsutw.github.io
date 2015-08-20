@@ -536,6 +536,7 @@ $(function(){
 	var offset = 0;
 	var nextExists = true;
 	var freeze = false;
+	var friendImported = false;
 	function infiniteList(){
 		if(freeze){
 			return false;
@@ -778,6 +779,9 @@ $(function(){
 		});
 	}
 	function importFriends(){
+		if(friendImported){
+			return;
+		}
 		FB.api('/me/taggable_friends?limit=5000',function(resp){
 			$.each(resp.data,function(i,d ){
 				celebrities.push({
@@ -808,7 +812,6 @@ $(function(){
 
 			  };
 			};
-
 			$('[name=families01],[name=families02],[name=families03],[name=families04]').typeahead(null,
 			{
 				name: 'best-pictures',
@@ -854,6 +857,7 @@ $(function(){
 				};
 				img.src = datum.url;
 			});
+			friendImported = true;
 		});
 	}
 });
