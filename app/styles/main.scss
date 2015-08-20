@@ -860,6 +860,11 @@ footer{
       border-radius: 19px;
     }
   }
+  .tt-hint{
+    display: none!important;
+  }
+  .tt-suggestion.tt-selectable{
+  }
 }
 #step3{
   width:600px;

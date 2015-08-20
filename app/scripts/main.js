@@ -377,7 +377,7 @@ $(function(){
 
 	$('#step2 .add-button').on('click', function(){
 		ga('send', 'event', 'participants-steps', 'add-family', 'click', 1);
-		$('#step2 .families.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
+		$('#step2 .families.tt-input.hide:eq(0)').fadeTo(1,0).removeClass('hide').fadeTo(200,1);
 		if(!$('#step2 .families.hide:eq(0)').length){
 			$(this).fadeOut(250);
 		}
@@ -812,7 +812,7 @@ $(function(){
 			$('[name=families01],[name=families02],[name=families03],[name=families04]').typeahead(null,
 			{
 				name: 'best-pictures',
-				display: 'value',
+				display: 'name',
 				source: substringMatcher(),
 				templates: {
 				    empty: [
@@ -821,7 +821,7 @@ $(function(){
 				      '</div>'
 				    ].join('\n'),
 				    suggestion: function(item){
-      					return '<div><strong>'+item.name+'</strong> <img src=\''+item.url+'\'></div>';
+      					return '<div><span>'+item.name+'</span> <img src=\''+item.url+'\'></div>';
       				}
       		    }
 			}).bind('typeahead:selected', function(obj, datum, name) {

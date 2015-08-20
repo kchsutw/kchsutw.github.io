@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
+var proxy = require('http-proxy-middleware');
 var reload = browserSync.reload;
 
 gulp.task('styles', function () {
@@ -79,7 +80,28 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'fonts'], function () {
+gulp.task('nodemon', function (cb) {
+  
+  var started = false;
+  
+  return $.nodemon({
+    script: '../kcApi/server/index.js'
+  }).on('start', function () {
+    // to avoid nodemon being started multiple times
+    // thanks @matthisk
+    if (!started) {
+      cb();
+      started = true; 
+    } 
+  });
+});
+
+gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
+
+  var proxyOptions = {};
+  proxyOptions.target = 'http://localhost:3000';
+  proxyOptions.changeOrigin= true;
+
   browserSync({
     notify: false,
     port: 9000,
@@ -87,7 +109,8 @@ gulp.task('serve', ['styles', 'fonts'], function () {
       baseDir: ['.tmp', 'app'],
       routes: {
         '/bower_components': 'bower_components'
-      }
+      },
+      middleware: [proxy('/api',  proxyOptions),proxy('/explorer',  proxyOptions)]
     }
   });
 
