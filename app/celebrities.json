@@ -2,7 +2,7 @@
 	"celebrities" : [
 	{
 		"name":"Seth Rogen",
-		"url":"https://graph.facebook.com/sethrogen/picture",
+		"url":"https://scontent-tpe1-1.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/1979716_229207810605724_403176912_n.jpg?oh=c5b494e4f8ad35168c4f60ff21650d2c&oe=568384E2&dl=1",
 		"pattern":"Seth|Seth\\s*Rogen|Rogen|a\\s*Rogen|賽斯羅根",
 		"launch":"2015-08-13T16:00:00.000Z",
 		"expired":"2015-08-14T16:00:00.000Z",
