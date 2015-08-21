@@ -500,7 +500,12 @@ $(function(){
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		var shareUrl = apiBaseUrl + '/r/' + serial;
-		$.get('//developers.facebook.com/tools/debug/?q=' + encodeURIComponent(shareUrl)).error(function(r){
+		FB.ui({
+		  method: 'share',
+		  href: shareUrl
+		});
+		setTimeout(function(){
+			$('#fb-root').show();
 			FB.ui({
 			  method: 'share',
 			  href: shareUrl
@@ -511,7 +516,8 @@ $(function(){
 					colorbox('#step4');
 			    }
 			});
-		});
+
+		},100);
 	});
 
 
