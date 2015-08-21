@@ -501,7 +501,6 @@ $(function(){
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		var shareUrl = apiBaseUrl + '/r/' + serial;
-		$('#fb-root').hide();
 		FB.ui({
 		  method: 'share',
 		  href: shareUrl
@@ -727,9 +726,13 @@ $(function(){
 				result.name = cel.name;
 				result.index = i;
 				if(!celebrities[i].dataUrl){
-					$.get(apiBaseUrl + '/imgData/' + encodeURIComponent(cel.url) ,function(r){
-						celebrities[i].dataUrl = r.dataUrl;
-					});	
+					$.post(apiBaseUrl + '/imgData', {
+							imgUrl : datum.url
+						})
+						.done(function(r){
+							r = $.parseJSON(r);
+							celebrities[i].dataUrl = r.dataUrl;\
+						});	
 				}
 				return false;
 			}
