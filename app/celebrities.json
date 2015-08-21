@@ -2,7 +2,7 @@
 	"celebrities" : [
 	{
 		"name":"Anne Hathaway",
-		"url":"https://graph.facebook.com/Hathaway/picture",
+		"url":"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/p110x80/11825639_1711124922448958_3482595665764095784_n.jpg?oh=a6e99b904f319866038f98f8a234c4f0&oe=563D530E&__gda__=1451027432_4fe5a43234fb84c3019f57f2ffc5a7db",
 		"pattern":"anne|anne\\s*hathaway|hathaway|a\\s*hathaway|安海瑟薇|海瑟薇|安|貓女",
 		"launch":"2015-08-13T16:00:00.000Z",
 		"expired":"2015-08-14T16:00:00.000Z",
