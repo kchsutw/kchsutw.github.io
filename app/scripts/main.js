@@ -89,6 +89,13 @@ $(function(){
 							}
 						});
 					});
+					$('.one .button.share').on('click', function(){
+						var shareUrl = apiBaseUrl + '/r/' + req.sn;
+						FB.ui({
+						  method: 'share',
+						  href: shareUrl
+						});
+					});
 				}($('.one'), $('.dragon')));				
 			});
 		}else{
