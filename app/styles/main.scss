@@ -876,7 +876,12 @@ footer{
     border-bottom: 1px solid #bbb;
     width: 200px;
   }
-  .tt-suggestion.tt-selectable{
+  .empty-message{
+    line-height: 50px;
+    padding-right: 10px;
+    text-align: right;
+  }
+  .tt-suggestion.tt-selectable,.empty-message {
     display: block;
     width: auto;
     height: 38px;
