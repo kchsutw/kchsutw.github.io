@@ -503,8 +503,8 @@ $(function(){
 		var shareUrl = apiBaseUrl + '/r/' + serial;
 		$('#fb-root').hide();
 		FB.ui({
-		  method: 'feed',
-		  link: shareUrl
+		  method: 'share',
+		  href: shareUrl
 		}, function(response){
 
 		    if (response && !response.error_code) {
