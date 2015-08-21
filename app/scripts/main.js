@@ -727,11 +727,11 @@ $(function(){
 				result.index = i;
 				if(!celebrities[i].dataUrl){
 					$.post(apiBaseUrl + '/imgData', {
-							imgUrl : datum.url
+							imgUrl : cel.url
 						})
 						.done(function(r){
 							r = $.parseJSON(r);
-							celebrities[i].dataUrl = r.dataUrl;\
+							celebrities[i].dataUrl = r.dataUrl;
 						});	
 				}
 				return false;
