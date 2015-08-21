@@ -523,7 +523,7 @@ $(function(){
 					colorbox('#step4');
 			    }
 			});
-		}, 800);
+		}, 2000);
 		// FB.ui({
 		// 	method: 'feed',
 		// 	message:'#擇愛成家',
