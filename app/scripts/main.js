@@ -499,10 +499,11 @@ $(function(){
 
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-		$.get('//developers.facebook.com/tools/debug/?q=http%3A%2F%2Fapi.kchsu.com%2Fr%2F475').error(function(r){
+		var shareUrl = apiBaseUrl + '/r/' + serial;
+		$.get('//developers.facebook.com/tools/debug/?q=' + encodeURIComponent(shareUrl)).error(function(r){
 			FB.ui({
 			  method: 'share',
-			  href: apiBaseUrl + '/r/' + serial
+			  href: shareUrl
 			}, function(response){
 
 			    if (response && !response.error_code) {
