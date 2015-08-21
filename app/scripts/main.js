@@ -469,6 +469,7 @@ $(function(){
 		$('#step3 .tpl').removeClass('house-home').addClass(randomHouse);
 		$('#step4 [name=email]').attr('placeholder',formData.email);
 		$.post(apiBaseUrl + '/api/Participants',formData,function(resp){
+			$('.dragon >.page.house').remove();
 			serial = resp.id;
 			$('#step3 .button').hide();
 			colorbox('#step3',function(){
@@ -551,7 +552,6 @@ $(function(){
 		  contentType:'application/json; charset=UTF-8',
 		  url:apiBaseUrl + '/api/Participants/' + serial
 		}).done(function(resp){
-			$('.dragon >.page.house').remove();
 			colorboxClose();
 		});
 	});
