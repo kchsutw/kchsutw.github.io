@@ -510,7 +510,6 @@ $(function(){
 		var shareUrl = apiBaseUrl + '/r/' + serial;
 		FB.ui({
 		  method: 'share',
-		  display: 'popup',
 		  href: shareUrl
 		}, function(response){
 
@@ -627,36 +626,40 @@ $(function(){
 			});
 		}
 		function updateFirstOne(callback){
-			$.get(apiBaseUrl + '/api/Participants',{filter:{limit:1,offset:0,order:'id DESC'}},function(list){
-				offset += list.length;
-				$.each(list,function(idx,obj){
-					var cur = $('#tpl');
-					obj.number = obj.number || 69;
-					obj.house = obj.house || houses[0];
-					obj.street = obj.street || streets[0];
-					var positionX =  (38-500) * (obj.number/100);
-					var positionY =  (38-209) * (obj.number/100);
-					$('.me span', cur).html(obj.name);
-					var pic = new Image();
-					pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
-					$('.me i', cur).html(pic);
-					$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
-					$('ul li:eq(0)', cur).html(obj.families01);
-					$('ul li:eq(1)', cur).html(obj.families02);
-					$('ul li:eq(2)', cur).html(obj.families03);
-					$('ul li:eq(3)', cur).html(obj.families04);
-					$('ul li:eq(4)', cur).html(obj.families05);
-					$(cur).attr('data-serial',obj.id);
-					$('.number', cur).html(obj.number);
-					$('.road-name', cur).html(obj.street);
-					$('.dialog span', cur).html(obj.words);
-					cur.addClass(obj.house);
-					$(cur).css('cursor','pointer').on('click',function(){
-						location.href='./?sn=' + $(this).attr('data-serial');
-					});
-				});
+			$.get('highlight.json',function(obj){
+				var cur = $('#tpl');
+				obj.number = obj.number || 69;
+				obj.house = obj.house || houses[0];
+				obj.street = obj.street || streets[0];
+				var positionX =  (38-500) * (obj.number/100);
+				var positionY =  (38-209) * (obj.number/100);
+				$('.me span', cur).html(obj.name);
+				var pic = new Image();
+				pic.src = obj.profilePicture;
+				$('.me i', cur).html(pic);
+				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
+				appendFamilyPicture(obj.families01, $('ul li:eq(0)', cur), obj.families01Picture, positionX, positionY);
+				appendFamilyPicture(obj.families02, $('ul li:eq(1)', cur), obj.families02Picture, positionX, positionY);
+				appendFamilyPicture(obj.families03, $('ul li:eq(2)', cur), obj.families03Picture, positionX, positionY);
+				appendFamilyPicture(obj.families04, $('ul li:eq(3)', cur), obj.families04Picture, positionX, positionY);
+				$('.number', cur).html(obj.number);
+				$('.road-name', cur).html(obj.street);
+				$('.dialog span', cur).html(obj.words);
+				cur.addClass(obj.house);
+				cur.parent().css('background','url('+obj.houseBackground+') no-repeat 0 center / 100% auto');
 				callback();
 			});
+			function appendFamilyPicture(familyName, target, url, backgroundX, backgroundY){				
+				target.html(familyName);
+				if(url){
+					var pic = new Image();
+					pic.onload = function(){
+						target.append($('<i class=\'celebrities\'></i>').html(pic));
+						$('i', target).css('background-position', backgroundX + 'px ' + backgroundY + 'px');
+					};
+					pic.src = url;
+				}
+			}
 		}
 	}
 	infiniteList();

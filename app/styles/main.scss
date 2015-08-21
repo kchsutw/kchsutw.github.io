@@ -432,16 +432,24 @@ header{
             position: absolute;
             left:-5px;
             top:0;
+            transition:0.3s transform;
+            &:hover{
+              transform:scale(1.6);
+              img{
+                opacity: 0.6;
+              }
+            }
             background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
             img{
               display: block;
-              height: 24px;
+              height: 100%;
               background-size: 24px auto;
               opacity: inherit;
               position: relative;
-              width: 24px;
+              width: 100%;
               border-radius: 12px;
               opacity: 0.3;
+              transition:0.3s opacity;
             }
           }
         }
