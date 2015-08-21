@@ -1,6 +1,26 @@
 ﻿{
 	"celebrities" : [
 	{
+		"name":"Seth Rogen",
+		"url":"https://graph.facebook.com/sethrogen/picture",
+		"pattern":"Seth|Seth\\s*Rogen|Rogen|a\\s*Rogen|賽斯羅根",
+		"launch":"2015-08-13T16:00:00.000Z",
+		"expired":"2015-08-14T16:00:00.000Z",
+		"facebookId":"Hathaway",
+		"value":"汁男羅根"
+	}
+	,
+	{
+		"name":"James Franco",
+		"url":"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/11896089_1037415626303651_6169148662472027632_n.jpg?oh=b8239f77a2071093f1980cd8f72a9330&oe=566ED020&__gda__=1450776863_691e6c5e3eb58e8be17f4f38b634294f&dl=1",
+		"pattern":"James|James\\s*Franco|Franco|a\\s*Franco|神父|詹姆士法蘭科",
+		"launch":"2015-08-13T16:00:00.000Z",
+		"expired":"2015-08-14T16:00:00.000Z",
+		"facebookId":"Hathaway",
+		"value":"神父法蘭科"
+	}
+	,
+	{
 		"name":"Anne Hathaway",
 		"url":"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/p110x80/11825639_1711124922448958_3482595665764095784_n.jpg?oh=a6e99b904f319866038f98f8a234c4f0&oe=563D530E&__gda__=1451027432_4fe5a43234fb84c3019f57f2ffc5a7db",
 		"pattern":"anne|anne\\s*hathaway|hathaway|a\\s*hathaway|安海瑟薇|海瑟薇|安|貓女",

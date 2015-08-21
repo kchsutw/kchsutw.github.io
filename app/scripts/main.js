@@ -793,12 +793,11 @@ $(function(){
 			var img = new Image();
 			$(celebrityPic).append(img);
 			TweenMax.set(celebrityPic,{
-				left: target.offset().left + 
-					target.width() +
+				left: target.offset().left +
 					target.css('margin-left').replace(/px/,'') * 1 - 
-					parent.offset().left,
+					parent.offset().left + 16,
 				top: target.offset().top - parent.offset().top +
-					target.height()
+					target.height() - 5
 			});
 			img.onload = function(){
 				$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
