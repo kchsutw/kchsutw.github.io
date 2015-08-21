@@ -400,6 +400,7 @@ $(function(){
 					img.src = r.dataUrl;
 					pictures.push({image:img,target:$('#step3 .me img')});
 				});
+				$('#step2 .families,#step2 [name=words]').val('');
 				importFriends();
 	      		next();
 			});
@@ -500,24 +501,17 @@ $(function(){
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		var shareUrl = apiBaseUrl + '/r/' + serial;
+		$('#fb-root').hide();
 		FB.ui({
-		  method: 'share',
-		  href: shareUrl
+		  method: 'feed',
+		  link: shareUrl
+		}, function(response){
+
+		    if (response && !response.error_code) {
+				ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
+				colorbox('#step4');
+		    }
 		});
-		setTimeout(function(){
-			$('#fb-root').show();
-			FB.ui({
-			  method: 'share',
-			  href: shareUrl
-			}, function(response){
-
-			    if (response && !response.error_code) {
-					ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
-					colorbox('#step4');
-			    }
-			});
-
-		},100);
 	});
 
 
@@ -886,7 +880,7 @@ window.fbAsyncInit = function() {
  var js, fjs = d.getElementsByTagName(s)[0];
  if (d.getElementById(id)) {return;}
  js = d.createElement(s); js.id = id;
- js.src = '//connect.facebook.net/zh_TW/sdk.js';
+ js.src = '//connect.facebook.net/zh_TW/all.js';
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
