@@ -646,8 +646,17 @@ $(function(){
 				$('.number', cur).html(obj.number);
 				$('.road-name', cur).html(obj.street);
 				$('.dialog span', cur).html(obj.words);
+				$('.me, ul', cur).css('color',obj.color);
 				cur.addClass(obj.house);
-				cur.parent().css('background','url('+obj.houseBackground+') no-repeat 0 center / 100% auto');
+				cur.prepend($('<div></div>')
+					.css('position','absolute')
+					.css('opacity','0.8')
+					.css('top','0')
+					.css('left','0')
+					.css('width','100%')
+					.css('height','100%')
+					.css('z-index','-1')
+					.css('background','url('+obj.houseBackground+') no-repeat 0 center / auto 100%'));
 				callback();
 			});
 			function appendFamilyPicture(familyName, target, url, backgroundX, backgroundY){				
