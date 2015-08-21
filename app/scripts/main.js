@@ -656,6 +656,10 @@ $(function(){
 					.css('width','295px')
 					.css('height','320px')
 					.css('background','url('+obj.houseBackground+') no-repeat 0 center / auto 100%'));
+				if($('.mobile').length){
+					$('div', cur.parent()).css('top','141px');
+					$('div', cur.parent()).css('left','10px');
+				}
 				callback();
 			});
 			function appendFamilyPicture(familyName, target, url, backgroundX, backgroundY){				
