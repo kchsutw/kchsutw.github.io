@@ -508,24 +508,17 @@ $(function(){
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		var shareUrl = apiBaseUrl + '/r/' + serial;
-		$('#fb-root').hide();
 		FB.ui({
 		  method: 'share',
+		  display: 'popup',
 		  href: shareUrl
-		});
-		setTimeout(function(){
-			$('#fb-root').html('').show();
-			FB.ui({
-			  method: 'share',
-			  href: shareUrl
-			}, function(response){
+		}, function(response){
 
-			    if (response && !response.error_code) {
-					ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
-					colorbox('#step4');
-			    }
-			});
-		}, 4000);
+		    if (response && !response.error_code) {
+				ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
+				colorbox('#step4');
+		    }
+		});
 		// FB.ui({
 		// 	method: 'feed',
 		// 	message:'#擇愛成家',
