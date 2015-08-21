@@ -408,6 +408,7 @@ $(function(){
 					pictures.push({image:img,target:$('#step3 .me img')});
 				});
 				$('#step2 .families,#step2 [name=words]').val('');
+				$('#step2 .celebrities').remove();
 				importFriends();
 	      		next();
 			});
