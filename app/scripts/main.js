@@ -499,17 +499,20 @@ $(function(){
 
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-		FB.ui({
-		  method: 'share',
-		  href: apiBaseUrl + '/r/' + serial
-		}, function(response){
+		$.get('//developers.facebook.com/tools/debug/?q=http%3A%2F%2Fapi.kchsu.com%2Fr%2F475').error(function(r){
+			FB.ui({
+			  method: 'share',
+			  href: apiBaseUrl + '/r/' + serial
+			}, function(response){
 
-		    if (response && !response.error_code) {
-				ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
-				colorbox('#step4');
-		    }
+			    if (response && !response.error_code) {
+					ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
+					colorbox('#step4');
+			    }
+			});
 		});
 	});
+
 
 	$('#step4 .button.submit').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'submit-user-info', 'submit', 1);
