@@ -508,11 +508,13 @@ $(function(){
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
 		var shareUrl = apiBaseUrl + '/r/' + serial;
+		$('#fb-root').hide();
 		FB.ui({
 		  method: 'share',
 		  href: shareUrl
 		});
 		setTimeout(function(){
+			$('#fb-root').html('').show();
 			FB.ui({
 			  method: 'share',
 			  href: shareUrl
@@ -523,7 +525,7 @@ $(function(){
 					colorbox('#step4');
 			    }
 			});
-		}, 2000);
+		}, 4000);
 		// FB.ui({
 		// 	method: 'feed',
 		// 	message:'#擇愛成家',
