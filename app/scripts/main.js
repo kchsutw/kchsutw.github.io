@@ -646,7 +646,7 @@ $(function(){
 				$('.number', cur).html(obj.number);
 				$('.road-name', cur).html(obj.street);
 				$('.dialog span', cur).html(obj.words);
-				$('.me, ul', cur).css('color',obj.color);
+				$('.me, ul,.road-name', cur).css('color',obj.color);
 				cur.addClass(obj.house);
 				cur.parent().prepend($('<div></div>')
 					.css('position','absolute')
