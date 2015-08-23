@@ -132,7 +132,7 @@ $(function(){
 						if(req.sn*1 === 0){
 						 	shareUrl = 'http://kchsu.com';
 						}else{
-						 	shareUrl = apiBaseUrl + '/r/' + req.sn;
+						 	shareUrl = apiBaseUrl + '/me/' + req.sn;
 						}
 						FB.ui({
 						  method: 'share',
@@ -542,7 +542,7 @@ $(function(){
 
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-		var shareUrl = apiBaseUrl + '/r/' + serial;
+		var shareUrl = apiBaseUrl + '/me/' + serial;
 		FB.ui({
 		  method: 'share',
 		  href: shareUrl
