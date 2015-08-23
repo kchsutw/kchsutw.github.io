@@ -661,7 +661,7 @@ $(function(){
 			});
 		}
 		function updateFirstOne(callback){
-			$.get('highlight.json',function(obj){
+			$.get('highlight.json?_=' + new Date()*1,function(obj){
 				var cur = $('#tpl');
 				obj.number = obj.number || 69;
 				obj.house = obj.house || houses[0];
