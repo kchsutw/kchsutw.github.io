@@ -422,7 +422,8 @@ header{
           list-style: none;
           line-height: em(24,15);
           position:relative;
-          padding-left:23px;
+          padding-left:23px;          
+          margin-bottom: 5px;
           i.celebrities{
             display: block;
             width: 24px;
@@ -1014,6 +1015,7 @@ footer{
       line-height: em(24,15);
       position:relative;
       padding-left:23px;
+      margin-bottom: 5px;
       i.celebrities{
         display: block;
         width: 24px;

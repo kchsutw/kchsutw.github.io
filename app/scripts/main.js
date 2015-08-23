@@ -36,29 +36,49 @@ $(function(){
 	};
 	function showOne(event){
 		var req = querystring.parse(location.search.replace('?',''));
+		var isHighlight = req.sn*1 === 0;
 		if(req.sn){
 			$('.container >.loading').hide();
 			$('.dragon').hide();
 			$('.one').hide();
 			$('.container').addClass('show-one');
-			$.get(apiBaseUrl + '/api/Participants/'+req.sn,function(r){
+			var url;
+			if(isHighlight){
+				url = 'highlight.json';
+			}else{
+				url = apiBaseUrl + '/api/Participants/'+req.sn;
+			}
+			$.get(url,function(r){
 				(function(one, dragon){
 					r.number = r.number || 69;
 					r.house = r.house || houses[0];
 					r.street = r.street || streets[0];
 					var positionX =  (38-500) * (r.number/100);
 					var positionY =  (38-209) * (r.number/100);
+					var me;
+
+					if(isHighlight){
+						me = r.profilePicture;
+						appendHighlightFamilyPicture(r.families01, $('.tpl ul li:eq(0)',one), r.families01Picture, positionX, positionY);
+						appendHighlightFamilyPicture(r.families02, $('.tpl ul li:eq(1)',one), r.families02Picture, positionX, positionY);
+						appendHighlightFamilyPicture(r.families03, $('.tpl ul li:eq(2)',one), r.families03Picture, positionX, positionY);
+						appendHighlightFamilyPicture(r.families04, $('.tpl ul li:eq(3)',one), r.families04Picture, positionX, positionY);
+
+					}else{
+						me = 'https://graph.facebook.com/'+r.facebookid+'/picture?type=large';
+						$('.tpl ul li:eq(0)',one).html(r.families01);
+						$('.tpl ul li:eq(1)',one).html(r.families02);
+						$('.tpl ul li:eq(2)',one).html(r.families03);
+						$('.tpl ul li:eq(3)',one).html(r.families04);
+					}
+
 					$('.dialog span',one).html(r.words);
 					$('.me span',one).html(r.name);
-					$('.tpl ul li:eq(0)',one).html(r.families01);
-					$('.tpl ul li:eq(1)',one).html(r.families02);
-					$('.tpl ul li:eq(2)',one).html(r.families03);
-					$('.tpl ul li:eq(3)',one).html(r.families04);
-					$('.tpl').removeClass('house-home').addClass(r.house);
+					$('.tpl',one).removeClass('house-home').addClass(r.house);
 					$('.tpl .number',one).html(r.number);
 					$('.tpl .road-name', one).html(r.street);
 					var pic = new Image();
-					pic.src = 'https://graph.facebook.com/'+r.facebookid+'/picture?type=large';
+					pic.src = me;
 					$('.me .dot', one).append(pic);
 					$('.me .dot', one).css('background-position', positionX + 'px ' + positionY + 'px');
 					$('h1').trigger('click');
@@ -76,6 +96,24 @@ $(function(){
 							}
 						});
 					});
+					if(isHighlight){
+						$(one).prepend($('<div class=\'high\'></div>')
+							.css('position','absolute')
+							.css('opacity','0.8')
+							.css('top',$('.tpl',one).offset().top +'px')
+							.css('left',$('.tpl',one).offset().left +'px')
+							.css('width','295px')
+							.css('height','320px')
+							.css('background','url('+r.houseBackground+') no-repeat 0 center / auto 100%'));
+						if($('.mobile').length){
+							$('div', $('.tpl',one).parent()).css('top','141px');
+							$('div', $('.tpl',one).parent()).css('left','10px');
+						}
+						$('.me, ul,.road-name, .road-number', one).css('color',r.color);
+					}else{
+						$('.high',one).remove();
+						$('.me, ul,.road-name, .road-number', one).removeAttr('style');						
+					}
 					$('.one .button.start').on('click', function(){
 						one.hide();
 								$('.build-a-home').trigger('click');
@@ -90,7 +128,12 @@ $(function(){
 						});
 					});
 					$('.one .button.share').on('click', function(){
-						var shareUrl = apiBaseUrl + '/r/' + req.sn;
+						var shareUrl;
+						if(req.sn*1 === 0){
+						 	shareUrl = 'http://kchsu.com';
+						}else{
+						 	shareUrl = apiBaseUrl + '/r/' + req.sn;
+						}
 						FB.ui({
 						  method: 'share',
 						  href: shareUrl
@@ -108,16 +151,6 @@ $(function(){
 
 	$.get(apiBaseUrl + '/api/Participants/count',function(r){
 		$('.party-count').html(r.count);
-	});
-
-	$('#step2 [name=words],#step2 input').maxlength({
-		alwaysShow: true,
-		threshold: 30,
-		warningClass: 'label label-success',
-		limitReachedClass: 'label label-important',
-		separator: ' 個字，最多 ',
-		preText: '已輸入 ',
-		postText: ' 個字。'
 	});
 
 	if($('html.desktop,html.tablet').length){
@@ -605,6 +638,7 @@ $(function(){
 					pic.src = 'https://graph.facebook.com/'+obj.facebookid+'/picture?type=large';
 					$('.me i', cur).html(pic);
 					$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
+					$('.me, ul,.road-name,.number', cur).removeAttr('style');
 					$('ul li:eq(0)', cur).html(obj.families01);
 					$('ul li:eq(1)', cur).html(obj.families02);
 					$('ul li:eq(2)', cur).html(obj.families03);
@@ -639,14 +673,14 @@ $(function(){
 				pic.src = obj.profilePicture;
 				$('.me i', cur).html(pic);
 				$('.me .dot', cur).css('background-position', positionX + 'px ' + positionY + 'px');
-				appendFamilyPicture(obj.families01, $('ul li:eq(0)', cur), obj.families01Picture, positionX, positionY);
-				appendFamilyPicture(obj.families02, $('ul li:eq(1)', cur), obj.families02Picture, positionX, positionY);
-				appendFamilyPicture(obj.families03, $('ul li:eq(2)', cur), obj.families03Picture, positionX, positionY);
-				appendFamilyPicture(obj.families04, $('ul li:eq(3)', cur), obj.families04Picture, positionX, positionY);
+				appendHighlightFamilyPicture(obj.families01, $('ul li:eq(0)', cur), obj.families01Picture, positionX, positionY);
+				appendHighlightFamilyPicture(obj.families02, $('ul li:eq(1)', cur), obj.families02Picture, positionX, positionY);
+				appendHighlightFamilyPicture(obj.families03, $('ul li:eq(2)', cur), obj.families03Picture, positionX, positionY);
+				appendHighlightFamilyPicture(obj.families04, $('ul li:eq(3)', cur), obj.families04Picture, positionX, positionY);
 				$('.number', cur).html(obj.number);
 				$('.road-name', cur).html(obj.street);
 				$('.dialog span', cur).html(obj.words);
-				$('.me, ul,.road-name', cur).css('color',obj.color);
+				$('.me, ul,.road-name, .number', cur).css('color',obj.color);
 				cur.addClass(obj.house);
 				cur.parent().prepend($('<div></div>')
 					.css('position','absolute')
@@ -660,19 +694,11 @@ $(function(){
 					$('div', cur.parent()).css('top','141px');
 					$('div', cur.parent()).css('left','10px');
 				}
+				$(cur).css('cursor','pointer').on('click',function(){
+					location.href='./?sn=0&timestamp=' + new Date(obj.timestamp)*1;
+				});
 				callback();
 			});
-			function appendFamilyPicture(familyName, target, url, backgroundX, backgroundY){				
-				target.html(familyName);
-				if(url){
-					var pic = new Image();
-					pic.onload = function(){
-						target.append($('<i class=\'celebrities\'></i>').html(pic));
-						$('i', target).css('background-position', backgroundX + 'px ' + backgroundY + 'px');
-					};
-					pic.src = url;
-				}
-			}
 		}
 	}
 	infiniteList();
@@ -905,6 +931,17 @@ $(function(){
 			});
 			friendImported = true;
 		});
+	}
+	function appendHighlightFamilyPicture(familyName, target, url, backgroundX, backgroundY){				
+		target.html(familyName);
+		if(url){
+			var pic = new Image();
+			pic.onload = function(){
+				target.append($('<i class=\'celebrities\'></i>').html(pic));
+				$('i', target).css('background-position', backgroundX + 'px ' + backgroundY + 'px');
+			};
+			pic.src = url;
+		}
 	}
 });
 window.fbAsyncInit = function() {
