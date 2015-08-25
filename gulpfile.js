@@ -127,7 +127,7 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
-  gulp.watch('app/**/*', ['build']);
+  // gulp.watch('app/**/*', ['build']);
 });
 
 // inject bower components

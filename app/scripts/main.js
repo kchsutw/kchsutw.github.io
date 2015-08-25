@@ -295,21 +295,21 @@ $(function(){
 		});
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
-			if($('html.tablet').length){
+			if($('html.desktop').length || $('html.ie11').length){
+				TweenMax.to(container,0.3,{
+					left : $(window).width() * -0.8,
+					onComplete:function(){
+						$(window).trigger('resize');
+					}
+				});	
+			}else{
 				container = $('html,body');
 				TweenMax.to(container,0.3,{
 					scrollLeft : $(window).width() * 0.8,
 					onComplete:function(){
 						$(window).trigger('resize');
 					}
-				});
-			}else{
-				TweenMax.to(container,0.3,{
-					left : $(window).width() * -0.8,
-					onComplete:function(){
-						$(window).trigger('resize');
-					}
-				});				
+				});			
 			}
 		});	
 		$(window).trigger('resize');
@@ -789,8 +789,8 @@ $(function(){
 	}
 	$.getJSON('celebrities.json?_='+new Date() * 1,function(r){
 		celebrities = $(r.celebrities).filter(function(){
-			return new Date(r.launch) < new Date() &&
-				new Date() < new Date(r.expired);
+			return new Date(this.launch) < new Date() &&
+				new Date() < new Date(this.expired);
 		});
 	});
 	function checkCelebrities(input){
