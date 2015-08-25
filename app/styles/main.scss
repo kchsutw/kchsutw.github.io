@@ -857,6 +857,7 @@ footer{
     background:url(../images/btn-background.png);
     border-radius: 19px;
     position: absolute;
+    transform: scale(0.75);
     @media screen and (max-width: 767px) {
       margin-left: -23px;
       margin-top: -23px;
@@ -901,6 +902,7 @@ footer{
       padding-left:40px;
     }
     img{
+      transform: scale(0.75);
       display: inline-block;
       height: 38px;
       background-size: 38px auto;

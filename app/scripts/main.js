@@ -1,6 +1,8 @@
 ﻿/* jshint devel:true , unused : false, camelcase : false, latedef : nofunc*/
 'use strict';
 // console.log('\'Allo \'Allo!');
+
+
 $(function(){
 	// fake mobile
 	// $('html').removeClass('desktop').addClass('mobile');
@@ -50,6 +52,13 @@ $(function(){
 			}
 			$.get(url,function(r){
 				(function(one, dragon){
+					if(isHighlight){
+						var hl = $(r).filter(function(){
+							return new Date(this.launch) < new Date() &&
+								new Date() <= new Date(this.expired);
+						});
+						r = hl[Math.floor( hl.length * Math.random())];
+					}
 					r.number = r.number || 69;
 					r.house = r.house || houses[0];
 					r.street = r.street || streets[0];
@@ -182,7 +191,7 @@ $(function(){
 			return false;
 		});
 
-		if($('html.desktop').length){
+		if($('html.desktop').length || $('html.ie11').length){
 			//mouse wheel dragon
 			$('.dragon:not(.one),.cross').on('mousewheel',function(evt){
 				var direction = 0;
@@ -256,7 +265,7 @@ $(function(){
 			});
 
 		}
-		if($('html.tablet').length){
+		if($('html.tablet').length && !$('html.ie11').length){
 			var scrollLeft = 0;
 			$(window).on('scroll resize',function(){
 
@@ -661,7 +670,12 @@ $(function(){
 			});
 		}
 		function updateFirstOne(callback){
-			$.get('highlight.json?_=' + new Date()*1,function(obj){
+			$.get('highlight.json?_=' + new Date()*1,function(resp){
+				var hl = $(resp).filter(function(){
+					return new Date(this.launch) < new Date() &&
+						new Date() <= new Date(this.expired);
+				});
+				var obj = hl[Math.floor( hl.length * Math.random())];
 				var cur = $('#tpl');
 				obj.number = obj.number || 69;
 				obj.house = obj.house || houses[0];
@@ -774,7 +788,10 @@ $(function(){
 		});
 	}
 	$.getJSON('celebrities.json?_='+new Date() * 1,function(r){
-		celebrities = r.celebrities;
+		celebrities = $(r.celebrities).filter(function(){
+			return new Date(r.launch) < new Date() &&
+				new Date() < new Date(r.expired);
+		});
 	});
 	function checkCelebrities(input){
 		var result = {};
