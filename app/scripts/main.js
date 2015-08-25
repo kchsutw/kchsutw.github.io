@@ -793,67 +793,6 @@ $(function(){
 				new Date() < new Date(this.expired);
 		});
 	});
-	function checkCelebrities(input){
-		var result = {};
-		$.each(celebrities,function(i,cel){
-			if(new Date() < new Date(cel.launch)){
-				return true;
-			}
-			var reg = new RegExp(cel.pattern, 'ig');
-
-			if(reg.test(input)){
-				result.match = true;
-				result.url = cel.url;
-				result.name = cel.name;
-				result.index = i;
-				if(!celebrities[i].dataUrl){
-					$.post(apiBaseUrl + '/imgData', {
-							imgUrl : cel.url
-						})
-						.done(function(r){
-							r = $.parseJSON(r);
-							celebrities[i].dataUrl = r.dataUrl;
-						});	
-				}
-				return false;
-			}
-
-		});
-		if(result.match){
-			return result;
-		}
-		return {
-			match : false,
-			url : null
-		};
-	}
-	$('[name=families01],[name=families02],[name=families03],[name=families04]').on('input',function(){
-		var cel = checkCelebrities($(this).val());
-		var parent = $(this).parents('#step2,#step3 aside');
-		if(cel.match){
-			var target = $(this);
-			var celebrityPic = document.createElement('i');
-			$(celebrityPic).addClass('celebrities')
-				.attr('data-target',this.name)
-				.attr('data-index',cel.index);
-			var img = new Image();
-			$(celebrityPic).append(img);
-			TweenMax.set(celebrityPic,{
-				left: target.offset().left +
-					target.css('margin-left').replace(/px/,'') * 1 - 
-					parent.offset().left + 16,
-				top: target.offset().top - parent.offset().top +
-					target.height() - 5
-			});
-			img.onload = function(){
-				$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
-				$(parent).append(celebrityPic);
-			};
-			img.src = cel.url;
-		}else{
-			$('i.celebrities[data-target='+this.name+']',parent).remove();			
-		}
-	});
 	function addCelebrities(canvas, callback){
 		$('#step3 ul li i').each(function(i,d){
 			var img = new Image();
@@ -926,9 +865,9 @@ $(function(){
 				TweenMax.set(celebrityPic,{
 					left: target.offset().left +
 						target.css('margin-left').replace(/px/,'') * 1 - 
-						parent.offset().left + 16,
+						parent.offset().left + 21,
 					top: target.offset().top - parent.offset().top +
-						target.height() - 5
+						target.height() + 1
 				});
 				img.onload = function(){
 					$('i.celebrities[data-target='+target.attr('name')+']',parent).remove();	
