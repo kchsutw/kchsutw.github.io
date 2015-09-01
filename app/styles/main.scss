@@ -820,13 +820,14 @@ footer{
     height: 30px;
     line-height: 1.38889em;
     margin-top: 20px;
-    margin-right: 20px;
+    margin-right: 45px;
     position: relative;
     text-align: center;
     text-decoration: none;
     transition-duration: 0.2s;
     transition-property: background-position;
     width: 150px;
+    float: right;
     i{
       color:rgba(255,255,255,0.8);
       line-height: em(30,15);
@@ -1152,6 +1153,7 @@ footer{
   }
   .button {
     margin-top:24px;
+    float: right;
     background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
     border: 1px solid #fff;
     border-radius: 1px;
@@ -1185,7 +1187,10 @@ footer{
       }
     }
     &:nth-child(1) {
-      margin-left:150px;
+      margin-right:125px;
+    }
+    &:nth-child(2) {
+      margin-right:25px;
     }
   }
 }
@@ -1235,9 +1240,10 @@ body{
         display: block;
       }
       .button{
+        margin-bottom:50px;
         width:274px;
         &.submit{
-          margin-bottom:50px;
+          margin-bottom:0px;
         }
       }
       aside{
