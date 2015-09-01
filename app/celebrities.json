@@ -54,7 +54,8 @@
 		"pattern":"老皮", 
 		"launch":"2015-08-14T16:00:00.000Z", 
 		"expired":"2016-08-14T16:00:00.000Z", 
-		"facebookId":""
+		"facebookId":"",
+		"value":"老皮"
 	}
 	,{
 		"name": "阿寶", 
@@ -62,7 +63,8 @@
 		"pattern":"阿寶", 
 		"launch":"2015-08-14T16:00:00.000Z", 
 		"expired":"2016-08-14T16:00:00.000Z", 
-		"facebookId":""
+		"facebookId":"",
+		"value":"阿寶"
 	}
 	]
 }
