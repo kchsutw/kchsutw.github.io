@@ -47,5 +47,22 @@
 		"facebookId":"Linda6123",
 		"value":"郭美江"
 	}
+	,{
+
+		"name": "老皮", 
+		"url":"https://i1.sndcdn.com/avatars-000034827507-77rewh-t500x500.jpg", 
+		"pattern":"老皮", 
+		"launch":"2015-08-14T16:00:00.000Z", 
+		"expired":"2016-08-14T16:00:00.000Z", 
+		"facebookId":""
+	}
+	,{
+		"name": "阿寶", 
+		"url":"http://mla-s2-p.mlstatic.com/taza-de-adventure-tima-hora-de-aventura-finn-jake-6694-MLA5096428226_092013-O.jpg", 
+		"pattern":"阿寶", 
+		"launch":"2015-08-14T16:00:00.000Z", 
+		"expired":"2016-08-14T16:00:00.000Z", 
+		"facebookId":""
+	}
 	]
 }
