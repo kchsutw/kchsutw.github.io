@@ -562,20 +562,6 @@ $(function(){
 				colorbox('#step4');
 		    }
 		});
-		// FB.ui({
-		// 	method: 'feed',
-		// 	message:'#擇愛成家',
-		// 	link: 'http://kchsu.com/?sn=' + serial,
-  //     		title: formData.name + ' 已經擇愛成家',
-		//   	description:'家 Ξ 是蜃樓海市　Ξ 是掠影浮光 Ξ 是我們寫進青春摺頁中的一撇一捺 Ξ 是想像也只能是想像 Ξ 昨天，我們仔細收藏 Ξ 今天，我們擇愛成家 〉',
-		//   	picture:'http://api.kchsu.com/u/' + serial + '.png'
-		// }, function(response){
-
-		//     if (response && !response.error_code) {
-		// 		ga('send', 'event', 'participants-steps', 'share', 'share-complete', 1);
-		// 		colorbox('#step4');
-		//     }
-		// });
 	});
 
 
@@ -585,14 +571,13 @@ $(function(){
 		formData.officialName = $('#step4 [name=name]').val();
 		formData.address = $('#step4 [name=address]').val();
 		$.ajax({
-		  method:'PUT',
+		  method:'POST',
 		  headers: {          
 		    Accept : 'application/json'
 		  },
-		  // jshint quotmark: false
-		  data :'{"officialName":"'+formData.officialName+'","email":"'+formData.email+'","address":"'+formData.address+'"}',
+		  data : JSON.stringify(formData),
 		  contentType:'application/json; charset=UTF-8',
-		  url:apiBaseUrl + '/api/Participants/' + serial
+		  url:apiBaseUrl + '/api/Participants/?where=' + JSON.stringify({id:serial})
 		}).done(function(resp){
 			colorboxClose();
 		});
