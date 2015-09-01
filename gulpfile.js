@@ -57,9 +57,14 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('json', function () {
+gulp.task('json', ['highlight'],function () {
   return gulp.src('app/*.json')
     .pipe(gulp.dest('dist'));
+});
+gulp.task('highlight', function () {
+  var fs = require('fs');
+  var highlight = require('./highlight.js');
+  return fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}); 
 });
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
@@ -124,6 +129,7 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
     'app/*.json'
   ]).on('change', reload);
 
+  gulp.watch('highlight.js', ['highlight']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
