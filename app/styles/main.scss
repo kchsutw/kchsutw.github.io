@@ -386,6 +386,7 @@ header{
         width:100%;
         text-align: center;
           line-height: 38px;
+          height: 49px;
         i{
           display: inline-block;
           width: 38px;
@@ -1029,7 +1030,8 @@ footer{
       line-height: em(24,15);
       position:relative;
       padding-left:30px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
+      margin-top: 3px;
       i.celebrities{
         display: block;
         width: 24px;
