@@ -85,8 +85,8 @@ module.exports = (function(){
   {
   name: "Conchita Wurst",
   url:"https://graph.facebook.com/ConchitaWurst/picture?type=large",
-  launch:"2015/8/15",
-  expired:"2016/8/15",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
   facebookId:""
   value:"Conchita Wurst"
   },
