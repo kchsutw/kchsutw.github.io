@@ -6,6 +6,7 @@
 $(function(){
 	// fake mobile
 	// $('html').removeClass('desktop').addClass('mobile');
+	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 	var streets = ['光譜一街','光譜二街', '光譜三街', '平等一路', 
 				'平等二路','平等三路','和諧街','陽光大道','石牆路',
 				'伴侶南路','伴侶北路','平權東路','平權西路','擇愛一路',

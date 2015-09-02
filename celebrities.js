@@ -2,7 +2,10 @@ var _ = require('lodash');
 
 module.exports = (function(){
 
-	var ret =[{
+	var ret =[
+
+	//####### 從這下面開始複製 ##############
+	{
 		//選單上顯示名稱
 		name: "阿寶", 
 		//圖片網址 
@@ -15,7 +18,15 @@ module.exports = (function(){
 		facebookId:"",
 		//選中後名稱
 		value:"阿寶" 
-	},{
+	},
+	//####### 貼在這下面 ####################
+
+
+
+
+
+	//#######################################
+	{
 		name: "老皮", 
 		url:"https://i1.sndcdn.com/avatars-000034827507-77rewh-t500x500.jpg", 
 		pattern:"老皮", 
