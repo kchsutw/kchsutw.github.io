@@ -756,6 +756,14 @@ footer{
     }
   }
 }
+#about{
+  h3{
+    margin-top: 1em;
+    &:nth-child(5){
+      margin-top: 1.5em;
+    }
+  }
+}
 #step2{
   h3{
     text-align: center;
