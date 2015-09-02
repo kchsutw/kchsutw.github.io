@@ -1,5 +1,3 @@
-var _ = require('lodash');
-
 module.exports = (function(){
 
 	var ret =[
@@ -59,10 +57,6 @@ module.exports = (function(){
 		facebookId:"zacharyquintoofficial",
 		value:"Zachary Quinto"
 	}];
-
-	_(ret).each(function(element,index){
-		console.log('已加入\'' +element.name+ '\'')
-	})
 
 	return ret;
 }());
