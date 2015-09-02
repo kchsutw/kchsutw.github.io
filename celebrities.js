@@ -48,8 +48,16 @@ module.exports = (function(){
 		pattern:"James|Franco|JamesFranco", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		facebookId:"Linda6123",
+		facebookId:"JamesFranco",
 		value:"James Franco"
+	},{
+		name: "Zachary Quinto", 
+		url:"http://graph.facebook.com/zacharyquintoofficial/picture?type=large", 
+		pattern:"Zachary|Quinto|ZacharyQuinto", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"zacharyquintoofficial",
+		value:"Zachary Quinto"
 	}];
 
 	_(ret).each(function(element,index){
