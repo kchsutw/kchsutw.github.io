@@ -25,7 +25,6 @@ module.exports = (function(){
 		expired:new Date('2016/8/15'), 
 		value:"小鮪魚" 
 	},
-<<<<<<< HEAD
 	{
 		name: "天菜", 
 		url:"https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10447548_665002050261744_8090231537516578544_n.png?oh=b62f6acbcf913db065c2bc494aad9478&oe=566A2504&__gda__=1449580725_4d0c3fcb708df2d5d585ce718845c0f8", 
@@ -131,8 +130,6 @@ module.exports = (function(){
 		expired:new Date('2016/8/15'), 
 		value:"艾莎"
 	},
-=======
->>>>>>> ea88b4b3dec99c6eab9c5527a080285d695a3236
 	//#######################################
 	{
 		name: "老皮", 
