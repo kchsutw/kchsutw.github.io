@@ -18,10 +18,46 @@ module.exports = (function(){
 		value:"阿寶" 
 	},
 	//####### 貼在這下面 ####################
-
-
-
-
+	{
+		name: "小鮪魚", 
+		url:"https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10414475_434014026775712_1720294787086833620_n.jpg?oh=0dc8b27c6b8928e6a1d01ab1cc360e15&oe=565F93B0&__gda__=1450469633_f681b8141e8c677ce2fabedc1bddeb40", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"",
+		value:"小鮪魚" 
+	},
+	{
+		name: "天菜", 
+		url:"https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10447548_665002050261744_8090231537516578544_n.png?oh=b62f6acbcf913db065c2bc494aad9478&oe=566A2504&__gda__=1449580725_4d0c3fcb708df2d5d585ce718845c0f8", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"",
+		value:"天菜" 
+	},	
+	{
+		name: "小餿水", 
+		url:"https://scontent-tpe1-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10487249_644427428985873_1152248509213086219_n.png?oh=f59c31a9f768d1ec2e0f69ef6d3d8921&oe=566CDA9F", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"",
+		value:"小餿水" 
+	},
+	{
+		name: "仙女", 
+		url:"https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10414475_434014026775712_1720294787086833620_n.jpg?oh=0dc8b27c6b8928e6a1d01ab1cc360e15&oe=565F93B0&__gda__=1450469633_f681b8141e8c677ce2fabedc1bddeb40", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"",
+		value:"仙女" 
+	},
+	{
+		name: "毛大", 
+		url:"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtf1/v/t1.0-1/p160x160/10492303_430896847114906_1184721314876076741_n.jpg?oh=fcef3c91e78bb2c87a8971655aab239b&oe=567BE79D&__gda__=1448988136_74bce052d95b2bd5c4bcd1f32744c6af", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		facebookId:"",
+		value:"毛大" 
+	},
 
 	//#######################################
 	{
