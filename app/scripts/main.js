@@ -12,7 +12,6 @@ $(function(){
 				'擇愛二路','擇愛三路','擇愛四路','擇愛五路','成家一路',
 				'成家二路','成家三路','成家四路','成家五路','家屬南路',
 				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
-	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
 	var apiBaseUrl =  /localhost/.test(location.href) ? 'http://localhost:3000' : 'http://api.kchsu.com';
 
 	var colorbox = function(target,callback){
