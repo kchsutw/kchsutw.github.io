@@ -9,6 +9,7 @@ module.exports = (function(){
 		//圖片網址 
 		url:"http://mla-s2-p.mlstatic.com/taza-de-adventure-tima-hora-de-aventura-finn-jake-6694-MLA5096428226_092013-O.jpg", 
 		//開始時間
+		pattern:"阿寶", 
 		launch:new Date('2015/8/15'), 
 		//結束時間
 		expired:new Date('2016/8/15'), 
@@ -21,6 +22,7 @@ module.exports = (function(){
 	{
 		name: "小鮪魚", 
 		url:"https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10414475_434014026775712_1720294787086833620_n.jpg?oh=0dc8b27c6b8928e6a1d01ab1cc360e15&oe=565F93B0&__gda__=1450469633_f681b8141e8c677ce2fabedc1bddeb40", 
+		pattern:"小鮪魚", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		facebookId:"",
