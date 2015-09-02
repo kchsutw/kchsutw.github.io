@@ -774,7 +774,10 @@ $(function(){
 		});
 	}
 	$.getJSON('celebrities.json?_='+new Date() * 1,function(r){
+		console.log(r.celebrities)
 		celebrities = $(r.celebrities).filter(function(){
+		console.log(new Date(this.launch) < new Date() &&
+				new Date() < new Date(this.expired))
 			return new Date(this.launch) < new Date() &&
 				new Date() < new Date(this.expired);
 		});
