@@ -27,5 +27,7 @@
     "opn": "^1.0.0",
     "wiredep": "^2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
 }

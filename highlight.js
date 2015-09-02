@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = (function(){
 
 	var houses = ['house-home','house-happiness','house-equality', 'house-plurality'];
@@ -226,6 +228,11 @@ module.exports = (function(){
 		"number": Math.floor(Math.random() * 99),
 		"street":"歡樂谷"
 	});
+
+
+	_(ret).each(function(element,index){
+		console.log('已加入\'' +element.name+ '\'')
+	})
 
 	return ret;
 }());

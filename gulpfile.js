@@ -64,7 +64,9 @@ gulp.task('json', ['highlight'],function () {
 gulp.task('highlight', function () {
   var fs = require('fs');
   var highlight = require('./highlight.js');
-  return fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}); 
+  var celebrities = require('./celebrities.js');
+  return fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}) &
+      fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {}); 
 });
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
@@ -130,6 +132,7 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
   ]).on('change', reload);
 
   gulp.watch('highlight.js', ['highlight']);
+  gulp.watch('celebrities.js', ['highlight']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
