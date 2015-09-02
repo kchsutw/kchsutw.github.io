@@ -67,22 +67,6 @@ module.exports = (function(){
   value:"Ellen Page"
   },
   {
-  name: "James Franco",
-  url:"https://graph.facebook.com/JamesFranco/picture?type=large",
-		launch:new Date('2015/8/15'), 
-		expired:new Date('2016/8/15'), 
-  facebookId:""
-  value:"James Franco"
-  },
-  {
-  name: "Zachary Quinto",
-  url:"https://graph.facebook.com/zacharyquintoofficial/picture?type=large",
-		launch:new Date('2015/8/15'), 
-		expired:new Date('2016/8/15'), 
-  facebookId:""
-  value:"Zachary Quinto"
-  },
-  {
   name: "假文青",
   url:"https://graph.facebook.com/5GuyFashion/picture?type=large",
 		launch:new Date('2015/8/15'), 
