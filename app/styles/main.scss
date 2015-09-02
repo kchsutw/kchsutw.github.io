@@ -417,7 +417,8 @@ header{
         float: left;
         display: block;
         width:121px;
-        height: 120px;
+        height: 111px;
+        overflow:hidden;
         li{
           list-style: none;
           line-height: em(24,15);
@@ -462,7 +463,7 @@ header{
         line-height: em(24,15);
         display: block;
         float: left;
-        margin-left:7px;
+        margin-left:15px;
       }
       .road-number{
         position: relative;
@@ -1026,7 +1027,7 @@ footer{
       list-style: none;
       line-height: em(24,15);
       position:relative;
-      padding-left:23px;
+      padding-left:30px;
       margin-bottom: 4px;
       i.celebrities{
         display: block;
@@ -1035,7 +1036,7 @@ footer{
         background:url(../images/btn-background.png);
         border-radius: 12px;
         position: absolute;
-        left:-5px;
+        left:5px;
         top:0;
         background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
         img{
