@@ -412,7 +412,7 @@ header{
         }
       }
       ul{
-        margin:0 0 0 25px;
+        margin:0 0 0 12px;
         padding:0;
         float: left;
         display: block;
@@ -423,8 +423,8 @@ header{
           list-style: none;
           line-height: em(24,15);
           position:relative;
-          padding-left:23px;          
-          margin-bottom: 5px;
+          padding-left:34px;          
+          margin-bottom: 4px;
           i.celebrities{
             display: block;
             width: 24px;
@@ -432,7 +432,7 @@ header{
             background:url(../images/btn-background.png);
             border-radius: 12px;
             position: absolute;
-            left:-5px;
+            left:7px;
             top:0;
             transition:0.3s transform;
             &:hover{
@@ -463,7 +463,7 @@ header{
         line-height: em(24,15);
         display: block;
         float: left;
-        margin-left:15px;
+        margin-left:7px;
       }
       .road-number{
         position: relative;
