@@ -542,6 +542,17 @@ header{
         width: 290px;
         margin: 10px auto 0px;
         line-height: 1.5em;
+        .fa-send-o{
+          opacity: 0;
+          transform:rotateZ(30deg) translateX(-1170px) translateY(530px) scale(2) skewX(-50deg);
+        }
+        a.term:hover{
+          i{
+            transform:rotateZ(50deg) translateX(0);
+            transition: 2.5s transform;
+            opacity: inherit;
+          }
+        }
       }
     }
     &.one{
