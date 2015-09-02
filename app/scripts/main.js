@@ -289,9 +289,6 @@ $(function(){
 				}
 			}).trigger('resize');
 		}
-		$('.nav-pills li:eq(0)').on('click',function(){
-			colorbox('#about');
-		});
 		$('.goto-rule').on('click',function(){
 			var container = $('.dragon');
 			if($('html.desktop').length || $('html.ie11').length){
@@ -420,6 +417,10 @@ $(function(){
 	$('.go .term').on('click',function(){
 		ga('send', 'event', 'terms', 'terms', 'click', 1);
 		colorbox('#terms');
+	});
+	$('.nav-pills li:eq(0)').on('click',function(){
+		$('.nav-pills').removeClass('on');
+		colorbox('#about');
 	});
 
 
