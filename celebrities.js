@@ -58,21 +58,14 @@ module.exports = (function(){
 		url:"https://graph.facebook.com/EllenPage/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"Ellen Page"
+		value:"Ellen"
 	},
 	{
 		name: "James Franco",
 		url:"https://graph.facebook.com/JamesFranco/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"James Franco"
-	},
-	{
-		name: "Zachary Quinto",
-		url:"https://graph.facebook.com/zacharyquintoofficial/picture?type=large",
-		launch:new Date('2015/8/15'), 
-		expired:new Date('2016/8/15'), 
-		value:"Zachary Quinto"
+		value:"James"
 	},
 	{
 		name: "假文青",
@@ -93,35 +86,35 @@ module.exports = (function(){
 		url:"https://graph.facebook.com/ConchitaWurst/picture?type=large",
 		launch:"2015/8/15",
 		expired:"2016/8/15",
-		value:"Conchita Wurst"
+		value:"Conchita"
 	},
 	{
 		name: "Ben Whishaw",
 		url:"https://graph.facebook.com/11016263925/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"Ben Whishaw"
+		value:"Ben"
 	},
 	{
 		name: "Jared Leto",
 		url:"https://graph.facebook.com/jaredleto/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"Jared Leto"
+		value:"Jared"
 	},
 	{
 		name: "Ricky Martin",
 		url:"https://graph.facebook.com/RickyMartinOfficialPage/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"Ricky Martin"
+		value:"Ricky"
 	},
 	{
 		name: "Maleficent",
 		url:"https://graph.facebook.com/DisneyMaleficent/picture?type=large",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		value:"黑魔女"
+		value:"梅菲瑟"
 	},
 	{
 		name: "Elsa",
@@ -147,21 +140,13 @@ module.exports = (function(){
 		facebookId:"Linda6123",
 		value:"郭美江"
 	},{
-		name: "James Franco", 
-		url:"https://graph.facebook.com/JamesFranco/picture?type=large", 
-		pattern:"James|Franco|JamesFranco", 
-		launch:new Date('2015/8/15'), 
-		expired:new Date('2016/8/15'), 
-		facebookId:"JamesFranco",
-		value:"James Franco"
-	},{
 		name: "Zachary Quinto", 
 		url:"http://graph.facebook.com/zacharyquintoofficial/picture?type=large", 
 		pattern:"Zachary|Quinto|ZacharyQuinto", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		facebookId:"zacharyquintoofficial",
-		value:"Zachary Quinto"
+		value:"Zachary"
 	}]};
 
 	return ret;
