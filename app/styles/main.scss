@@ -988,12 +988,14 @@ footer{
     span{
       display: inline-block;
       line-height: 1.2em;
+      margin-top: 7px;
     }
   }
   .me{
     width:100%;
     text-align: center;
     line-height: 38px;
+    height: 48px;
     i{
       display: inline-block;
       width: 38px;
@@ -1021,12 +1023,13 @@ footer{
     }
   }
   ul{
-    margin:0 0 0 25px;
+    margin:0 0 0 18px;
     padding:0;
     float: left;
     display: block;
     width:126px;
     height: 120px;
+    overflow: hidden;
     li{
       list-style: none;
       line-height: em(24,15);
@@ -1062,6 +1065,7 @@ footer{
     line-height: em(24,15);
     display: block;
     float: left;
+    margin-left: 9px;
   }
   .road-number{
     position: relative;
