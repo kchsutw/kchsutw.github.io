@@ -58,7 +58,94 @@ module.exports = (function(){
 		facebookId:"",
 		value:"毛大" 
 	},
-
+  {
+  name: "Ellen Page",
+  url:"https://graph.facebook.com/EllenPage/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"Ellen Page"
+  },
+  {
+  name: "James Franco",
+  url:"https://graph.facebook.com/JamesFranco/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"James Franco"
+  },
+  {
+  name: "Zachary Quinto",
+  url:"https://graph.facebook.com/zacharyquintoofficial/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"Zachary Quinto"
+  },
+  {
+  name: "假文青",
+  url:"https://graph.facebook.com/5GuyFashion/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"假文青"
+  },
+  {
+  name: "楊智達",
+  url:"https://graph.facebook.com/zdayoung/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"楊智達"
+  },
+  {
+  name: "Conchita Wurst",
+  url:"https://graph.facebook.com/ConchitaWurst/picture?type=large",
+  launch:"2015/8/15",
+  expired:"2016/8/15",
+  facebookId:""
+  value:"Conchita Wurst"
+  },
+  {
+  name: "Ben Whishaw",
+  url:"https://graph.facebook.com/11016263925/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"Ben Whishaw"
+  },
+  {
+  name: "Jared Leto",
+  url:"https://graph.facebook.com/jaredleto/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"Jared Leto"
+  },
+  {
+  name: "Ricky Martin",
+  url:"https://graph.facebook.com/RickyMartinOfficialPage/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"Ricky Martin"
+  },
+  {
+  name: "Maleficent",
+  url:"https://graph.facebook.com/DisneyMaleficent/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"黑魔女"
+  },
+  {
+  name: "Elsa",
+  url:"https://graph.facebook.com/FrozenDisneyElsa/picture?type=large",
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+  facebookId:""
+  value:"艾莎"
+  },
 	//#######################################
 	{
 		name: "老皮", 
