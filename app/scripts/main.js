@@ -666,6 +666,7 @@ $(function(){
 				obj.number = obj.number || 69;
 				obj.house = obj.house || houses[0];
 				obj.street = obj.street || streets[0];
+				obj.houseBackground = obj.houseBackground || '';
 				var positionX =  (38-500) * (obj.number/100);
 				var positionY =  (38-209) * (obj.number/100);
 				$('.me span', cur).html(obj.name);
