@@ -136,7 +136,15 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('highlight.js', ['highlight']);
   // gulp.watch('app/**/*', ['build']);
+});
+gulp.task('highlight',[],function(){
+  var json = JSON.stringify(require('./highlight.js'));
+  var fs = require('fs');
+  return fs.writeFile("./app/highlight.json", json, function(err) {
+
+  }); 
 });
 
 // inject bower components
