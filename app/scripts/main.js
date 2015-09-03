@@ -14,6 +14,10 @@ $(function(){
 				'成家二路','成家三路','成家四路','成家五路','家屬南路',
 				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
 	var apiBaseUrl =  /localhost/.test(location.href) ? 'http://localhost:3000' : 'http://api.kchsu.com';
+	var offset = 0;
+	var nextExists = true;
+	var freeze = false;
+	var friendImported = false;
 
 	var colorbox = function(target,callback){
 		callback = callback || function(){};
@@ -585,10 +589,6 @@ $(function(){
 	});
 
 	//list
-	var offset = 0;
-	var nextExists = true;
-	var freeze = false;
-	var friendImported = false;
 	function infiniteList(){
 		if(freeze){
 			return false;
