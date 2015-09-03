@@ -696,7 +696,9 @@ $(function(){
 					$('div', cur.parent()).css('left','10px');
 				}
 				$(cur).css('cursor','pointer').on('click',function(){
-					location.href='./?sn=0&timestamp=' + new Date(obj.timestamp)*1;
+					var timestamp = isNaN(new Date(obj.timestamp)) ? new Date() : new Date(obj.timestamp);
+
+					location.href='./?sn=0&timestamp=' + timestamp * 1;
 				});
 				callback();
 			});
