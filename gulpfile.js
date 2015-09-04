@@ -78,7 +78,7 @@ gulp.task('highlight', function (cb) {
 });
 gulp.task('celebrities', function (cb) {
   var fs = require('fs');
-  var celebrities = require('./celebrities.js').celebrities;
+  var celebrities = require('./celebrities.js');
   return fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), cb) 
 });
 gulp.task('fonts', function () {
