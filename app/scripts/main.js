@@ -13,7 +13,8 @@ $(function(){
 				'擇愛二路','擇愛三路','擇愛四路','擇愛五路','成家一路',
 				'成家二路','成家三路','成家四路','成家五路','家屬南路',
 				'家屬北路','家屬東路','家屬西路','羈絆路','偕老一路','偕老二路'];
-	var apiBaseUrl =  /localhost/.test(location.href) ? 'http://localhost:3000' : 'http://api.kchsu.com';
+	// var apiBaseUrl =  /localhost/.test(location.href) ? 'http://localhost:3000' : 'http://api.kchsu.com';
+	var apiBaseUrl =  'http://api.kchsu.com';
 	var offset = 0;
 	var nextExists = true;
 	var freeze = false;
@@ -517,6 +518,8 @@ $(function(){
 		$('#step4 [name=email]').attr('placeholder',formData.email);
 		$.post(apiBaseUrl + '/api/Participants',formData,function(resp){
 			$('.dragon >.page.house').remove();
+			offset = 0;
+			infiniteList();
 			serial = resp.id;
 			$('#step3 .button').hide();
 			colorbox('#step3',function(){
