@@ -20,7 +20,6 @@ module.exports = (function(){
 	{
 		name: "小鮪魚", 
 		url:"https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10414475_434014026775712_1720294787086833620_n.jpg?oh=0dc8b27c6b8928e6a1d01ab1cc360e15&oe=565F93B0&__gda__=1450469633_f681b8141e8c677ce2fabedc1bddeb40", 
-		pattern:"小鮪魚", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"小鮪魚" 
@@ -127,25 +126,20 @@ module.exports = (function(){
 	{
 		name: "老皮", 
 		url:"https://i1.sndcdn.com/avatars-000034827507-77rewh-t500x500.jpg", 
-		pattern:"老皮", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"老皮"
 	},{
 		name: "郭美江", 
 		url:"https://graph.facebook.com/Linda6123/picture", 
-		pattern:"郭美江", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		facebookId:"Linda6123",
 		value:"郭美江"
 	},{
 		name: "Zachary Quinto", 
 		url:"http://graph.facebook.com/zacharyquintoofficial/picture?type=large", 
-		pattern:"Zachary|Quinto|ZacharyQuinto", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
-		facebookId:"zacharyquintoofficial",
 		value:"Zachary"
 	}]};
 
