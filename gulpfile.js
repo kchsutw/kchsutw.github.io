@@ -75,9 +75,8 @@ gulp.task('highlight', function () {
   var fs = require('fs');
   var highlight = require('./highlight.js');
   var celebrities = require('./celebrities.js').celebrities;
-  fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {})
-  fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}) 
-  return; 
+  fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {}) &
+  fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {return}) ;
 });
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
