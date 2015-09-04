@@ -67,16 +67,19 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('json', ['highlight'],function () {
+gulp.task('json', ['highlight','celebrities'],function () {
   return gulp.src('app/*.json')
     .pipe(gulp.dest('dist'));
 });
-gulp.task('highlight', function () {
+gulp.task('highlight', function (cb) {
   var fs = require('fs');
   var highlight = require('./highlight.js');
+  return fs.writeFile("app/highlight.json", JSON.stringify(highlight), cb) ;
+});
+gulp.task('celebrities', function (cb) {
+  var fs = require('fs');
   var celebrities = require('./celebrities.js').celebrities;
-  fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {}) &
-  fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {return}) ;
+  return fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), cb) 
 });
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
@@ -141,11 +144,10 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
     'app/*.json'
   ]).on('change', reload);
 
-  gulp.watch('highlight.js', ['highlight']);
-  gulp.watch('celebrities.js', ['highlight']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('celebrities.js', ['celebrities']);
   gulp.watch('highlight.js', ['highlight']);
   // gulp.watch('app/**/*', ['build']);
 });
