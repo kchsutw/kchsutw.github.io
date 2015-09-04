@@ -5,3 +5,5 @@ dist/*
 .sass-cache
 bower_components
 test/bower_components
+app/celebrities.json
+app/highlight.json

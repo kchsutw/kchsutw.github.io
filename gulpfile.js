@@ -7,6 +7,16 @@ var browserSync = require('browser-sync');
 var proxy = require('http-proxy-middleware');
 var reload = browserSync.reload;
 
+gulp.task('clearCache', function() {
+  // Still pass the files to clear cache for
+  gulp.src('app/images/**/*')
+    .pipe($.cache.clear());
+
+  // Or, just call this for everything
+  $.cache.clearAll();
+});
+
+
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.sourcemaps.init())
@@ -64,9 +74,10 @@ gulp.task('json', ['highlight'],function () {
 gulp.task('highlight', function () {
   var fs = require('fs');
   var highlight = require('./highlight.js');
-  var celebrities = require('./celebrities.js');
-  return fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}) &
-      fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {}); 
+  var celebrities = require('./celebrities.js').celebrities;
+  fs.writeFile("app/celebrities.json", JSON.stringify(celebrities), function(err) {})
+  fs.writeFile("app/highlight.json", JSON.stringify(highlight), function(err) {}) 
+  return; 
 });
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')({
@@ -138,13 +149,6 @@ gulp.task('serve', ['styles', 'fonts', 'nodemon'], function () {
   gulp.watch('bower.json', ['wiredep', 'fonts']);
   gulp.watch('highlight.js', ['highlight']);
   // gulp.watch('app/**/*', ['build']);
-});
-gulp.task('highlight',[],function(){
-  var json = JSON.stringify(require('./highlight.js'));
-  var fs = require('fs');
-  return fs.writeFile("./app/highlight.json", json, function(err) {
-
-  }); 
 });
 
 // inject bower components

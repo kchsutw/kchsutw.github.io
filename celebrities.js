@@ -129,13 +129,15 @@ module.exports = (function(){
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"老皮"
-	},{
+	},
+	{
 		name: "郭美江", 
 		url:"https://graph.facebook.com/Linda6123/picture", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"郭美江"
-	},{
+	},
+	{
 		name: "Zachary Quinto", 
 		url:"http://graph.facebook.com/zacharyquintoofficial/picture?type=large", 
 		launch:new Date('2015/8/15'), 
