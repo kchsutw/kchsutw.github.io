@@ -559,7 +559,7 @@ $(function(){
 
 	$('#step3 .button').on('click',function(){
 		ga('send', 'event', 'participants-steps', 'share', 'share-loaded', 1);
-		var shareUrl = apiBaseUrl + '/me/' + serial;
+		var shareUrl = apiBaseUrl + '/iam/' + serial;
 		FB.ui({
 		  method: 'share',
 		  href: shareUrl
