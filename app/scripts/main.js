@@ -146,7 +146,7 @@ $(function(){
 						if(req.sn*1 === 0){
 						 	shareUrl = 'http://kchsu.com';
 						}else{
-						 	shareUrl = apiBaseUrl + '/me/' + req.sn;
+						 	shareUrl = apiBaseUrl + '/iam/' + req.sn;
 						}
 						FB.ui({
 						  method: 'share',
