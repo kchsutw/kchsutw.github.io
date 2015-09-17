@@ -218,13 +218,13 @@ header{
           line-height: em(32,15);
           margin:0;
           a{
-            width: 150px;
+            width: 190px;
             height: 30px;
-            margin-left: 20px;
+            margin-left: 0px;
             display: inline-block;
             text-align: center;
-            line-height: em(25,18);
-            font-size: em(18,15);
+            line-height: 1.6em;
+            font-size: 1em;
             color:#fff;
             background: url(../images/btn-background.png) ;
             border: 1px solid #fff;
@@ -236,7 +236,7 @@ header{
             transition-property: background-position;
             i{
               color:rgba(255,255,255,0.8);
-              line-height: em(30,15);
+              line-height: 2.5em;
               font-size: em(15,18);
               position: absolute;
               right: 5px;
@@ -400,7 +400,7 @@ header{
             display: block;
             height: 100%;
             left: 0;
-            opacity: 0.3;
+            opacity: 0.6;
             position: absolute;
             top: 0;
             width: 100%;
@@ -414,11 +414,11 @@ header{
         }
       }
       ul{
-        margin:0 0 0 16px;
+        margin:0 0 0 15px;
         padding:0;
         float: left;
         display: block;
-        width:121px;
+        width:124px;
         height: 114px;
         overflow:hidden;
         li{
@@ -442,7 +442,7 @@ header{
               z-index: 1;
               transform:scale(1.6);
               img{
-                opacity: 0.6;
+                opacity: 0.9;
               }
             }
             background: rgba(0, 0, 0, 0) url("../images/btn-background.png") repeat scroll 0 0;
@@ -454,7 +454,7 @@ header{
               position: relative;
               width: 100%;
               border-radius: 12px;
-              opacity: 0.3;
+              opacity: 0.6;
               transition:0.3s opacity;
             }
           }
@@ -607,9 +607,9 @@ header{
         box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
         color: #fff;
         display: inline-block;
-        font-size: 1.2em;
+        font-size: 1em;
         height: 30px;
-        line-height: 1.38889em;
+        line-height: 1.6em;
         position: relative;
         text-align: center;
         text-decoration: none;
@@ -620,7 +620,7 @@ header{
         margin-top: 10px;
         i{
           color:rgba(255,255,255,0.8);
-          line-height: em(30,15);
+          line-height: 2.5em;
           font-size: em(15,18);
           position: absolute;
           right: 5px;
@@ -840,9 +840,9 @@ footer{
     box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
     color: #fff;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 1em;
     height: 30px;
-    line-height: 1.38889em;
+    line-height: 1.6em;
     margin-top: 20px;
     margin-right: 10px;
     position: relative;
@@ -854,7 +854,7 @@ footer{
     float: left;
     i{
       color:rgba(255,255,255,0.8);
-      line-height: em(30,15);
+      line-height: 2.5em;
       font-size: em(15,18);
       position: absolute;
       right: 5px;
@@ -1118,9 +1118,9 @@ footer{
     box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
     color: #fff;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 1em;
     height: 30px;
-    line-height: 1.38889em;
+    line-height: 1.6em;
     position: absolute;
     text-align: center;
     text-decoration: none;
@@ -1131,7 +1131,7 @@ footer{
     left:162px;
     i{
       color:rgba(255,255,255,0.8);
-      line-height: em(30,15);
+      line-height: 2.5em;
       font-size: em(15,18);
       position: absolute;
       right: 5px;
@@ -1189,9 +1189,9 @@ footer{
     box-shadow: 1px 6px 15px rgba(0, 0, 0, 0.2);
     color: #fff;
     display: inline-block;
-    font-size: 1.2em;
+    font-size: 1em;
     height: 30px;
-    line-height: 1.38889em;
+    line-height: 1.6em;
     margin-right: 20px;
     margin-top: 20px;
     position: relative;
@@ -1202,7 +1202,7 @@ footer{
     width: 150px;
     i{
       color:rgba(255,255,255,0.8);
-      line-height: em(30,15);
+      line-height: 2.5em;
       font-size: em(15,18);
       position: absolute;
       right: 5px;

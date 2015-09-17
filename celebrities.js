@@ -25,6 +25,20 @@ module.exports = (function(){
 		value:"小鮪魚" 
 	},
 	{
+		name: "桃弟", 
+		url:"http://kchsu.com/images/cha_a.jpg", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		value:"桃弟" 
+	},	
+	{
+		name: "大桃", 
+		url:"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p160x160/11695895_1090769834284695_4582209189838385851_n.jpg?oh=55907dd6f221784ff3b6fab836beda06&oe=56A8C42C&__gda__=1450112169_44494530e7e9be92b44379987935a8ca", 
+		launch:new Date('2015/8/15'), 
+		expired:new Date('2016/8/15'), 
+		value:"大桃" 
+	},	
+	{
 		name: "天菜", 
 		url:"https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10447548_665002050261744_8090231537516578544_n.png?oh=b62f6acbcf913db065c2bc494aad9478&oe=566A2504&__gda__=1449580725_4d0c3fcb708df2d5d585ce718845c0f8", 
 		launch:new Date('2015/8/15'), 
@@ -40,7 +54,7 @@ module.exports = (function(){
 	},
 	{
 		name: "仙女", 
-		url:"https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10414475_434014026775712_1720294787086833620_n.jpg?oh=0dc8b27c6b8928e6a1d01ab1cc360e15&oe=565F93B0&__gda__=1450469633_f681b8141e8c677ce2fabedc1bddeb40", 
+		url:"http://kchsu.com/images/cha_b.jpg", 
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"仙女" 
@@ -68,7 +82,7 @@ module.exports = (function(){
 	},
 	{
 		name: "假文青",
-		url:"https://graph.facebook.com/5GuyFashion/picture?type=large",
+		url:"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p160x160/10986873_362242693985655_3083151146214695151_n.png?oh=905367ad1e8a4710439b349f4cc73e16&oe=5664F3A5&__gda__=1450940622_525b06fb6a47e47fe90b9004df8e65cf",
 		launch:new Date('2015/8/15'), 
 		expired:new Date('2016/8/15'), 
 		value:"假文青"
